@@ -1,0 +1,13 @@
+{
+    "name": "vincit/wordpress-theme-base",
+    "type": "wordpress-theme",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Christian Nikkanen",
+            "email": "christian.nikkanen@vincit.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
