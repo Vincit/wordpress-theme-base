@@ -35,7 +35,6 @@ const generalConfig = merge([
       path: paths.dist,
       filename: '[name].[hash].js',
       publicPath: pjson.wptheme.publicPath,
-      // publicPath: , // Is this required?
     },
 
     target: 'web',
