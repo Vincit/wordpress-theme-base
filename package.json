@@ -14,6 +14,7 @@
     "build:dev": "webpack --env development --config ./build/webpack.config.js",
     "lint:js": "eslint src/ ./build/*.js --cache",
     "test": "./tests/wpcs/vendor/bin/phpcs --extensions=php --standard=./phpcs.xml -n -p -s --ignore=/tests/ --ignore=/vendor/ .",
+    "test": "echo \"Who needs tests? Seriously make some.\"",
     "prepush": "npm run test"
   },
   "repository": {
