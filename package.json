@@ -1,0 +1,64 @@
+{
+  "name": "wordpress-theme-base",
+  "version": "1.0.0",
+  "description": "",
+  "wptheme": {
+    "publicPath": "http://localhost:8080/wp-content/themes/wordpress-theme-base/dist/"
+  },
+  "scripts": {
+    "start": "webpack-dashboard -- npm run watch",
+    "watch": "webpack-dev-server --env development --config ./build/webpack.config.js",
+    "dev": "nodemon --watch ./build --exec \"npm run watch\"",
+    "build": "webpack --env production --config ./build/webpack.config.js",
+    "build:dev": "webpack --env development --config ./build/webpack.config.js",
+    "lint:js": "eslint src/ ./build/*.js --cache",
+    "test": "./tests/wpcs/vendor/bin/phpcs --extensions=php --standard=./phpcs.xml -n -p -s --ignore=/tests/ --ignore=/vendor/ .",
+    "prepush": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vincit/wordpress-theme-base.git"
+  },
+  "author": "",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/Vincit/wordpress-theme-base/issues"
+  },
+  "homepage": "https://github.com/Vincit/wordpress-theme-base#readme",
+  "devDependencies": {
+    "autoprefixer": "^7.1.2",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "case-sensitive-paths-webpack-plugin": "^2.1.1",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.5",
+    "eslint": "^4.5.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^0.11.2",
+    "friendly-errors-webpack-plugin": "^1.6.1",
+    "html-webpack-plugin": "^2.30.1",
+    "husky": "^0.14.3",
+    "imagemin-webpack-plugin": "^1.5.0-beta.0",
+    "jeet": "^7.1.0",
+    "nodemon": "^1.11.0",
+    "npm-install-webpack-plugin": "^4.0.5",
+    "nyan-progress-webpack-plugin": "^1.2.0",
+    "postcss-loader": "^2.0.6",
+    "precss": "^2.0.0",
+    "style-loader": "^0.18.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "svg-inline-loader": "^0.8.0",
+    "url": "^0.11.0",
+    "url-loader": "^0.5.9",
+    "webpack": "^3.5.5",
+    "webpack-dashboard": "^1.0.0-5",
+    "webpack-dev-middleware": "^1.12.0",
+    "webpack-dev-server": "^2.7.1",
+    "webpack-merge": "^4.1.0",
+    "write-file-webpack-plugin": "^4.1.0"
+  }
+}

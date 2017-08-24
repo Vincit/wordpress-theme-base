@@ -1,1 +1,4 @@
 /vendor/
+.eslintcache
+dist
+node_modules
