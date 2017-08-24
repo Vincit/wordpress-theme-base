@@ -3,7 +3,7 @@
 This theme is as barebones as starter themes get. It ~~has everything~~ will have everything preconfigured, but boilerplate is kept to a minimum.
 
 ## Features
-- [] ???
+- [ ] ???
 - [x] Built with Webpack 3
   - [x] ES6+
   - [x] ESLint
@@ -14,7 +14,7 @@ This theme is as barebones as starter themes get. It ~~has everything~~ will hav
   - [x] Automatic image optimization using imagemin
   - [x] Nyancat progress bar
   - [x] Enforces case sensitive paths
-- [x] PHPCS
+- [ ] PHPCS
 
 ## Usage
 Clone the theme or install it with the installer that ships with [Vincit/wordpress](https://github.com/Vincit/wordpress). Composer is also an option.
