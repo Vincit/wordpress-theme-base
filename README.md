@@ -58,3 +58,17 @@ Find & replace at least these strings:
 
 ### WTF, why are you importing a `.styl` file inside JavaScript?
 Ask Webpack. Get over it. Basically Webpack doesn't know about them otherwise.
+
+### I installed all the dependencies and ran npm run watch, but when I try to access http://localhost:8080 I get the following error: Error occured while trying to proxy to: localhost:8080/
+You don't have WordPress installed at https://wordpress.local, which is the default address. Change the proxyURL value in package.json and try again.
+
+### You promised us HMR, but it doesn't work?!!
+See above. HMR requires publicPath value to work. This theme defaults to http://localhost:8080/wp-content/themes/wordpress-theme-base/dist/, if you installed the theme in a directory with another name you obviously need to change it.
+Change the value in package.json.
+
+### I did the above but HMR still doesn't work?
+Git gud. HMR requires you to write your code accordingly, example:
+- [Module](https://github.com/Vincit/wordpress-theme-base/blob/master/src/js/components/clock.js)
+- [client.js](https://github.com/Vincit/wordpress-theme-base/blob/master/src/client.js)
+
+Consult Webpack documentation if necessary.
