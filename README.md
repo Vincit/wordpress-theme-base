@@ -9,8 +9,8 @@ This theme is as barebones as starter themes get. It ~~has everything~~ will hav
   - [x] ESLint
   - [x] Stylus
   - [x] Sourcemaps
-  - [x] *CSS Hot Module Replacement* (HMR)
-  - [x] *JS Hot Module Replacement* (HMR)
+  - [x] **CSS Hot Module Replacement** (HMR)
+  - [x] **JS Hot Module Replacement** (HMR)
   - [x] Automatic image optimization using imagemin
   - [x] Nyancat progress bar
   - [x] Enforces case sensitive paths
