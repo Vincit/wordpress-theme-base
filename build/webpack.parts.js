@@ -20,7 +20,7 @@ exports.devServer = ({ host, port } = {}) => ({
       warnings: true,
     },
 
-    hotOnly: true, // Stop throwing our state to garbage bin if hot load fails
+    hotOnly: true, // Stop throwing our state to the garbage bin if hot load fails
 
     proxy: {
       '/': {
