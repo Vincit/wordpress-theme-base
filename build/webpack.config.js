@@ -8,12 +8,14 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const NpmInstallPlugin = require('npm-install-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
-// const DashboardPlugin = require('webpack-dashboard/plugin');
+// const Dashboard = require('webpack-dashboard');
+// const DashboardPlugin = require('webpack-dashboard/plugin'); // The dashboard looks nice, and is useful, but it's broken currently.
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const Imagemin = require('imagemin-webpack-plugin').default;
 
 const parts = require('./webpack.parts');
+// const dashboard = new Dashboard();
 
 const paths = {
   src: path.join(__dirname, '..', 'src'),
@@ -32,6 +34,7 @@ const generalConfig = merge([
     output: {
       path: paths.dist,
       filename: '[name].[hash].js',
+      publicPath: pjson.wptheme.publicPath,
       // publicPath: , // Is this required?
     },
 
@@ -74,10 +77,6 @@ const generalConfig = merge([
 
   parts.lintJavaScript({ include: paths.src }),
   parts.transpileJavaScript(),
-  parts.extractCSS({
-    // filename: '[name].css',
-    use: ['css-loader', parts.autoprefix(), 'stylus-loader'],
-  }),
   parts.loadImages(),
   parts.loadFonts({
     options: {
@@ -91,10 +90,12 @@ const devConfig = merge([
   parts.devServer(),
   {
     plugins: [
-      // new DashboardPlugin(),
+      // new DashboardPlugin({ handler: dashboard.setData }),
       new webpack.NamedModulesPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
     ],
   },
+  parts.loadCSS(),
   parts.sourceMaps({ type: 'cheap-module-source-map' }),
 ]);
 

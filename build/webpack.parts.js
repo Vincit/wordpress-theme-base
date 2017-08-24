@@ -1,5 +1,6 @@
 const path = require('path');
 const pjson = require(path.join(__dirname, '..', 'package.json'));
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 exports.devServer = ({ host, port } = {}) => ({
@@ -18,13 +19,19 @@ exports.devServer = ({ host, port } = {}) => ({
       errors: true,
       warnings: true,
     },
+
+    hotOnly: true, // Stop throwing our state to garbage bin if hot load fails
+
     proxy: {
       '/': {
-        target: 'https://wordpress.local',
+        target: pjson.wptheme.proxyURL,
         secure: false,
+        changeOrigin: true,
+        autoRewrite: true,
       },
     },
     publicPath: pjson.wptheme.publicPath,
+    // contentBase: pjson.wptheme.publicPath, // URLs are deprecated, and this is not necessary.
   },
 });
 
@@ -63,6 +70,44 @@ exports.lintJavaScript = ({ include, exclude }) => ({
   },
 });
 
+exports.loadCSS = ({ include, exclude } = {}) => ({
+  // https://survivejs.com/webpack/styling/loading/#understanding-lookups
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        include,
+        exclude,
+
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.styl$/,
+        include,
+        exclude,
+        use: ['style-loader', 'css-loader', 'stylus-loader'],
+      },
+    ],
+  },
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        // jeet
+        stylus: {
+          use: [
+            // require('jeet') // this just doesn't work, import it in .styl files
+          ],
+          import: [
+            // '~jeet/jeet'
+          ],
+        },
+      },
+    }),
+  ],
+});
 
 exports.extractCSS = ({ filename, include, exclude, use }) => {
   // Output extracted CSS to a file
@@ -95,6 +140,7 @@ exports.autoprefix = () => ({
     plugins: () => ([
       require('autoprefixer'),
     ]),
+    sourceMap: true,
   },
 });
 
