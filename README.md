@@ -46,7 +46,7 @@ Find & replace at least these strings:
 `WordPress theme base` => ???
 
 ## FAQ
-### What's with the folder structure?*
+### What's with the folder structure?
 - build/ contains build related things, such as Webpack config.
 - dist/ contains the build itself. Never committed to version control.
 - inc/ contains server side includes. Basically if you would put it in functions.php, put it here.
