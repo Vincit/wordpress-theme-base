@@ -1,11 +1,15 @@
 export default function clock() {
+  const maybePad = (number) => number.toString().length > 1 ? number : `0${number}`;
   const ymdhis = () => {
-    const d = new Date();
-    const h = d.getHours().toString().length > 1 ? d.getHours() : `0${d.getHours()}`;
-    const m = d.getMinutes().toString().length > 1 ? d.getMinutes() : `0${d.getMinutes()}`;
-    const s = d.getSeconds().toString().length > 1 ? d.getSeconds() : `0${d.getSeconds()}`;
+    const date = new Date();
+    const y = date.getFullYear();
+    const m = maybePad(date.getMonth() + 1);
+    const d = maybePad(date.getDate());
+    const h = maybePad(date.getHours());
+    const i = maybePad(date.getMinutes());
+    const s = maybePad(date.getSeconds());
 
-    return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()} ${h}:${m}:${s}`;
+    return `${y}-${m}-${d} ${h}:${i}:${s}`;
   };
 
   const clock = document.createElement('time');
