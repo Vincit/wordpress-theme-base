@@ -1,8 +1,12 @@
 import './client.styl';
 import clock from './js/components/clock';
+import postList from './js/components/post-list.redom';
 
 let clockEl = clock();
 document.body.appendChild(clockEl);
+
+let postListEl = postList();
+document.body.appendChild(postListEl);
 
 if (module.hot) {
   module.hot.accept('./js/components/clock', () => {
@@ -14,5 +18,12 @@ if (module.hot) {
 
     document.body.replaceChild(nextClock, clockEl);
     clockEl = nextClock;
+  });
+
+  module.hot.accept('./js/components/post-list.redom', () => {
+    const nextPostList = require('./js/components/post-list.redom').default();
+
+    document.body.replaceChild(nextPostList, postListEl);
+    postListEl = nextPostList;
   });
 }
