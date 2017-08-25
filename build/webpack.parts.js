@@ -38,13 +38,36 @@ exports.devServer = ({ host, port } = {}) => ({
 exports.transpileJavaScript = () => ({
   module: {
     rules: [
+      /* {
+        test: /\.redom\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            presets: ['babel-preset-latest'],
+            plugins: [
+              require('babel-plugin-transform-redom-jsx'),
+              [
+                require('babel-plugin-transform-react-jsx'), {
+                  'pragma': 'el',
+                },
+              ],
+            ],
+          },
+        },
+      }, */
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
+            cacheDirectory: true,
             presets: ['babel-preset-latest'],
+            /* plugins: [
+              require('babel-plugin-transform-react-jsx'),
+            ], */
           },
         },
       },
