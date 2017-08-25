@@ -13,9 +13,9 @@
     "build": "webpack --env production --config ./build/webpack.config.js",
     "build:dev": "webpack --env development --config ./build/webpack.config.js",
     "lint:js": "eslint src/ ./build/*.js --cache",
-    "test": "./tests/wpcs/vendor/bin/phpcs --extensions=php --standard=./phpcs.xml -n -p -s --ignore=/tests/ --ignore=/vendor/ .",
     "test": "echo \"Who needs tests? Seriously make some.\"",
-    "prepush": "npm run test"
+    "prepush": "npm run test",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,10 @@
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
     "case-sensitive-paths-webpack-plugin": "^2.1.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.5",

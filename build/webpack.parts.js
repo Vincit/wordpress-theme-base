@@ -44,7 +44,7 @@ exports.transpileJavaScript = () => ({
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env'],
+            presets: ['babel-preset-latest'],
           },
         },
       },
