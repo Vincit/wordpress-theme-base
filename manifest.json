@@ -1,0 +1,17 @@
+{
+  "short_name": "wordpress-theme-base",
+  "name": "WordPress theme base",
+  "description": "Progressive web application",
+  "icons": [
+    {
+      "src": "launcher-icon.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./?utm_source=web_app_manifest",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#f04e30",
+  "background_color": "#222222"
+}

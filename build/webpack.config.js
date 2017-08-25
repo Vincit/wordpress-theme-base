@@ -13,6 +13,7 @@ const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const Imagemin = require('imagemin-webpack-plugin').default;
+const OfflinePlugin = require('offline-plugin');
 
 const parts = require('./webpack.parts');
 // const dashboard = new Dashboard();
@@ -20,6 +21,12 @@ const parts = require('./webpack.parts');
 const paths = {
   src: path.join(__dirname, '..', 'src'),
   dist: path.join(__dirname, '..', 'dist'),
+};
+
+const offlineOpts = {
+  externals: [
+    '/',
+  ],
 };
 
 // Config used in all modes
@@ -43,6 +50,7 @@ const generalConfig = merge([
     },
 
     plugins: [
+      new webpack.NamedModulesPlugin(),
       new CaseSensitivePathsPlugin(), // for filesystems that aren't case sensitive (looking at you macOS and Windows...)
       new NpmInstallPlugin(), // Because no one wants to do it manually
       new FriendlyErrorsPlugin(), // Disable if you want webpack to be mean
@@ -90,8 +98,8 @@ const devConfig = merge([
   {
     plugins: [
       // new DashboardPlugin({ handler: dashboard.setData }),
-      new webpack.NamedModulesPlugin(),
       new webpack.HotModuleReplacementPlugin(),
+      new OfflinePlugin(offlineOpts),
     ],
   },
   parts.loadCSS(),
@@ -102,7 +110,8 @@ const devConfig = merge([
 const prodConfig = merge([
   {
     plugins: [
-      new webpack.NamedModulesPlugin(),
+      new webpack.optimize.UglifyJsPlugin(),
+      new OfflinePlugin(offlineOpts), // twice because README said it's best to be the last
     ],
   },
 

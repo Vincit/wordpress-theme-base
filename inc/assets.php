@@ -60,6 +60,8 @@ function enqueue($path = null, $deps = [], $external = false) {
     default:
       throw new \Exception('Enqueued file must be a css or js file.');
   }
+
+  return $file;
 }
 
 function theme_assets() {
@@ -68,12 +70,16 @@ function theme_assets() {
   // Webfonts:
   // enqueue("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700", [], true);
 
-  // Styles:
-  enqueue("$themeroot/dist/client.*.css");
-
-  // Scripts:
   enqueue("https://cdn.polyfill.io/v2/polyfill.min.js?features=default,es6,fetch", [], true);
-  enqueue("$themeroot/dist/client.*.js");
+
+  // Used to determine what to cache for offline use and so on.
+  \wp_localize_script("client-js", "theme", [
+    "directory" => str_replace(ENQUEUE_STRIP_PATH, "", $themeroot),
+    "cache" => [
+      "stylesheet" => enqueue("$themeroot/dist/client.*.css"),
+      "javascript" => enqueue("$themeroot/dist/client.*.js"),
+    ],
+  ]);
 }
 
 function admin_assets() {
