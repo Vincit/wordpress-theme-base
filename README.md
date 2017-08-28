@@ -72,3 +72,6 @@ Git gud. HMR requires you to write your code accordingly, example:
 - [client.js](https://github.com/Vincit/wordpress-theme-base/blob/master/src/client.js)
 
 Consult Webpack documentation if necessary.
+
+### I get a white screen or Fatal error: Uncaught Exception: Enqueued file must be a css or js file
+Build the theme after installing it. Run `npm install`.
