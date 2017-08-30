@@ -73,6 +73,7 @@ function theme_assets() {
   enqueue("https://cdn.polyfill.io/v2/polyfill.min.js?features=default,es6,fetch", [], true);
 
   // Used to determine what to cache for offline use and so on.
+  // In reality Webpack Offline Plugin handles it.
   \wp_localize_script("client-js", "theme", [
     "directory" => str_replace(ENQUEUE_STRIP_PATH, "", $themeroot),
     "cache" => [
@@ -97,5 +98,5 @@ function editor_assets() {
 }
 
 \add_action("wp_enqueue_scripts", "\Vincit\\theme_assets");
-\add_action("admin_enqueue_scripts", "\Vincit\theme_assets");
-// \add_action("editor_scripts", "\Vincit\theme_assets"); // Figure it out.
+\add_action("admin_enqueue_scripts", "\\Vincit\\admin_assets");
+// \add_action("editor_scripts", "\\Vincit\\editor_assets"); // Figure it out.
