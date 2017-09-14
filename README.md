@@ -16,6 +16,11 @@ This theme is as barebones as starter themes get. It ~~has everything~~ will hav
   - [x] Enforces case sensitive paths
 - [ ] PHPCS
 
+## Requirements
+- Composer
+- Node 6 (preferably latest)
+- npm 5
+
 ## Usage
 Clone the theme or install it with the installer that ships with [Vincit/wordpress](https://github.com/Vincit/wordpress). Composer is also an option.
 ```
