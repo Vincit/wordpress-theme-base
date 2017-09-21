@@ -1,4 +1,6 @@
+import 'normalize.css';
 import './client.styl';
+import './js/skip-link-focus-fix';
 import clock from './js/components/clock';
 import postList from './js/components/post-list.redom';
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
