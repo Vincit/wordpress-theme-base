@@ -116,7 +116,7 @@ const prodConfig = merge([
   },
 
   parts.extractCSS({
-    filename: '[name].css',
+    filename: '[name].[hash].css',
     use: ['css-loader', parts.autoprefix(), 'stylus-loader'],
   }),
 
