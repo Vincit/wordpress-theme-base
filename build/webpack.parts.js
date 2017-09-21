@@ -28,6 +28,9 @@ exports.devServer = ({ host, port } = {}) => ({
         secure: false,
         changeOrigin: true,
         autoRewrite: true,
+        headers: {
+          'X-ProxiedBy-Webpack': true,
+        },
       },
     },
     publicPath: pjson.wptheme.publicPath,
