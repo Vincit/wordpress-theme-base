@@ -1,0 +1,93 @@
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: currentColor;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: currentColor;
+  opacity: 1;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: currentColor;
+  opacity: 1;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: currentColor;
+}
+
+input {
+  &[type="text"],
+  &[type="email"] {
+    appearance: none
+    border: none
+    background: colors.white
+    width: 100%
+    padding: r(8px) r(15px) r(10px) r(21px)
+    font-size: r(18px)
+    line-height: 1.78
+    color: colors.black
+    min-height: r(50px) // IE fix
+  }
+
+  &[type="submit"] {
+    margin-left: auto
+    margin-right: auto
+  }
+}
+
+button, .button {
+  display: inline-block
+  appearance: none
+  padding: r(25px) r(40px)
+  border-radius: r(100px)
+  border: none
+  font-size: r(20px)
+  font-weight: 500
+  line-height: 0.7
+  letter-spacing: r(1.2px)
+  text-transform: uppercase
+  color: colors.white
+  transition: 0.1s ease-in
+
+  &:hover, &:focus, &:active {
+
+  }
+}
+
+.fc-{
+  &1-2 {
+      column(1/2, cycle: 2);
+    }
+
+  &1-1 {
+    column(1/1);
+  }
+
+  &-row {
+    display: block
+    width: 100%
+    margin-bottom: r(10px)
+
+    &.center {
+      text-align: center
+    }
+
+    &.checkbox {
+      display: flex
+      align-items: center
+
+      input {
+        flex: 0 0 auto
+        margin-right: r(10px)
+        width: r(30px)
+        height: @width
+      }
+    }
+
+    &:last-of-type {
+      margin-top: r(30px)
+    }
+  }
+}
+
