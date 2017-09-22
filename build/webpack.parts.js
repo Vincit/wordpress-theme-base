@@ -3,11 +3,19 @@ const pjson = require(path.join(__dirname, '..', 'package.json'));
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const isWin = /^win/.test(process.platform);
+const isMac = /^darwin/.test(process.platform);
+
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
     // Enable history API fallback so HTML5 History API based
     // routing works. Good for complex setups.
     // historyApiFallback: true,
+
+    watchOptions: {
+      poll: isWin || isMac ? undefined : 1000,
+      aggregateTimeout: 300,
+    },
 
     // Display only errors to reduce the amount of output.
     stats: 'errors-only',
