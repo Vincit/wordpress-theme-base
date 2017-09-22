@@ -57,7 +57,7 @@ function enqueue($path = null, $deps = [], $external = false) {
     case "css":
       // If in development, don't enqueue stylesheets. Styles are in JavaScript,
       // and built stylesheets conflict with our "inline" styles that we use in dev.
-      if ($_SERVER["HTTP_X_PROXIEDBY_WEBPACK"] === 'true') {
+      if (!empty($_SERVER["HTTP_X_PROXIEDBY_WEBPACK"]) && $_SERVER["HTTP_X_PROXIEDBY_WEBPACK"] === 'true') {
         break;
       }
       \wp_enqueue_style($handle, $file, $deps, false, 'all');
