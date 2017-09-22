@@ -122,22 +122,26 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
         test: /\.styl$/,
         include,
         exclude,
-        use: ['style-loader', 'css-loader', 'stylus-loader'],
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'stylus-loader',
+            options: {
+              import: [
+                '~jeet/styl/index.styl'
+              ],
+              preferPathResolver: 'webpack',
+            }
+          }
+        ],
       },
     ],
   },
   plugins: [
     new webpack.LoaderOptionsPlugin({
       options: {
-        // jeet
-        stylus: {
-          use: [
-            // require('jeet') // this just doesn't work, import it in .styl files
-          ],
-          import: [
-            // '~jeet/jeet'
-          ],
-        },
+
       },
     }),
   ],
