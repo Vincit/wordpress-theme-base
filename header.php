@@ -27,4 +27,15 @@
     Skip to content
   </a>
 
+  <header class="site-header">
+    <div class="container">
+      <?php the_custom_logo(); ?>
+      <?=wp_nav_menu([
+        "container" => "nav",
+        "theme_location" => "header-menu",
+      ])?>
+    </div>
+  </header>
+
+
   <main id="content">
