@@ -98,7 +98,7 @@ function theme_assets() {
     "directory" => str_replace(ENQUEUE_STRIP_PATH, "", $themeroot),
     "cache" => [
       "stylesheet" => enqueue("$themeroot/dist/client.*.css"),
-      "javascript" => enqueue("$themeroot/dist/client.*.js", ["wplf-form-js"]),
+      "javascript" => enqueue("$themeroot/dist/client.*.js"),
     ],
   ]);
 }
