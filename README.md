@@ -80,3 +80,19 @@ Consult Webpack documentation if necessary.
 
 ### I get a white screen or Fatal error: Uncaught Exception: Enqueued file must be a css or js file
 Build the theme after installing it. Run `npm install`.
+
+### How to use webfonts?
+Place the font files in src/fonts. The loaders working directory is src, even if you use @font-face in styl/typography.styl.
+
+```
+@font-face {
+  font-family: 'FontName'
+  src: url('./fonts/Font.eot')
+  src: local('.'), local('.'),
+    url('./fonts/Font.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/Font.woff') format('woff'),
+    url('./fonts/Font.ttf') format('truetype')
+  font-weight: normal
+  font-style: normal
+}
+```
