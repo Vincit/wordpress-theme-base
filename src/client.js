@@ -5,11 +5,12 @@ import clock from './js/components/clock';
 import postList from './js/components/post-list.redom';
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 
+const firstContentContainer = document.body.querySelector('main .container');
 let clockEl = clock();
-document.body.appendChild(clockEl);
+firstContentContainer.appendChild(clockEl);
 
 let postListEl = postList();
-document.body.appendChild(postListEl);
+firstContentContainer.appendChild(postListEl);
 
 if (module.hot) {
   module.hot.accept('./js/components/clock', () => {
@@ -19,14 +20,14 @@ if (module.hot) {
     // Because it has not changed. We have to require() it again to get the fresh one.
     // It's also possible to use dynamic imports instead of require().
 
-    document.body.replaceChild(nextClock, clockEl);
+    firstContentContainer.replaceChild(nextClock, clockEl);
     clockEl = nextClock;
   });
 
   module.hot.accept('./js/components/post-list.redom', () => {
     const nextPostList = require('./js/components/post-list.redom').default();
 
-    document.body.replaceChild(nextPostList, postListEl);
+    firstContentContainer.replaceChild(nextPostList, postListEl);
     postListEl = nextPostList;
   });
 }
