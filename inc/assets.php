@@ -3,16 +3,7 @@ namespace Vincit;
 
 define('ENQUEUE_STRIP_PATH', '/data/wordpress/htdocs');
 
-/**
- * Better enqueue function. Deals with hashes in filenames and is less verbose to use.
- * Based on \rnb\core\enqueue (https://github.com/redandbluefi/wordpress-tools/blob/master/modules/core.php#L118)
- *
- * @param string $path
- * @param array $deps
- * @param boolean $external
- */
-
-function enqueue($path = null, $deps = [], $external = false) {
+function enqueue_parts($path = null, $deps = [], $external = false) {
   if (is_null($path)) {
     trigger_error('Enqueue path must not be empty', E_USER_ERROR);
   } else if (!defined('ENQUEUE_STRIP_PATH')) {
@@ -50,6 +41,30 @@ function enqueue($path = null, $deps = [], $external = false) {
     $handle = "polyfill";
   }
 
+
+  return [
+    "parts" => $parts,
+    "type" => $type,
+    "handle" => $handle,
+    "file" => $file,
+  ];
+}
+
+/**
+ * Better enqueue function. Deals with hashes in filenames and is less verbose to use.
+ * Based on \rnb\core\enqueue (https://github.com/redandbluefi/wordpress-tools/blob/master/modules/core.php#L118)
+ *
+ * @param string $path
+ * @param array $deps
+ * @param boolean $external
+ */
+
+function enqueue($path = null, $deps = [], $external = false) {
+  $parts = enqueue_parts($path, $deps, $external);
+  $type = $parts["type"];
+  $handle = $parts["handle"];
+  $file = $parts["file"];
+
   switch($type) {
     case "js":
       \wp_enqueue_script($handle, $file, $deps, false, true);
@@ -83,7 +98,7 @@ function theme_assets() {
     "directory" => str_replace(ENQUEUE_STRIP_PATH, "", $themeroot),
     "cache" => [
       "stylesheet" => enqueue("$themeroot/dist/client.*.css"),
-      "javascript" => enqueue("$themeroot/dist/client.*.js"),
+      "javascript" => enqueue("$themeroot/dist/client.*.js", ["wplf-form-js"]),
     ],
   ]);
 }
@@ -99,9 +114,15 @@ function admin_assets() {
 }
 
 function editor_assets() {
-
+  // Doesn't get hackier than this.
+  $themeroot = get_stylesheet_directory();
+  $editor = "dist/" . basename(enqueue_parts("$themeroot/dist/editor.*.css")["file"]);
+  add_editor_style($editor);
 }
 
 \add_action("wp_enqueue_scripts", "\Vincit\\theme_assets");
 \add_action("admin_enqueue_scripts", "\\Vincit\\admin_assets");
-// \add_action("editor_scripts", "\\Vincit\\editor_assets"); // Figure it out.
+
+if (is_admin()) {
+  editor_assets();
+}
