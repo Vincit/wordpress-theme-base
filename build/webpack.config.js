@@ -109,6 +109,9 @@ const devConfig = merge([
 // Config used for production builds
 const prodConfig = merge([
   {
+    output: {
+      publicPath: pjson.wptheme.publicPath.replace('http://localhost:8080', ''),
+    },
     plugins: [
       new webpack.optimize.UglifyJsPlugin(),
       new OfflinePlugin(offlineOpts), // twice because README said it's best to be the last
