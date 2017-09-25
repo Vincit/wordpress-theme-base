@@ -29,11 +29,19 @@
 
   <header class="site-header">
     <div class="container">
-      <?php the_custom_logo(); ?>
+      <nav class="main-navigation">
+      <?php if (has_custom_logo()) {
+        the_custom_logo();
+      } else { ?>
+        <a href="<?=home_url()?>" class="custom-logo-link custom-logo-unset" rel="home" itemprop="url">
+          <img src="https://vincit.fi/wp-content/themes/vincit.com/images/Vincit_tirppa_white.png" class="custom-logo" alt="Wordpress2" itemprop="logo">
+        </a>
+      <?php } ?>
       <?=wp_nav_menu([
-        "container" => "nav",
+        // "container" => "nav",
         "theme_location" => "header-menu",
       ])?>
+      </nav>
     </div>
   </header>
 

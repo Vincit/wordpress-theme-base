@@ -3,8 +3,98 @@
   color: colors.white
   width: 100%
   min-height: r(120px)
+  display: flex
+  align-items: center
+
+  .container {
+    overflow: visible
+  }
 
   a {
     color: colors.white
+  }
+}
+
+.main-navigation {
+  flex-basis: 100%
+  display: flex
+  flex-flow: row nowrap
+  align-items: center
+  justify-content: space-between
+
+  .custom-logo-link {
+    img {
+      max-width: r(200px)
+    }
+  }
+
+  .menu, .sub-menu {
+    list-style: none
+    padding: 0
+    margin: 0
+  }
+
+  > .menu {
+    flex-basis: 100%
+    display: flex
+    flex-flow: row nowrap
+    justify-content: space-around
+
+    .sub-menu {
+      display: none
+      position: absolute
+      width: 100%
+      background: colors.white
+      color: colors.black
+      text-align: center
+    }
+  }
+
+  .menu-item {
+    position: relative
+
+    openSubmenu() {
+      display: block
+    }
+
+    &:hover {
+      .sub-menu {
+        openSubmenu()
+      }
+    }
+
+    a {
+      color: currentColor
+      padding: r(2px) r(5px)
+      border-radius: r(2px)
+
+      &:focus, &:hover {
+        color: colors.black
+
+        & + .sub-menu {
+          openSubmenu()
+        }
+      }
+    }
+  }
+
+  .sub-menu {
+    .menu-item {
+      white-space: nowrap
+      border-bottom: r(1px) solid colors.orange
+
+      &:last-child {
+        border-bottom: none
+      }
+
+      a {
+        line-height: 1.4
+        padding: r(5px) r(15px)
+
+        &:hover {
+          color: colors.orange
+        }
+      }
+    }
   }
 }
