@@ -4,7 +4,7 @@
   "description": "",
   "wptheme": {
     "publicPath": "http://localhost:8080/wp-content/themes/wordpress-theme-base/dist/",
-    "proxyURL": "https://wordpress.local"
+    "proxyURL": "https://wordpress2.local"
   },
   "scripts": {
     "start": "webpack-dashboard -- npm run watch",
@@ -31,6 +31,7 @@
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-plugin-transform-redom-jsx": "^1.0.5",
     "babel-polyfill": "^6.26.0",
@@ -73,6 +74,6 @@
   "dependencies": {
     "js": "^0.1.0",
     "normalize.css": "^7.0.0",
-    "redom": "^3.3.0"
+    "redom": "^3.4.0"
   }
 }

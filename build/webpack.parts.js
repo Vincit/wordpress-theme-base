@@ -76,9 +76,10 @@ exports.transpileJavaScript = () => ({
           options: {
             cacheDirectory: true,
             presets: ['babel-preset-latest'],
-            /* plugins: [
-              require('babel-plugin-transform-react-jsx'),
-            ], */
+            plugins: [
+              require('babel-plugin-transform-object-rest-spread'),
+              // require('babel-plugin-transform-react-jsx'),
+            ],
           },
         },
       },
