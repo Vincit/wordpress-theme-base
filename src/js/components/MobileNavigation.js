@@ -71,9 +71,14 @@ export default class {
       forEach((item) => {
         const wrapper = el('.item-wrapper');
         const handle = item.classList.contains('menu-item-has-children')
-          ? el('button.menu-handle', el('img', {
-            src: `${window.theme.stylesheet_dir}/dist/img/svg/menu-with-open.svg`,
-          }))
+          ? el('button.menu-handle',
+            el('img.open-icon', {
+              src: `${window.theme.directory}/dist/img/svg/menu-with-open.svg`,
+            }),
+            el('img.close-icon', {
+              src: `${window.theme.directory}/dist/img/svg/close.svg`,
+            }),
+          )
           : false;
 
         if (handle) {

@@ -236,11 +236,6 @@ body {
       }
     }
 
-    &.open {
-      .sub-menu {
-        display: block
-      }
-    }
 
     a {
       font-size: r(20px)
@@ -250,6 +245,34 @@ body {
 
     .menu-handle { // Created with JS
       width: r(50px)
+      background: none
+      border-left: r(1px) solid colors.orange
+      border-radius: 0
+      padding: 0
+
+      img {
+        // width: r(25px)
+      }
+
+      .close-icon {
+        display: none
+      }
+    }
+
+    &.open {
+      .sub-menu {
+        display: block
+      }
+
+      .menu-handle {
+        .close-icon {
+          display: inline
+        }
+
+        .open-icon {
+          display: none
+        }
+      }
     }
   }
 }
