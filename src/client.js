@@ -1,9 +1,12 @@
 import 'normalize.css';
 import './client.styl';
 import './js/skip-link-focus-fix';
+import MobileNavigation from './js/components/MobileNavigation';
 import clock from './js/components/clock';
 import postList from './js/components/post-list.redom';
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
+
+new MobileNavigation();
 
 const firstContentContainer = document.body.querySelector('main .container');
 let clockEl = clock();

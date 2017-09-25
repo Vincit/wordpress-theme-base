@@ -27,16 +27,22 @@
     Skip to content
   </a>
 
+  <?php
+  $logo = function() {
+    if (has_custom_logo()) {
+      the_custom_logo();
+    } else { ?>
+      <a href="<?=home_url()?>" class="custom-logo-link custom-logo-unset" rel="home" itemprop="url">
+        <img src="https://vincit.fi/wp-content/themes/vincit.com/images/Vincit_tirppa_white.png" class="custom-logo" alt="Wordpress2" itemprop="logo">
+      </a>
+    <?php }
+  };
+  ?>
+
   <header class="site-header">
     <div class="container">
       <nav class="main-navigation">
-      <?php if (has_custom_logo()) {
-        the_custom_logo();
-      } else { ?>
-        <a href="<?=home_url()?>" class="custom-logo-link custom-logo-unset" rel="home" itemprop="url">
-          <img src="https://vincit.fi/wp-content/themes/vincit.com/images/Vincit_tirppa_white.png" class="custom-logo" alt="Wordpress2" itemprop="logo">
-        </a>
-      <?php } ?>
+      <?=$logo()?>
       <?=wp_nav_menu([
         // "container" => "nav",
         "theme_location" => "header-menu",
@@ -45,5 +51,34 @@
     </div>
   </header>
 
+  <header class="mobile-header">
+    <div class="container header-bar">
+      <button class="menu-toggle">
+        <img class="open-icon" src="<?=get_stylesheet_directory_uri() . "/dist/img/svg/menu-2.svg"?>">
+        <img class="close-icon" src="<?=get_stylesheet_directory_uri() . "/dist/img/svg/close.svg"?>">
+        <span class="screen-reader-text">Menu</span>
+      </button>
+
+      <?=$logo()?>
+
+      <button class="search-toggle">
+        <img class="open-icon" src="<?=get_stylesheet_directory_uri() . "/dist/img/svg/search.svg"?>">
+        <img class="close-icon" src="<?=get_stylesheet_directory_uri() . "/dist/img/svg/close.svg"?>">
+        <span class="screen-reader-text">Menu</span>
+      </button>
+    </div>
+
+    <nav class="mobile-navigation">
+      <?=wp_nav_menu([
+        // "container" => "nav",
+        "theme_location" => "header-menu",
+      ])?>
+    </nav>
+
+    <form class="mobile-search" action="/">
+      <input type="search" name="s" placeholder="Search from site">
+      <button type="submit">Search</button>
+    </form>
+  </header>
 
   <main id="content">
