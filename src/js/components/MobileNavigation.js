@@ -46,8 +46,6 @@ export default class {
       state = newState;
     }
 
-    console.log(state);
-
     this.state = Object.assign({}, this.state, state);
 
     if (cb) {
