@@ -100,6 +100,18 @@ body {
         }
       }
     }
+
+    /*
+      Keep menu open when focus is inside, browser support is okayish:
+      http://caniuse.com/#feat=css-focus-within
+
+      Problem resolved by @tnottu
+    */
+    &:focus-within  {
+      .sub-menu {
+        openSubmenu()
+      }
+    }
   }
 
   .sub-menu {
