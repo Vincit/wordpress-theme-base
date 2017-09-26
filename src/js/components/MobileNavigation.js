@@ -25,8 +25,8 @@ export default class {
 
   handleEvent(e) {
     switch (e.type) {
-    case 'click':
-      var button = e.target.closest('button'); // can't define lexical here
+    case 'click': {
+      const button = e.target.closest('button');
       if (button === this.menuButton) {
         this.toggleMenu();
       } else if (button === this.searchButton) {
@@ -35,6 +35,7 @@ export default class {
         console.warn('Unhandled click event in MobileNavigation');
       }
       break;
+    }
     }
   }
 
