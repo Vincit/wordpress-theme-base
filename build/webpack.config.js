@@ -40,7 +40,7 @@ const generalConfig = merge([
 
     output: {
       path: paths.dist,
-      filename: '[name].[hash].js',
+      filename: '[name].js',
       publicPath: pjson.wptheme.publicPath,
     },
 
@@ -110,6 +110,7 @@ const devConfig = merge([
 const prodConfig = merge([
   {
     output: {
+      filename: '[name].[chunkhash].js',
       publicPath: pjson.wptheme.publicPath.replace('http://localhost:8080', ''),
     },
     plugins: [
@@ -119,11 +120,12 @@ const prodConfig = merge([
   },
 
   parts.extractCSS({
-    filename: '[name].[hash].css',
+    filename: '[name].[contenthash].css',
     use: ['css-loader', parts.autoprefix(), 'stylus-loader'],
   }),
 
-  parts.sourceMaps({ type: 'cheap-module-source-map' }),
+  // no sourcemaps in prod, reason should be obvious.
+  // parts.sourceMaps({ type: 'cheap-module-source-map' }),
 ]);
 
 module.exports = (env) => {
