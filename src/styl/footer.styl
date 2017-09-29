@@ -1,0 +1,15 @@
+.site-footer {
+  background: colors.gray
+  color: colors.white
+
+  .container {
+    padding: r(40px) 0
+    display: flex
+    flex-flow: row nowrap
+    justify-content: space-between
+
+    @media media.small, media.xsmall {
+      flex-flow: column nowrap
+    }
+  }
+}
