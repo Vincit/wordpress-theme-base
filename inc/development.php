@@ -10,7 +10,6 @@ if (defined("WP_DEBUG") && WP_DEBUG) {
 
   foreach ($cors_headers as $key => $value) {
     if (!empty($_SERVER[$key]) && $_SERVER[$key] === $value) {
-      error_log("Enabling CORS for request");
       header("Access-Control-Allow-Origin: *");
       break 1;
     }
