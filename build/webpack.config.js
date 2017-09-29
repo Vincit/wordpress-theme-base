@@ -13,6 +13,7 @@ const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const Imagemin = require('imagemin-webpack-plugin').default;
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
 
 const parts = require('./webpack.parts');
@@ -114,6 +115,11 @@ const prodConfig = merge([
       publicPath: pjson.wptheme.publicPath.replace('http://localhost:8080', ''),
     },
     plugins: [
+      new CleanWebpackPlugin(['dist'], {
+        verbose: true,
+        root: path.join(__dirname, '..'),
+        exclude: ['.gitkeep'],
+      }),
       new webpack.optimize.UglifyJsPlugin(),
       new OfflinePlugin(offlineOpts), // twice because README said it's best to be the last
     ],

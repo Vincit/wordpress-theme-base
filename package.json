@@ -72,6 +72,7 @@
     "write-file-webpack-plugin": "^4.1.0"
   },
   "dependencies": {
+    "clean-webpack-plugin": "^0.1.17",
     "js": "^0.1.0",
     "normalize.css": "^7.0.0",
     "redom": "^3.4.0"
