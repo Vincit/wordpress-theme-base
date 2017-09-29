@@ -96,3 +96,8 @@ Place the font files in src/fonts. The loaders working directory is src, even if
   font-style: normal
 }
 ```
+
+### I tried to use an svg background image but it doesn't quite work
+[svg-inline-loader](https://github.com/webpack-contrib/svg-inline-loader) purifies SVGs and inlines them, so `background: url('./img/svg/background.svg')` results in `background: url(<svg>..</svg>)`.
+
+The solution is to put the SVG in src/img/no-inline/svg directory: `background: url('./img/no-inline/svg/close.svg')` => `background: url(data:image/svg+xml;base64...)`

@@ -192,7 +192,13 @@ exports.loadImages = () => ({
     rules: [
       {
         test: /\.svg$/,
+        exclude: [/no-inline/],
         loader: 'svg-inline-loader',
+      },
+      {
+        test: /\.svg$/,
+        include: [/no-inline/],
+        loader: 'url-loader',
       },
       {
         test: /\.(jpg|png|gif|JPG|PNG|GIF)$/,
