@@ -228,7 +228,7 @@
                                     "label": "Image",
                                     "name": "image",
                                     "type": "image",
-                                    "instructions": "Background color won't be visible if you add an image to this block.",
+                                    "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
@@ -303,5 +303,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1506686979
+    "modified": 1506690454
 }
