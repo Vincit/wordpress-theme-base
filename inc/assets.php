@@ -100,6 +100,7 @@ function theme_assets() {
       "stylesheet" => enqueue("$themeroot/dist/client.*.css"),
       "javascript" => enqueue("$themeroot/dist/client.*.js"),
     ],
+    "siteurl" => get_site_url(),
   ]);
 }
 
