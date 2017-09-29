@@ -17,6 +17,7 @@ This theme is as barebones as starter themes get. It ~~has everything~~ will hav
 - [ ] PHPCS
 
 ## Requirements
+- PHP 7
 - Composer
 - Node 6 (preferably latest)
 - npm 5
