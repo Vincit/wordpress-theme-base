@@ -4,7 +4,7 @@ import 'normalize.css';
 import mobileNavigation from './js/components/MobileNavigation';
 import enhanceWPElements from './js/components/EnhanceWPElements';
 import showSampleWidgets from './js/sample';
-import skipLinkFocusFix from './js/skip-link-focus-fix';
+import skipLinkFocusFix from './js/skipLinkFocusFix';
 
 import './client.styl';
 
