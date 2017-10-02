@@ -1,5 +1,5 @@
 import clock from './components/clock';
-import postList from './components/post-list.redom';
+import postList from './components/postList.redom';
 
 export default function showSampleWidgets(element) {
   let clockEl = clock();
@@ -9,6 +9,7 @@ export default function showSampleWidgets(element) {
   element.appendChild(postListEl);
 
   if (module.hot) {
+    /* eslint-disable global-require */
     module.hot.accept('./components/clock', () => {
       const nextClock = require('./components/clock').default();
 
@@ -20,8 +21,8 @@ export default function showSampleWidgets(element) {
       clockEl = nextClock;
     });
 
-    module.hot.accept('./components/post-list.redom', () => {
-      const nextPostList = require('./components/post-list.redom').default();
+    module.hot.accept('./components/postList.redom', () => {
+      const nextPostList = require('./components/postList.redom').default();
 
       element.replaceChild(nextPostList, postListEl);
       postListEl = nextPostList;

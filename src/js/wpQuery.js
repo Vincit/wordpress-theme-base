@@ -1,8 +1,8 @@
 import qs from 'qs';
 
-async function wp_query(query_args = false) {
-  const args = query_args || {
-    'post_type': 'post',
+async function wpQuery(queryArgs = false) {
+  const args = queryArgs || {
+    post_type: 'post',
   };
 
   // Got an error about no such route? https://github.com/aucor/wp_query-route-to-rest-api
@@ -16,4 +16,4 @@ async function wp_query(query_args = false) {
   return { headers, posts };
 }
 
-export default wp_query;
+export default wpQuery;

@@ -1,6 +1,6 @@
 import { el, setChildren } from 'redom';
 
-export default class {
+class MobileNavigation {
   constructor({
     header = '.mobile-header',
     menuButton = '.menu-toggle',
@@ -36,6 +36,10 @@ export default class {
       }
       break;
     }
+
+    default:
+
+      break;
     }
   }
 
@@ -66,8 +70,8 @@ export default class {
   }
 
   enhance(element, itemSelector = '.menu-item') {
-    Array.from(element.querySelectorAll(itemSelector)).
-      forEach((item) => {
+    Array.from(element.querySelectorAll(itemSelector))
+      .forEach((item) => {
         const wrapper = el('.item-wrapper');
         const handle = item.classList.contains('menu-item-has-children')
           ? el('button.menu-handle',
@@ -99,11 +103,10 @@ export default class {
       });
   }
 
-  // toggle(element, button, stateKey) {
-  toggle(el) {
+  toggle(elmt) {
     let element, stateKey, rootClass;
 
-    if (el === 'menu') {
+    if (elmt === 'menu') {
       element = this.navigationElement;
       stateKey = 'menuOpen';
       rootClass = 'menu-opened';
@@ -140,4 +143,8 @@ export default class {
   toggleSearch() {
     this.toggle('search');
   }
+}
+
+export default function mobileNavigation(args) {
+  return new MobileNavigation(args);
 }

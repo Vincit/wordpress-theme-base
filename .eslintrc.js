@@ -12,6 +12,11 @@ module.exports = {
     'arrow-parens': ['error', 'always'],
     'arrow-body-style': ['error', 'as-needed', { 'requireReturnForObjectLiteral': false }],
     'no-param-reassign': [1, { 'props': false } ],
+    'one-var': 0,
+    'one-var-declaration-per-line': 0,
+    'no-underscore-dangle': 0,
+    'no-confusing-arrow': [1, { "allowParens": true } ],
+    'class-methods-use-this': [0],
   },
   env: {
     browser: true,

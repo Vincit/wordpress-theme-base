@@ -1,15 +1,14 @@
 import { el, mount } from 'redom';
 
-export default class EnhanceWPElements {
+class EnhanceWPElements {
   constructor(selectors = ['article']) {
     this.enhanced = selectors.reduce((acc, selector) => {
       const element = document.querySelector(selector);
 
       if (element) {
-        acc[selector] = Object.assign(
-          {},
-          this.makeTablesResponsive(element)
-        );
+        acc[selector] = {
+          ...this.makeTablesResponsive(element),
+        };
       }
 
       return acc;
@@ -29,4 +28,8 @@ export default class EnhanceWPElements {
       tables,
     };
   }
+}
+
+export default function enhanceWPElements(selectors) {
+  return new EnhanceWPElements(selectors);
 }

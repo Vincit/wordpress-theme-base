@@ -1,5 +1,5 @@
 export default function clock() {
-  const maybePad = (number) => number.toString().length > 1 ? number : `0${number}`;
+  const maybePad = (number) => (number.toString().length > 1 ? number : `0${number}`);
   const ymdhis = () => {
     const date = new Date();
     const y = date.getFullYear();
@@ -12,12 +12,12 @@ export default function clock() {
     return `${y}-${m}-${d} ${h}:${i}:${s}`;
   };
 
-  const clock = document.createElement('time');
+  const element = document.createElement('time');
 
   // To stop the interval: clearInterval(clock._interval);
-  clock._interval = setInterval(() => {
-    clock.textContent = ymdhis();
+  element._interval = setInterval(() => {
+    element.textContent = ymdhis();
   }, 1000);
 
-  return clock;
+  return element;
 }
