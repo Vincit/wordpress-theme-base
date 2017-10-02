@@ -10,7 +10,7 @@ function unwrap_inline_images($content) {
   return preg_replace("/<p>\\s*?(<a .*?><img.*?><\\/a>|<img.*?>)?\\s*<\\/p>/s", "\1", $content);
 }
 
-add_filter("the_content", "\\Vincit\\unwrap_inline_images");
+// add_filter("the_content", "\\Vincit\\unwrap_inline_images"); // broken!
 
 /**
  * Remove inline width attribute from element such as figure
