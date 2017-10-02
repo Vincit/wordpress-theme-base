@@ -1,7 +1,12 @@
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import ReactPostList from './components/reactPostList';
 import clock from './components/clock';
 import postList from './components/postList.redom';
 
 export default function showSampleWidgets(element) {
+  // ReactDOM.render(<ReactPostList />, element);
+
   let clockEl = clock();
   element.appendChild(clockEl);
 

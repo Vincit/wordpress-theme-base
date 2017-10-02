@@ -5,6 +5,7 @@ This theme is as barebones as starter themes get. It ~~has everything~~ will hav
 ## Features
 - [ ] ???
 - [x] Built with Webpack 3
+  - [x] Works with React
   - [x] ES6+
   - [x] ESLint
   - [x] Stylus
@@ -76,6 +77,8 @@ Change the value in package.json.
 Git gud. HMR requires you to write your code accordingly, example:
 - [Module](https://github.com/Vincit/wordpress-theme-base/blob/master/src/js/components/clock.js)
 - [client.js](https://github.com/Vincit/wordpress-theme-base/blob/master/src/client.js)
+
+If using React, hot-loading becomes a bit harder. Support might just land straight to this theme as time passes. In the meantime, [this might help.](https://github.com/wkwiatek/react-hot-loader-minimal-boilerplate/blob/master/src/index.js)
 
 Consult Webpack documentation if necessary.
 
