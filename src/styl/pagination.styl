@@ -1,0 +1,20 @@
+.pagination {
+  width: 100%
+  padding: r(25px) 0
+  text-align: center
+  font-size: 0
+
+  .page-numbers {
+    display: inline-block
+    padding: r(5px) r(8px)
+    background: colors.gray
+    color: colors.white
+    font-size: r(20px)
+    transition: 0.1s ease-in
+
+    &.current, &:hover, &:focus {
+      background: colors.orange
+      color: colors.white
+    }
+  }
+}
