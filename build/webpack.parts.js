@@ -56,16 +56,18 @@ exports.transpileJavaScript = () => ({
           loader: 'babel-loader',
           options: {
             cacheDirectory: true,
-            presets: ['babel-preset-latest'],
+            presets: [
+              'env',
+              'stage-2',
+            ],
             plugins: [
               require('babel-plugin-transform-redom-jsx'),
-              [
-                require('babel-plugin-transform-react-jsx'), {
-                  'pragma': 'el',
-                },
-              ],
+              [require('babel-plugin-transform-react-jsx'), {
+                pragma: 'el',
+              }],
+              require('babel-plugin-transform-object-rest-spread'),
             ],
-          },
+          }
         },
       }, */
       {
@@ -74,6 +76,7 @@ exports.transpileJavaScript = () => ({
         use: {
           loader: 'babel-loader',
           options: {
+            cacheDirectory: true,
             presets: [
               'env',
               'react',
@@ -84,14 +87,6 @@ exports.transpileJavaScript = () => ({
               require('babel-plugin-transform-object-rest-spread'),
             ],
           }
-          /* options: {
-            cacheDirectory: true,
-            presets: ['babel-preset-latest'],
-            plugins: [
-              require('babel-plugin-transform-object-rest-spread'),
-              // require('babel-plugin-transform-react-jsx'),
-            ],
-          }, */
         },
       },
     ],

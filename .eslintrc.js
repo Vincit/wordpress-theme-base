@@ -17,6 +17,7 @@ module.exports = {
     'no-underscore-dangle': 0,
     'no-confusing-arrow': [1, { "allowParens": true } ],
     'class-methods-use-this': [0],
+    'react/jsx-filename-extension': 0,
   },
   env: {
     browser: true,
