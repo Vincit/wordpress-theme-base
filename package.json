@@ -12,7 +12,7 @@
     "dev": "nodemon --watch ./build --exec \"npm run watch\"",
     "build": "webpack --env production --config ./build/webpack.config.js",
     "build:dev": "webpack --env development --config ./build/webpack.config.js",
-    "lint:js": "eslint src/ ./build/*.js --cache",
+    "lint:js": "eslint src/ --cache",
     "test": "echo \"Who needs tests? Seriously make some.\"",
     "prepush": "npm run test",
     "postinstall": "npm run build"

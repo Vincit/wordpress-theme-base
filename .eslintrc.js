@@ -18,6 +18,7 @@ module.exports = {
     'no-confusing-arrow': [1, { "allowParens": true } ],
     'class-methods-use-this': [0],
     'react/jsx-filename-extension': 0,
+    'max-len': [1, { 'code': 110, 'ignoreComments': true }],
   },
   env: {
     browser: true,
