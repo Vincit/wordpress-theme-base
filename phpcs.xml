@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="vincit/wordpress">
-  <description>PSR2, but saner.</description>
+  <description>PSR2, but saner. https://gist.github.com/gsherwood/9d22f634c57f990a7c64</description>
 
   <arg name="tab-width" value="2"/>
   <rule ref="PSR2">
@@ -8,12 +8,15 @@
 
     <!-- These rules are insane. -->
     <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine" />
+    <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine" />
     <exclude name="PSR2.Methods.FunctionCallSignature.Indent" />
+
+    <include name="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
+    <include name="Generic.Classes.OpeningBraceSameLine" />
 
     <!-- Placing <?php or ?> on a new line is a waste of space. -->
     <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.ContentAfterBrace" />
 
-    <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine" />
 
     <!-- https://i.imgur.com/m9NtGcj.png -->
     <exclude name="PSR2.Files.EndFileNewline.TooMany" />
