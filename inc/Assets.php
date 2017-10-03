@@ -20,7 +20,7 @@ function enqueue_parts($path = null, $deps = [], $external = false) {
       $files[] = $unhashed;
     }
 
-    usort($files, function($a, $b) {
+    usort($files, function ($a, $b) {
       return filemtime($b) - filemtime($a);
     });
 
@@ -40,7 +40,6 @@ function enqueue_parts($path = null, $deps = [], $external = false) {
     $type = "js";
     $handle = "polyfill";
   }
-
 
   return [
     "parts" => $parts,
@@ -65,10 +64,10 @@ function enqueue($path = null, $deps = [], $external = false) {
   $handle = $parts["handle"];
   $file = $parts["file"];
 
-  switch($type) {
+  switch ($type) {
     case "js":
       \wp_enqueue_script($handle, $file, $deps, false, true);
-    break;
+      break;
     case "css":
       // If in development, don't enqueue stylesheets. Styles are in JavaScript,
       // and built stylesheets conflict with our "inline" styles that we use in dev.
@@ -76,7 +75,7 @@ function enqueue($path = null, $deps = [], $external = false) {
         break;
       }
       \wp_enqueue_style($handle, $file, $deps, false, 'all');
-      break;
+  break;
     default:
       throw new \Exception('Enqueued file must be a css or js file.');
   }

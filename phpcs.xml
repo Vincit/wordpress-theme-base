@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<ruleset name="vincit/wordpress">
+  <description>PSR2, but saner.</description>
+
+  <arg name="tab-width" value="2"/>
+  <rule ref="PSR2">
+    <exclude name="Squiz.ControlStructures.ControlSignature.NewlineAfterOpenBrace" />
+
+    <!-- These rules are insane. -->
+    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine" />
+    <exclude name="PSR2.Methods.FunctionCallSignature.Indent" />
+
+    <!-- Placing <?php or ?> on a new line is a waste of space. -->
+    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.ContentAfterBrace" />
+
+    <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine" />
+
+    <!-- https://i.imgur.com/m9NtGcj.png -->
+    <exclude name="PSR2.Files.EndFileNewline.TooMany" />
+
+    <!-- This rule is NEVER happy and it doesn't even matter. -->
+    <exclude name="PSR2.ControlStructures.SwitchDeclaration.BreakIndent" />
+
+    <exclude ref="Squiz.WhiteSpace.ScopeClosingBrace" />
+  </rule>
+
+  <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="exact" value="false" />
+      <property name="indent" value="2"/>
+      <property name="tabIndent" value="false"/>
+    </properties>
+  </rule>
+</ruleset>

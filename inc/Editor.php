@@ -1,12 +1,12 @@
 <?php
 namespace Vincit;
 
-add_filter("mce_buttons_2", function($buttons) {
+add_filter("mce_buttons_2", function ($buttons) {
   array_unshift($buttons, "styleselect");
   return $buttons;
 });
 
-add_filter("tiny_mce_before_init", function($init_array) {
+add_filter("tiny_mce_before_init", function ($init_array) {
   $style_formats = array(
     [
       "title" => "Smaller text",
@@ -24,7 +24,7 @@ add_filter("tiny_mce_before_init", function($init_array) {
 });
 
 
-add_action("admin_init", function() {
+add_action("admin_init", function () {
   // Default media settings are insane.
 
   update_option("image_default_align", "none");

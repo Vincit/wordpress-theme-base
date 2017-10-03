@@ -20,7 +20,7 @@ function unwrap_inline_images($content) {
 function remove_inline_width($content) {
   preg_match("/<[^>]*style=.(width:.\d{0,}.{0,}?[^\"\"]*)/", $content, $matches); // this could be probably done with preg_replace
 
-  for($i = 1; $i < count($matches); $i++) {
+  for ($i = 1; $i < count($matches); $i++) {
     $content = str_replace($matches[$i], "", $content);
   }
 

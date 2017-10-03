@@ -28,12 +28,17 @@
   </a>
 
   <?php
-  $logo = function() {
+  $logo = function () {
     if (has_custom_logo()) {
       the_custom_logo();
     } else { ?>
       <a href="<?=home_url()?>" class="custom-logo-link custom-logo-unset" rel="home" itemprop="url">
-        <img src="https://vincit.fi/wp-content/themes/vincit.com/images/Vincit_tirppa_white.png" class="custom-logo" alt="Wordpress2" itemprop="logo">
+        <img
+          src="https://vincit.fi/wp-content/themes/vincit.com/images/Vincit_tirppa_white.png"
+          class="custom-logo"
+          alt="Wordpress2"
+          itemprop="logo"
+        >
       </a>
     <?php }
   };

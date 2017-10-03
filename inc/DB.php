@@ -39,7 +39,7 @@ class DB extends \PDO {
     return parent::prepare($statement, $options);
   }
 
-  static function singleton() {
+  public static function singleton() {
     if (is_null(self::$instance)) {
       return new DB;
     }
