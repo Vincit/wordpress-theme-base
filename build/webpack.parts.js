@@ -76,13 +76,14 @@ exports.transpileJavaScript = () => ({
           options: {
             cacheDirectory: true,
             presets: [
-              'env',
+              ['env', { modules: false }],
               'react',
               'stage-2',
             ],
             plugins: [
               require('babel-plugin-transform-react-jsx'),
               require('babel-plugin-transform-object-rest-spread'),
+              require('react-hot-loader/babel'),
             ],
           }
         },

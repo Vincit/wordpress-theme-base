@@ -1,17 +1,27 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import ReactPostList from './components/reactPostList';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
+import ReactPostList from './components/reactPostList';
 import clock from './components/clock';
 import postList from './components/postList.redom';
 
-export default function showSampleWidgets(element) {
-  // ReactDOM.render(<ReactPostList />, element);
+const render = (element) => {
+  ReactDOM.render(
+    <AppContainer>
+      <ReactPostList />
+    </AppContainer>,
+    element
+  );
+};
 
+export default function showSampleWidgets(element) {
   let clockEl = clock();
   element.appendChild(clockEl);
 
   let postListEl = postList();
   element.appendChild(postListEl);
+
+  render(element);
 
   if (module.hot) {
     /* eslint-disable global-require */
@@ -32,5 +42,7 @@ export default function showSampleWidgets(element) {
       element.replaceChild(nextPostList, postListEl);
       postListEl = nextPostList;
     });
+
+    module.hot.accept('./components/reactPostList', () => { render(element); });
   }
 }

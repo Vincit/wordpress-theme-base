@@ -34,7 +34,7 @@ const offlineOpts = {
 const generalConfig = merge([
   {
     entry:  {
-      client: ['babel-polyfill', path.join(paths.src, 'client.js')], // CSS & JS for the client
+      client: ['babel-polyfill', 'react-hot-loader/patch', path.join(paths.src, 'client.js')], // CSS & JS for the client
       editor: path.join(paths.src, 'editor'), // CSS & JS for the TinyMCE editor
       admin: path.join(paths.src, 'admin'), // CSS & JS for wp-admin
     },
