@@ -5,7 +5,7 @@ This theme is as barebones as starter themes get. It ~~has everything~~ will hav
 ## Features
 - [ ] ???
 - [x] Built with Webpack 3
-  - [x] Works with React
+  - [x] Works with React (out-of-the-box, has demos)
   - [x] ES6+
   - [x] ESLint
   - [x] Stylus
@@ -15,7 +15,7 @@ This theme is as barebones as starter themes get. It ~~has everything~~ will hav
   - [x] Automatic image optimization using imagemin
   - [x] Nyancat progress bar
   - [x] Enforces case sensitive paths
-- [ ] PHPCS
+- [x] PHPCS, based on PSR2.
 
 ## Requirements
 - PHP 7
