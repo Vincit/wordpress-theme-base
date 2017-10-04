@@ -4,7 +4,7 @@
   "description": "",
   "wptheme": {
     "publicPath": "https://localhost:8080/wp-content/themes/wordpress-theme-base/dist/",
-    "proxyURL": "https://wordpress2.local"
+    "proxyURL": "https://wordpress.local"
   },
   "scripts": {
     "start": "webpack-dashboard -- npm run watch",

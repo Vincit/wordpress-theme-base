@@ -43,6 +43,9 @@ Install dependencies:
 npm install
 ```
 
+### If you installed manually (and not with the installer)
+Webpack requires some information from your setup. Mainly the URL of the site, and path to your theme. Open `package.json` and change `publicPath` and `proxyURL` to correct values.
+
 Start watching for changes:
 ```
 npm run watch # or npm run start, but webpack-dashboard is buggy at the moment
