@@ -8,14 +8,12 @@ const isMac = /^darwin/.test(process.platform);
 
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
-    // Enable history API fallback so HTML5 History API based
-    // routing works. Good for complex setups.
-    // historyApiFallback: true,
-
     watchOptions: {
       poll: isWin || isMac ? undefined : 1000,
       aggregateTimeout: 300,
     },
+
+    https: pjson.wptheme.proxyURL.includes('https'),
 
     // Display only errors to reduce the amount of output.
     stats: 'errors-only',
