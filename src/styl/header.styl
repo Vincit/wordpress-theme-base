@@ -1,9 +1,8 @@
-fixedDesktopMenu = false
+fixedDesktopMenu = true
 desktopMenuHeight = r(120px)
 mobileMenuHeight = r(60px)
 
 body {
-
   if (fixedDesktopMenu) {
     padding-top: desktopMenuHeight + r(20px)
   }
@@ -148,11 +147,17 @@ body {
 
   .header-bar {
     background: colors.orange
-    height: mobileMenuHeight
-    display: flex
-    align-items: center
-    justify-content: space-between
     box-shadow: 0px r(1px) r(5px) 0px rgba(colors.black ,0.75);
+    max-width: 100vw
+    overflow: hidden
+
+    .container {
+      max-width: 100%
+      height: mobileMenuHeight
+      display: flex
+      align-items: center
+      justify-content: space-between
+    }
 
     .custom-logo-link {
       flex-basis: 30%

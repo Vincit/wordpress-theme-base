@@ -1,6 +1,11 @@
 .pagebuilder {
   .hero {
     background-size: cover
+    margin-top: r(-20px)
+
+    @media media.medium, media.small, media.xsmall {
+      padding-top: r(20px)
+    }
 
     .container {
       color: colors.white
@@ -20,6 +25,10 @@
 
     h1 {
       margin-bottom: r(44px)
+
+      @media media.medium, media.small, media.xsmall {
+        margin-bottom: r(20px)
+      }
 
       small {
         margin-bottom: r(20px)

@@ -57,20 +57,22 @@
   </header>
 
   <header class="mobile-header">
-    <div class="container header-bar">
-      <button class="menu-toggle">
-        <img class="open-icon" src="<?=get_stylesheet_directory_uri() . "/dist/img/svg/menu-2.svg"?>">
-        <img class="close-icon" src="<?=get_stylesheet_directory_uri() . "/dist/img/svg/close.svg"?>">
-        <span class="screen-reader-text">Menu</span>
-      </button>
+    <div class="header-bar">
+      <div class="container">
+        <button class="menu-toggle">
+          <img class="open-icon" src="<?=get_stylesheet_directory_uri() . "/dist/img/svg/menu-2.svg"?>">
+          <img class="close-icon" src="<?=get_stylesheet_directory_uri() . "/dist/img/svg/close.svg"?>">
+          <span class="screen-reader-text">Menu</span>
+        </button>
 
-      <?=$logo()?>
+        <?=$logo()?>
 
-      <button class="search-toggle">
-        <img class="open-icon" src="<?=get_stylesheet_directory_uri() . "/dist/img/svg/search.svg"?>">
-        <img class="close-icon" src="<?=get_stylesheet_directory_uri() . "/dist/img/svg/close.svg"?>">
-        <span class="screen-reader-text">Menu</span>
-      </button>
+        <button class="search-toggle">
+          <img class="open-icon" src="<?=get_stylesheet_directory_uri() . "/dist/img/svg/search.svg"?>">
+          <img class="close-icon" src="<?=get_stylesheet_directory_uri() . "/dist/img/svg/close.svg"?>">
+          <span class="screen-reader-text">Menu</span>
+        </button>
+      </div>
     </div>
 
     <nav class="mobile-navigation">
