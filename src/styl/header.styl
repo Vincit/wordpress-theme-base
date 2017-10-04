@@ -66,10 +66,18 @@ body {
     .sub-menu {
       display: none
       position: absolute
-      width: 100%
       background: colors.white
       color: colors.black
       text-align: center
+      margin-left: 50%
+      transform: translateX(-50%)
+
+      .sub-menu {
+        // level 2 menu
+        top: 0
+        margin-left: 0
+        transform: translateX(100%)
+      }
     }
   }
 
@@ -81,7 +89,7 @@ body {
     }
 
     &:hover {
-      .sub-menu {
+      > .sub-menu {
         openSubmenu()
       }
     }
@@ -94,7 +102,7 @@ body {
       &:focus, &:hover {
         color: colors.black
 
-        & + .sub-menu {
+        & + > .sub-menu {
           openSubmenu()
         }
       }
@@ -107,7 +115,7 @@ body {
       Problem resolved by @tnottu
     */
     &:focus-within  {
-      .sub-menu {
+      > .sub-menu {
         openSubmenu()
       }
     }
@@ -277,11 +285,11 @@ body {
     }
 
     &.open {
-      .sub-menu {
+      > .sub-menu {
         display: block
       }
 
-      .menu-handle {
+      > .menu-handle {
         .close-icon {
           display: inline
         }
