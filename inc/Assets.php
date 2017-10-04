@@ -92,7 +92,8 @@ function theme_assets() {
   enqueue("https://cdn.polyfill.io/v2/polyfill.min.js?features=default,es6,fetch", [], true);
 
   // Used to determine what to cache for offline use and so on.
-  // In reality Webpack Offline Plugin handles it.
+  // In reality Webpack Offline Plugin handles it, but these serve as samples,
+  // and may help you build things.
   \wp_localize_script("client-js", "theme", [
     "directory" => str_replace(ENQUEUE_STRIP_PATH, "", $themeroot),
     "cache" => [

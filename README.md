@@ -1,20 +1,26 @@
 # Vincit WordPress theme base
-
-This theme is as barebones as starter themes get. It ~~has everything~~ will have everything preconfigured, but boilerplate is kept to a minimum.
+Bleeding edge starter theme.
 
 ## Features
-- [ ] ???
-- [x] Built with Webpack 3
-  - [x] Works with React (out-of-the-box, has demos)
-  - [x] ES6+
-  - [x] ESLint
-  - [x] Stylus
-  - [x] Sourcemaps
+- [x] Pagebuilder, powered by [ACF](https://www.advancedcustomfields.com/resources/flexible-content/)
+- [x] Cleaner menus that are accessible
+- [x] Saner the_content() to make certain layouts easier to build
+- [x] Automatic editor stylesheet
+- [x] (Multilingual) options page support
+- [x] Ground-breaking but controversial cachebusting for assets
+- [x] Works with React (out-of-the-box, has demos)
+- [x] Modern JavaScript support
+  - [x] Built with Webpack 3
   - [x] **CSS Hot Module Replacement** (HMR)
   - [x] **JS Hot Module Replacement** (HMR)
-  - [x] Automatic image optimization using imagemin
+  - [x] ES6+ (stage-2)
+  - [x] ESLint
+  - [x] Sourcemaps
   - [x] Nyancat progress bar
-  - [x] Enforces case sensitive paths
+  - [x] Enforces case sensitive paths so build works on all platforms
+- [x] CSS Preprocessor support
+  - [×] Preconfigured with Stylus
+- [x] Automatic image optimization using imagemin
 - [x] PHPCS, based on PSR2.
 
 ## Requirements
@@ -23,9 +29,11 @@ This theme is as barebones as starter themes get. It ~~has everything~~ will hav
 - Node 6 (preferably latest)
 - npm 5
 
+The theme will fail with anything less than PHP 7, but making it PHP 5 compatible shouldn't be too hard, just fix the errors as they appear.
+
 ## Usage
 Clone the theme or install it with the installer that ships with [Vincit/wordpress](https://github.com/Vincit/wordpress). Composer is also an option.
-```
+```sh
 git clone git@github.com:Vincit/wordpress-theme-base.git themename
 
 # OR (with first vagrant up if using Vincit/wordpress)
@@ -79,7 +87,7 @@ Change the value in package.json.
 ### I did the above but HMR still doesn't work?
 Git gud. HMR requires you to write your code accordingly, example:
 - [Module](https://github.com/Vincit/wordpress-theme-base/blob/master/src/js/components/clock.js)
-- [client.js](https://github.com/Vincit/wordpress-theme-base/blob/master/src/client.js)
+- [sample.js](https://github.com/Vincit/wordpress-theme-base/blob/master/src/sample.js)
 
 If using React, hot-loading becomes a bit harder. Support might just land straight to this theme as time passes. In the meantime, [this might help.](https://github.com/wkwiatek/react-hot-loader-minimal-boilerplate/blob/master/src/index.js)
 
@@ -91,7 +99,7 @@ Build the theme after installing it. Run `npm install`.
 ### How to use webfonts?
 Place the font files in src/fonts. The loaders working directory is src, even if you use @font-face in styl/typography.styl.
 
-```
+```css
 @font-face {
   font-family: 'FontName'
   src: url('./fonts/Font.eot')
@@ -108,3 +116,17 @@ Place the font files in src/fonts. The loaders working directory is src, even if
 [svg-inline-loader](https://github.com/webpack-contrib/svg-inline-loader) purifies SVGs and inlines them, so `background: url('./img/svg/background.svg')` results in `background: url(<svg>..</svg>)`.
 
 The solution is to put the SVG in src/img/no-inline/svg directory: `background: url('./img/no-inline/svg/close.svg')` => `background: url(data:image/svg+xml;base64...)`
+
+### Asset paths (JavaScript, CSS...) are totally wrong
+Due to the ground-breakingness and controversiality of the way we enqueue assets, it's necessary to define a constant `ENQUEUE_STRIP_PATH` that contains the filesystem path until WordPress root directory. It's defined in `inc/Assets.php`, and the default is `/data/wordpress/htdocs`. It works out of the box with [Seravo/wordpress](https://github.com/Seravo/wordpress) and inside Seravo production instances.
+
+If you develop using MAMP (or similar), or host the theme elsewhere, it's necessary to change the value. If you require two separate values (production and dev are different), that's easy too.
+```php
+if (defined("WP_DEBUG") && WP_DEBUG) { // or use the domain from $_SERVER
+  define("ENQUEUE_STRIP_PATH", "/path/to/strip/in/dev/");
+} else {
+  define("ENQUEUE_STRIP_PATH", "/path/to/strip/in/prod/");
+}
+```
+
+And if you figure out a way to remove this hack entirely (as in convert fs path to webserver path), please do tell.
