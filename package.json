@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "wptheme": {
-    "publicPath": "http://localhost:8080/wp-content/themes/wordpress-theme-base/dist/",
-    "proxyURL": "https://wordpress2.local"
+    "publicPath": "https://localhost:8080/wp-content/themes/wordpress-theme-base/dist/",
+    "proxyURL": "https://wordpress.local"
   },
   "scripts": {
     "start": "webpack-dashboard -- npm run watch",
@@ -82,6 +82,9 @@
     "normalize.css": "^7.0.0",
     "offline-plugin": "^4.8.3",
     "qs": "^6.5.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-hot-loader": "^3.0.0-beta.7",
     "redom": "^3.4.0"
   }
 }
