@@ -2,47 +2,50 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import ReactPostList from './components/reactPostList';
+import ReactClock from './components/reactClock';
 import clock from './components/clock';
-import postList from './components/postList.redom';
+import postList from './components/postList';
 
-const render = (element) => {
+const renderReact = (element) => {
   ReactDOM.render(
     <AppContainer>
-      <ReactPostList />
+      <div className="react-widgets">
+        <div className="clock">
+          <ReactClock />
+        </div>
+        <div className="post-list">
+          <ReactPostList />
+        </div>
+      </div>
     </AppContainer>,
     element
   );
 };
 
-export default function showSampleWidgets(element) {
-  let clockEl = clock();
-  element.appendChild(clockEl);
+export default function showSampleWidgets({ react, vanilla }) {
+  const clockEl = clock();
+  vanilla.querySelector('.clock').appendChild(clockEl);
 
-  let postListEl = postList();
-  element.appendChild(postListEl);
+  const postListEl = postList();
+  vanilla.querySelector('.post-list').appendChild(postListEl);
 
-  render(element);
+  if (react) {
+    renderReact(react);
+  }
 
   if (module.hot) {
-    /* eslint-disable global-require */
     module.hot.accept('./components/clock', () => {
-      const nextClock = require('./components/clock').default();
-
-      // I know what you're thinking. 'Why not just call component() again?'
-      // Because it has not changed. We have to require() it again to get the fresh one.
-      // It's also possible to use dynamic imports instead of require().
-
-      element.replaceChild(nextClock, clockEl);
-      clockEl = nextClock;
+      const container = vanilla.querySelector('.clock');
+      container.replaceChild(clock(), container.children[0]);
     });
 
-    module.hot.accept('./components/postList.redom', () => {
-      const nextPostList = require('./components/postList.redom').default();
-
-      element.replaceChild(nextPostList, postListEl);
-      postListEl = nextPostList;
+    module.hot.accept('./components/postList', () => {
+      const container = vanilla.querySelector('.post-list');
+      container.replaceChild(postList(), container.children[0]);
     });
 
-    module.hot.accept('./components/reactPostList', () => { render(element); });
+    module.hot.accept('./components/reactPostList', () => {
+      renderReact(react);
+    });
   }
 }

@@ -11,7 +11,10 @@ import './client.styl';
 skipLinkFocusFix();
 mobileNavigation();
 enhanceWPElements(['body .pagebuilder', 'article']);
-showSampleWidgets(document.querySelector('.site-footer .container'));
+showSampleWidgets({
+  react: document.querySelector('.site-footer .react-widget-container'),
+  vanilla: document.querySelector('.site-footer .vanilla-widgets'),
+});
 OfflinePluginRuntime.install();
 
 if (module.hot) {

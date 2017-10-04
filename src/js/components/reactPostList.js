@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { Component } from 'react';
 import wpQuery from '../wpQuery';
 
@@ -31,11 +30,11 @@ export default class PostList extends Component {
     return (
       <div>
         <header>
-          <h2>Latest posts</h2>
+          <h2>React: Latest posts</h2>
         </header>
         <ul>
           {this.state.posts.map((post) => console.log(post) || (
-            <li key={post.ID}>
+            <li key={post.id}>
               <a href={post.link}>{post.title.rendered}</a>
             </li>
           ))}

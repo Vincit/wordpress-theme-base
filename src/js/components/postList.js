@@ -8,7 +8,7 @@ export default function () {
   const footer = el('footer', totalPosts, totalPages);
   const postList = () => el('div',
     el('header',
-      el('h2', 'Latest posts')
+      el('h2', 'Vanilla: Latest posts')
     ),
     list,
     footer
