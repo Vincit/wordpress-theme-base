@@ -8,6 +8,10 @@
       "title" => apply_filters("the_title", get_the_title()),
       "content" => apply_filters("the_content", get_the_content()),
     ]);
+
+    echo $builder->block("CommentList", [
+      "post_id" => get_the_ID(),
+    ]);
   } ?>
 </div>
 
