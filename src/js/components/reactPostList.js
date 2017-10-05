@@ -9,6 +9,7 @@ export default class PostList extends Component {
       posts: [],
       maxPages: 0,
       maxPosts: 0,
+      error: false,
     };
   }
 
@@ -21,12 +22,16 @@ export default class PostList extends Component {
         maxPages: headers['x-wp-totalpages'],
         maxPosts: headers['x-wp-total'],
       });
-    }).catch((err) => {
-      throw err;
+    }).catch((error) => {
+      this.setState({ error });
     });
   }
 
   render() {
+    if (this.state.error) {
+      return <p>{this.state.error}</p>;
+    }
+
     return (
       <div>
         <header>
