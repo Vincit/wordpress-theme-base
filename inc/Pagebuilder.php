@@ -6,8 +6,12 @@ class Pagebuilder {
   public $templates;
 
   public function __construct($field_name = "pagebuilder") {
-    $this->data = get_field($field_name);
     $this->templates = $this->loadTemplates();
+
+    $this->hasACF = function_exists("get_field");
+    if ($this->hasACF) {
+      $this->data = \get_field($field_name);
+    }
   }
 
   public function loadTemplates() {
@@ -41,6 +45,10 @@ class Pagebuilder {
   }
 
   public function getLayout() {
+    if (!$this->hasACF) {
+      return "This feature requires Advanced Custom Fields Pro.";
+    }
+
     $blocks = [];
 
     foreach ($this->data as $i => $block) {
