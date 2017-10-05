@@ -5,44 +5,54 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const isWin = /^win/.test(process.platform);
 const isMac = /^darwin/.test(process.platform);
+const isHTTPS = pjson.wptheme.proxyURL.includes('https');
 
-exports.devServer = ({ host, port } = {}) => ({
-  devServer: {
-    watchOptions: {
-      poll: isWin || isMac ? undefined : 1000,
-      aggregateTimeout: 300,
-    },
+exports.devServer = ({ host, port } = {}) => {
+  const options = {
+    host: host || process.env.HOST || 'localhost', // Defaults to `localhost`
+    port: port || process.env.PORT || 8080, // Defaults to 8080
+  };
+  options.publicPath = (isHTTPS ? 'https' : 'http') + '://' + options.host + ':' + options.port + pjson.wptheme.publicPath;
 
-    https: pjson.wptheme.proxyURL.includes('https'),
+  return {
+    devServer: {
+      watchOptions: {
+        poll: isWin || isMac ? undefined : 1000,
+        aggregateTimeout: 300,
+      },
 
-    // Display only errors to reduce the amount of output.
-    stats: 'errors-only',
+      https: isHTTPS,
 
-    host: host || process.env.HOST, // Defaults to `localhost`
-    port: port || process.env.PORT, // Defaults to 8080
+      // Display only errors to reduce the amount of output.
+      stats: 'errors-only',
 
-    overlay: {
-      errors: true,
-      warnings: true,
-    },
+      host: options.host,
+      port: options.port,
 
-    hotOnly: true, // Stop throwing our state to the garbage bin if hot load fails
+      overlay: {
+        errors: true,
+        warnings: true,
+      },
 
-    proxy: {
-      '/': {
-        target: pjson.wptheme.proxyURL,
-        secure: false,
-        changeOrigin: true,
-        autoRewrite: true,
-        headers: {
-          'X-ProxiedBy-Webpack': true,
+      open: true,
+
+      hotOnly: true, // Stop throwing our state to the garbage bin if hot load fails
+
+      proxy: {
+        '/': {
+          target: pjson.wptheme.proxyURL,
+          secure: false,
+          changeOrigin: true,
+          autoRewrite: true,
+          headers: {
+            'X-ProxiedBy-Webpack': true,
+          },
         },
       },
+      publicPath: options.publicPath,
     },
-    publicPath: pjson.wptheme.publicPath,
-    // contentBase: pjson.wptheme.publicPath, // URLs are deprecated, and this is not necessary.
-  },
-});
+  };
+};
 
 exports.transpileJavaScript = () => ({
   module: {
