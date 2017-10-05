@@ -1,0 +1,21 @@
+.gallery-item {
+  display: inline-block
+  text-align: center
+  vertical-align: top
+  width: 100%
+}
+
+.gallery {
+  for i in (1..9) {
+    &.gallery-columns-{i} {
+      .gallery-item {
+        width: "calc(100% / %s)" % i
+      }
+    }
+  }
+}
+
+.gallery-caption {
+  display: block
+  margin: 0
+}
