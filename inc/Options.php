@@ -46,5 +46,13 @@ if (function_exists("acf_add_options_page")) {
       return get_field("{$lang}_{$key}", "options");
     }
   }
+} else {
+  /**
+   * Fallback if there's no ACF.
+   *
+   */
+  function get() {
+    return "This feature requires Advanced Custom Fields Pro.";
+  }
 }
 
