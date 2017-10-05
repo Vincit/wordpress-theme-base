@@ -23,7 +23,7 @@ export default class PostList extends Component {
         maxPosts: headers['x-wp-total'],
       });
     }).catch((error) => {
-      this.setState({ error });
+      this.setState({ error: JSON.parse(error.message).message });
     });
   }
 

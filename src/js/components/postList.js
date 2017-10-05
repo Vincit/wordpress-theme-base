@@ -27,7 +27,7 @@ export default function () {
     totalPosts.textContent = `Total posts: ${headers['x-wp-total']}`;
     totalPages.textContent = `Total pages: ${headers['x-wp-totalpages']}`;
   }).catch((err) => {
-    setChildren(list, el('.error', err));
+    setChildren(list, el('.error', JSON.parse(err.message).message));
   });
 
   return postList();
