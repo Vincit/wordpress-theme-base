@@ -4,7 +4,13 @@ namespace Vincit\template;
 function SingleArticle($data = []) { ?>
   <article <?php post_class("single-article")?>>
     <header class="article-header">
-      <h1><?=$data["title"]?></h1>
+      <?php if (is_singular()) { ?>
+        <h1><?=$data["title"]?></h1>
+      <?php } else { ?>
+        <a href="<?=$data["permalink"]?>">
+          <h1><?=$data["title"]?></h1>
+        </a>
+      <?php } ?>
     </header>
 
     <section class="article-content">
