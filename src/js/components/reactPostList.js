@@ -33,7 +33,7 @@ export default class PostList extends Component {
           <h2>React: Latest posts</h2>
         </header>
         <ul>
-          {this.state.posts.map((post) => console.log(post) || (
+          {this.state.posts.map((post) => (
             <li key={post.id}>
               <a href={post.link}>{post.title.rendered}</a>
             </li>
