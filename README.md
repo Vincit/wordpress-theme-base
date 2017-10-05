@@ -138,3 +138,6 @@ if (defined("WP_DEBUG") && WP_DEBUG) { // or use the domain from $_SERVER
 ```
 
 And if you figure out a way to remove this hack entirely (as in convert fs path to webserver path), please do tell.
+
+## I got "TypeError: Cannot read property 'split' of null" when starting the watcher
+Most likely the proxyURL in package.json is wrong. Make sure to include protocol: `https://wordpress.local`
