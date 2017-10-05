@@ -69,7 +69,13 @@ npm run watch # or npm run start, but webpack-dashboard is buggy at the moment
 
 Find & replace at least these strings:
 `wordpress-theme-base` => ???
+
 `WordPress theme base` => ???
+
+```
+find . -not -path "./node_modules/*" -type f -name "*.*" -exec sed -i'' -e 's/wordpress-theme-base/your-desired-slug/g' {} +
+find . -not -path "./node_modules/*" -type f -name "*.*" -exec sed -i'' -e 's/WordPress theme base/Your theme name/g' {} +
+```
 
 ## FAQ
 ### What's with the folder structure?
