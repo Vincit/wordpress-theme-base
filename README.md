@@ -110,7 +110,7 @@ Git gud. HMR requires you to write your code accordingly, example:
 - [Module](https://github.com/Vincit/wordpress-theme-base/blob/master/src/js/components/clock.js)
 - [sample.js](https://github.com/Vincit/wordpress-theme-base/blob/master/src/sample.js)
 
-If using React, hot-loading becomes a bit harder. Support might just land straight to this theme as time passes. In the meantime, [this might help.](https://github.com/wkwiatek/react-hot-loader-minimal-boilerplate/blob/master/src/index.js)
+If using React, you should be set.
 
 Consult Webpack documentation if necessary.
 
