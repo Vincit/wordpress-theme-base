@@ -31,11 +31,15 @@ Bleeding edge starter theme.
 [Frontpage](https://i.imgur.com/8ONEags.jpg)
 [Pagebuilder](https://i.imgur.com/0Xns0Db.png)
 
-## Requirements
+## Requirements / dependencies
 - PHP 7
 - Composer
 - Node 6 (preferably latest)
 - npm 5
+
+Optional:
+- [aucor/wp_query-route-to-rest-api](https://github.com/aucor/wp_query-route-to-rest-api) for sample widgets
+- [ACF](https://advancedcustomfields.com) for options page support
 
 The theme will fail with anything less than PHP 7, but making it PHP 5 compatible shouldn't be too hard, just fix the errors as they appear.
 
@@ -87,6 +91,9 @@ find . -not -path "./node_modules/*" -type f -name "*.*" -exec sed -i'' -e 's/Wo
   - styl/ contains Stylus files.
   - img/ contains images, including SVGs.
   - Files inside src/ directly will be used to build files: `client.styl` => `client.css` and so on.
+
+### Why are the styles flashing when I'm first loading the page?
+In development styles are included in JS, and take a bit of time to load. The flashing does not occur when using the production build.
 
 ### WTF, why are you importing a `.styl` file inside JavaScript?
 Ask Webpack. Get over it. Basically Webpack doesn't know about them otherwise.
