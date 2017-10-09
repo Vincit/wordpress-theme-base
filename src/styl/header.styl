@@ -39,6 +39,18 @@ body {
   }
 }
 
+body.admin-bar {
+  if (fixedDesktopMenu) {
+    .site-header {
+      top: r(32px)
+    }
+  } else {
+    .site-header {
+      margin-bottom: r(20px)
+    }
+  }
+}
+
 .main-navigation {
   flex-basis: 100%
   display: flex
@@ -300,6 +312,16 @@ body {
           display: none
         }
       }
+    }
+  }
+}
+
+body.admin-bar {
+  .mobile-header {
+    top: 32px
+
+    @media (max-width: 782px) {
+      top: 46px
     }
   }
 }
