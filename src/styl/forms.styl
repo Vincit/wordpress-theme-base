@@ -94,3 +94,27 @@ button, .button {
   }
 }
 
+
+.search-form {
+  display: flex
+  width: 100%
+  background: colors.gray
+  padding: r(10px) r(10px)
+  align-items: center
+  transition: 0.2s ease-out
+
+  input[type="search"] {
+    padding-top: 0
+    padding-bottom: 0
+    line-height: r(40px)
+  }
+
+  button {
+    height: r(40px)
+    background: colors.orange
+
+    &:hover, &:active {
+      background: darken(colors.orange, 15%);
+    }
+  }
+}

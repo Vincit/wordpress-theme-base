@@ -241,31 +241,12 @@ body.admin-bar {
   }
 
   .mobile-search {
-    display: flex
     position: absolute
     top: 0
     height: mobileMenuHeight + r(1px)
     width: "calc(100% - %s)" % mobileMenuHeight
-    background: colors.gray
-    padding: r(10px) r(10px)
-    align-items: center
     transition: 0.2s ease-out
     transform: translateX(-100%)
-
-    input[type="search"] {
-      padding-top: 0
-      padding-bottom: 0
-      line-height: r(40px)
-    }
-
-    button {
-      height: r(40px)
-      background: colors.orange
-
-      &:hover, &:active {
-        background: darken(colors.orange, 15%);
-      }
-    }
 
     &.open {
       display: flex

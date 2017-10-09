@@ -82,7 +82,7 @@
       ])?>
     </nav>
 
-    <form class="mobile-search" action="/">
+    <form class="mobile-search search-form" action="/">
       <input type="search" name="s" placeholder="Search from site">
       <button type="submit">Search</button>
     </form>
