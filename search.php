@@ -18,7 +18,12 @@
       "content" => apply_filters("the_content", get_the_content()),
       "permalink" => get_permalink(),
     ]);
-  } ?>
+  }
+
+  if (!have_posts()) {
+    echo "<p>No results.</p>";
+  }
+  ?>
 </div>
 
 <?php get_footer(); ?>
