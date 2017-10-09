@@ -51,10 +51,12 @@ button, .button {
   letter-spacing: r(1.2px)
   text-transform: uppercase
   color: colors.white
-  transition: 0.1s ease-in
+  transition: 0.2s ease-out
+  background: colors.gray
 
   &:hover, &:focus, &:active {
-
+    transition: 0.2s ease-in
+    background: lighten(colors.gray, 10%);
   }
 }
 
