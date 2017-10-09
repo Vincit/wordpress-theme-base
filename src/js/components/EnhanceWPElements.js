@@ -42,14 +42,16 @@ class EnhanceWPElements {
         n.style.transform = `translate${dir}(${mod}${iteration}%)`;
       };
       const skew = (n) => {
-        n.style.transform = 'rotateX(-15deg) skew(5deg)';
+        const r = (Math.random() * (15 - 5)) + 5;
+        const s = (Math.random() * (20 - 3)) + 3;
+        n.style.transform = `rotateX(-${r}deg) skew(${s}deg)`;
         return n;
       };
       const reset = (n) => {
         n.style.transform = n.oldTransform;
         return n;
       };
-      const everything = Array.from(document.querySelectorAll('body > *'))
+      const everything = Array.from(document.querySelectorAll('*'))
         .map((n) => {
           n.oldTransform = n.style.transform;
           return n;
