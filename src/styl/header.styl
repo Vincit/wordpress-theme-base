@@ -162,6 +162,7 @@ body.admin-bar {
   left: 0
   display: none
   z-index: 1000
+  max-height: mobileMenuHeight
 
   @media media.medium, media.small, media.xsmall {
     display: block
@@ -204,6 +205,8 @@ body.admin-bar {
   }
 
   &.menu-opened {
+    max-height: auto
+
     .menu-toggle {
       .close-icon {
         display: inline
