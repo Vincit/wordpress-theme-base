@@ -5,6 +5,7 @@ Bleeding edge starter theme.
 - [x] Pagebuilder, powered by [ACF](https://www.advancedcustomfields.com/resources/flexible-content/)
 - [x] Cleaner menus that are accessible
 - [x] Saner the_content() to make certain layouts easier to build
+- [x] Current environment is listed in window title
 - [x] Automatic editor stylesheet
 - [x] (Multilingual) options page support
 - [x] Ground-breaking but controversial cachebusting for assets
