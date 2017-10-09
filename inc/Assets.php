@@ -107,11 +107,14 @@ function theme_assets() {
 function admin_assets() {
   $themeroot = get_stylesheet_directory();
 
-  // Styles:
-  enqueue("$themeroot/dist/admin.*.css");
-
-  // Scripts:
-  enqueue("$themeroot/dist/admin.*.js");
+  \wp_localize_script("admin-js", "theme", [
+    "directory" => str_replace(ENQUEUE_STRIP_PATH, "", $themeroot),
+    "cache" => [
+      "stylesheet" => enqueue("$themeroot/dist/admin.*.css"),
+      "javascript" => enqueue("$themeroot/dist/admin.*.js"),
+    ],
+    "siteurl" => get_site_url(),
+  ]);
 }
 
 function editor_assets() {
@@ -121,8 +124,9 @@ function editor_assets() {
   add_editor_style($editor);
 }
 
-\add_action("wp_enqueue_scripts", "\Vincit\\theme_assets");
+\add_action("wp_enqueue_scripts", "\\Vincit\\theme_assets");
 \add_action("admin_enqueue_scripts", "\\Vincit\\admin_assets");
+\add_action("login_enqueue_scripts", "\\Vincit\\admin_assets");
 
 if (is_admin()) {
   editor_assets();
