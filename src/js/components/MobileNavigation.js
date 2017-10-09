@@ -110,7 +110,7 @@ class MobileNavigation {
       element = this.navigationElement;
       stateKey = 'menuOpen';
       rootClass = 'menu-opened';
-    } else if (el === 'search') {
+    } else if (elmt === 'search') {
       element = this.searchElement;
       stateKey = 'searchOpen';
       rootClass = 'search-opened';
