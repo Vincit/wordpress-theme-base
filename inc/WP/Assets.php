@@ -1,5 +1,5 @@
 <?php
-namespace Vincit;
+namespace Vincit\WP\Assets;
 
 define('ENQUEUE_STRIP_PATH', '/data/wordpress/htdocs');
 
@@ -124,9 +124,9 @@ function editor_assets() {
   add_editor_style($editor);
 }
 
-\add_action("wp_enqueue_scripts", "\\Vincit\\theme_assets");
-\add_action("admin_enqueue_scripts", "\\Vincit\\admin_assets");
-\add_action("login_enqueue_scripts", "\\Vincit\\admin_assets");
+\add_action("wp_enqueue_scripts", "\\Vincit\\WP\\Assets\\theme_assets");
+\add_action("admin_enqueue_scripts", "\\Vincit\\WP\\Assets\\admin_assets");
+\add_action("login_enqueue_scripts", "\\Vincit\\WP\\Assets\\admin_assets");
 
 if (is_admin()) {
   editor_assets();

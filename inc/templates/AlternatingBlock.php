@@ -8,7 +8,7 @@ function AlternatingBlock($data = []) {
     $secondaryContent = do_shortcode($data["secondary_content"]["shortcode"]);
   } else {
     $secondaryContent = $data["secondary_content"]["image"]
-      ? \Vincit\WP\image($data["secondary_content"]["image"], "large", false)
+      ? \Vincit\WP\Media\image($data["secondary_content"]["image"], "large", false)
       : '<!-- no image selected -->';
   }
 

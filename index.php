@@ -6,7 +6,7 @@
   while (have_posts()) { the_post();
     echo $builder->block("SingleArticle", [
       "title" => apply_filters("the_title", get_the_title()),
-      "content" => apply_filters("the_content", get_the_content()),
+      "content" => \Vincit\WP\Post\excerpt(),
       "permalink" => get_permalink(),
     ]);
   }

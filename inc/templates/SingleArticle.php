@@ -4,6 +4,11 @@ namespace Vincit\template;
 function SingleArticle($data = []) { ?>
   <article <?php post_class("single-article")?>>
     <header class="article-header">
+      <?php
+      if ($data["featured_image"]) {
+        echo \Vincit\WP\Media\image($data["featured_image"], "large");
+      }
+      ?>
       <?php if (is_singular()) { ?>
         <h1><?=$data["title"]?></h1>
       <?php } else { ?>

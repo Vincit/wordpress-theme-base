@@ -1,5 +1,5 @@
 <?php
-namespace Vincit\Filters;
+namespace Vincit\WP\Filters;
 
 function title_prefix($title) {
   $dev = "D";
@@ -33,6 +33,17 @@ function title_prefix($title) {
   return $title;
 }
 
-add_filter("the_seo_framework_pro_add_title", "\\Vincit\\Filters\\title_prefix");
-add_filter("admin_title", "\\Vincit\\Filters\\title_prefix");
-add_filter("wp_title", "\\Vincit\\Filters\\title_prefix");
+add_filter("the_seo_framework_pro_add_title", "\\Vincit\\WP\\Filters\\title_prefix");
+add_filter("admin_title", "\\Vincit\\WP\\Filters\\title_prefix");
+add_filter("wp_title", "\\Vincit\\WP\\Filters\\title_prefix");
+
+/**
+ * Strip empty paragraphs
+ *
+ * @param mixed $content
+ */
+function strip_empty_paragraphs($content) {
+  return str_replace("<p>&nbsp;</p>", "", $content);
+}
+
+add_filter("the_content", "\\Vincit\\WP\\Filters\\strip_empty_paragraphs");

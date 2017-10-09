@@ -1,5 +1,5 @@
 <?php
-namespace Vincit;
+namespace Vincit\CCT;
 
 /* add_action('init', function () {
   register_post_type(

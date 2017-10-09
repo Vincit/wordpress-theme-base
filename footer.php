@@ -10,7 +10,7 @@
       </div>
       <div class="react-widget-container"></div>
 
-      <p class="copyright"><?=\Vincit\Options\get("copyright_text")?></p>
+      <p class="copyright"><?=\Vincit\WP\Options\get("copyright_text")?></p>
     </div>
   </footer>
   <?php wp_footer(); ?>

@@ -1,5 +1,5 @@
 <?php
-namespace Vincit;
+namespace Vincit\WP\Theme;
 
 add_action("after_setup_theme", function () {
   add_theme_support("custom-logo");

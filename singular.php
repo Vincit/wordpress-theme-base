@@ -7,6 +7,7 @@
     echo $builder->block("SingleArticle", [
       "title" => apply_filters("the_title", get_the_title()),
       "content" => apply_filters("the_content", get_the_content()),
+      "featured_image" => get_post_thumbnail_id() ?? false,
     ]);
 
     echo $builder->block("CommentList", [
