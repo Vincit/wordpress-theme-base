@@ -3,12 +3,13 @@ import { el, mount } from 'redom';
 class EnhanceWPElements {
   constructor(selectors = ['article']) {
     this.enhanced = selectors.reduce((acc, selector) => {
-      const element = document.querySelector(selector);
+      const parent = document.querySelector(selector);
 
-      if (element) {
+      if (parent) {
         acc[selector] = {
-          ...this.makeTablesResponsive(element),
-          ...this.armTremors(element),
+          ...this.makeTablesResponsive(parent),
+          ...this.armTremors(parent),
+          ...this.cleanMedia(parent),
         };
       }
 
@@ -16,8 +17,8 @@ class EnhanceWPElements {
     }, {});
   }
 
-  makeTablesResponsive(element) {
-    const tables = Array.from(element.querySelectorAll('table')).map((table) => {
+  makeTablesResponsive(parent) {
+    const tables = Array.from(parent.querySelectorAll('table')).map((table) => {
       const wrap = el('.responsive-table');
       table.parentNode.replaceChild(wrap, table);
       mount(wrap, table);
@@ -30,7 +31,7 @@ class EnhanceWPElements {
     };
   }
 
-  armTremors(element) {
+  armTremors(parent) {
     const shakeshake = (e) => {
       alert('Oh no. \n\n\nRun.\n\n(flickering warning)'); // eslint-disable-line
 
@@ -72,13 +73,41 @@ class EnhanceWPElements {
       requestAnimationFrame(animate);
     };
 
-    const tremors = Array.from(element.querySelectorAll('.tremor')).map((tremor) => {
+    const tremors = Array.from(parent.querySelectorAll('.tremor')).map((tremor) => {
       tremor.addEventListener('click', shakeshake);
       return tremor;
     });
 
     return {
       tremors,
+    };
+  }
+
+  /*
+   * Removes paragraph tags from images, removes inline styles.
+   */
+  cleanMedia(parent) {
+    const media = [
+      ...Array.from(parent.querySelectorAll('.wp-caption')).map((caption) => {
+        if (caption.getAttribute('style')) {
+          caption.removeAttribute('style');
+        }
+
+        return caption;
+      }),
+      ...Array.from(parent.querySelectorAll('p > img')).map((img) => {
+        const p = img.parentNode;
+        if (p.tagName === 'P') {
+          p.parentNode.insertBefore(img, p);
+          p.parentNode.removeChild(p);
+        }
+
+        return img;
+      }),
+    ];
+
+    return {
+      media,
     };
   }
 }
