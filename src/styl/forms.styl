@@ -58,6 +58,27 @@ input {
   }
 }
 
+.mockbox, .mockradio {
+  display: inline-block
+  width: r(20px)
+  height: @width
+  background: colors.gray
+  vertical-align: middle
+
+  &:after {
+    content: ''
+    display: inline-block
+    vertical-align: middle
+    text-align: center
+  }
+
+  &.checked {
+    &:after {
+      content: '✔️'
+    }
+  }
+}
+
 button, .button {
   display: inline-block
   appearance: none

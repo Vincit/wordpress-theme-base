@@ -1,4 +1,5 @@
 import { el, mount } from 'redom';
+import { mockbox, mockradio } from '../lib/form';
 
 class EnhanceWPElements {
   constructor(selectors = ['article']) {
@@ -10,6 +11,8 @@ class EnhanceWPElements {
           ...this.makeTablesResponsive(parent),
           ...this.armTremors(parent),
           ...this.cleanMedia(parent),
+          ...this.mockCheckboxes(parent),
+          ...this.mockRadios(parent),
         };
       }
 
@@ -109,6 +112,18 @@ class EnhanceWPElements {
     return {
       media,
     };
+  }
+
+  mockCheckboxes(parent) {
+    const checkboxes = Array.from(parent.querySelectorAll('input[type="checkbox"]')).map(mockbox);
+
+    return { checkboxes };
+  }
+
+  mockRadios(parent) {
+    const radios = Array.from(parent.querySelectorAll('input[type="radio"]')).map(mockradio);
+
+    return { radios };
   }
 }
 
