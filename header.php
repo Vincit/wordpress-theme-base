@@ -60,16 +60,16 @@
     <div class="header-bar">
       <div class="container">
         <button class="menu-toggle">
-          <img class="open-icon" src="<?=get_stylesheet_directory_uri() . "/dist/img/svg/menu-2.svg"?>">
-          <img class="close-icon" src="<?=get_stylesheet_directory_uri() . "/dist/img/svg/close.svg"?>">
+          <?=\Vincit\WP\Media\svg("menu-2.svg", "open-icon")?>
+          <?=\Vincit\WP\Media\svg("close.svg", "close-icon")?>
           <span class="screen-reader-text">Menu</span>
         </button>
 
         <?=$logo()?>
 
         <button class="search-toggle">
-          <img class="open-icon" src="<?=get_stylesheet_directory_uri() . "/dist/img/svg/search.svg"?>">
-          <img class="close-icon" src="<?=get_stylesheet_directory_uri() . "/dist/img/svg/close.svg"?>">
+          <?=\Vincit\WP\Media\svg("search.svg", "open-icon")?>
+          <?=\Vincit\WP\Media\svg("close.svg", "close-icon")?>
           <span class="screen-reader-text">Menu</span>
         </button>
       </div>

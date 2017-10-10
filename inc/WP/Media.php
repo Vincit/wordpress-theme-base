@@ -1,6 +1,21 @@
 <?php
 namespace Vincit\WP\Media;
 
+function svg($path, $classes = "") {
+  $data = false;
+  $wrap = function ($x) use ($classes) {
+    return "<div class='inline-svg $classes'>$x</div>";
+  };
+
+  if (file_exists($path)) {
+    $data = $wrap(file_get_contents($path));
+  } else {
+    $data = $wrap(file_get_contents(get_template_directory() . "/dist/img/svg/$path"));
+  }
+
+  return $data;
+}
+
 /**
  * Returns an image element.
  * Usage: <?=\Vincit\WP\Media\image($image, 'your-size')?>

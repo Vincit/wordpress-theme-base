@@ -1,4 +1,5 @@
 import { el, setChildren } from 'redom';
+import { inlineSVG } from '../lib/svg';
 
 class MobileNavigation {
   constructor({
@@ -75,12 +76,14 @@ class MobileNavigation {
         const wrapper = el('.item-wrapper');
         const handle = item.classList.contains('menu-item-has-children')
           ? el('button.menu-handle',
-            el('img.open-icon', {
-              src: `${window.theme.directory}/dist/img/svg/menu-with-open.svg`,
-            }),
-            el('img.close-icon', {
-              src: `${window.theme.directory}/dist/img/svg/close.svg`,
-            }),
+            inlineSVG(
+              `${window.theme.directory}/dist/img/svg/menu-with-open.svg`,
+              '.open-icon'
+            ),
+            inlineSVG(
+              `${window.theme.directory}/dist/img/svg/close.svg`,
+              '.close-icon'
+            )
           )
           : false;
 
