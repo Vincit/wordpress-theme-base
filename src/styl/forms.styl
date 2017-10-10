@@ -20,19 +20,36 @@ form {
   overflow: hidden // clear possible floats
 }
 
+inputBase() {
+  appearance: none
+  border: none
+  background: colors.white
+  width: 100%
+  padding: r(5px) r(10px)
+  font-size: r(18px)
+  line-height: 1.78
+  color: colors.black
+  height: r(40px) // IE fix
+}
+
+select {
+  inputBase()
+}
+
 input {
   &[type="text"],
   &[type="search"],
   &[type="email"] {
-    appearance: none
-    border: none
-    background: colors.white
-    width: 100%
-    padding: r(8px) r(15px) r(10px) r(21px)
-    font-size: r(18px)
-    line-height: 1.78
-    color: colors.black
-    min-height: r(40px) // IE fix
+    inputBase()
+  }
+
+  &[type="checkbox"],
+  &[type="radio"] {
+    vertical-align: middle
+    flex: 0 0 auto
+    margin-right: r(10px)
+    width: r(20px)
+    height: @width
   }
 
   &[type="submit"] {
@@ -60,38 +77,65 @@ button, .button {
   }
 }
 
-.fc-{
-  &1-2 {
-      column(1/2, cycle: 2);
+.checkbox-row,
+.radio-row {
+  display: flex
+  align-items: center
+  justify-content: flex-start
+
+  > label {
+    margin-right: r(15px)
+
+    &:last-child {
+      margin-right: 0
     }
+  }
+}
+
+.fc-{
+  &1-4 {
+    column(1/4, cycle: 3);
+  }
+
+  &1-3 {
+    column(1/3, cycle: 3);
+  }
+
+  &1-2 {
+    column(1/2, cycle: 2);
+  }
 
   &1-1 {
     column(1/1);
   }
+}
 
-  &-row {
-    display: block
-    width: 100%
-    margin-bottom: r(10px)
+.fc-row {
+  display: block
+  width: 100%
+  margin-bottom: r(10px)
+  clearfix()
 
-    &.center {
-      text-align: center
-    }
+  &.left {
+    text-align: left
+  }
 
-    &.checkbox {
-      display: flex
-      align-items: center
+  &.center {
+    text-align: center
+  }
 
-      input {
-        flex: 0 0 auto
-        margin-right: r(10px)
-        width: r(30px)
-        height: @width
-      }
-    }
+  &.right {
+    text-align: right
+  }
 
-    &:last-of-type {
-      margin-top: r(30px)
+  &:last-of-type {
+    margin-top: r(30px)
+  }
+
+  label {
+    > span, strong, em {
+      display: block
+      margin-bottom: r(5px)
     }
   }
 }
