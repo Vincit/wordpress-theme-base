@@ -101,6 +101,12 @@ body.admin-bar {
       display: block
     }
 
+    &.active {
+      > a {
+        color: colors.black
+      }
+    }
+
     &:hover {
       > .sub-menu {
         openSubmenu()
@@ -141,6 +147,12 @@ body.admin-bar {
 
       &:last-child {
         border-bottom: none
+      }
+
+      &.active {
+        > a {
+          color: colors.orange
+        }
       }
 
       a {
@@ -274,12 +286,17 @@ body.admin-bar {
 
     .item-wrapper { // Created with JS
       border-bottom: r(1px) solid colors.orange
-      background: colors.white
+      background: colors.gray
+      color: colors.white
       display: flex
       flex-flow: row nowrap
       justify-content: space-between
       align-items: center
       min-height: r(50px)
+    }
+
+    &.active > .item-wrapper > a {
+      color: colors.orange
     }
 
     &:last-child {
@@ -293,6 +310,7 @@ body.admin-bar {
       font-size: r(20px)
       line-height: 1.5
       padding: 0 r(10px)
+      color: inherit
     }
 
     .menu-handle { // Created with JS
