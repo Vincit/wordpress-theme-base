@@ -86,22 +86,11 @@ input {
   background: colors.gray
   vertical-align: middle
   border-radius: 100%
-
-  &:after {
-    content: ''
-    display: inline-block
-    vertical-align: top
-    text-align: center
-    transform: scale(2)
-    position: relative
-    top: r(-3px)
-    width: @width
-  }
+  text-align: center
 
   &.checked {
-    &:after {
-      content: '•'
-    }
+    border: r(3px) solid colors.gray
+    background: colors.white
   }
 }
 
