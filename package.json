@@ -9,7 +9,7 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "IE10"
+    "IE 10"
   ],
   "scripts": {
     "start": "webpack-dashboard -- npm run watch",
