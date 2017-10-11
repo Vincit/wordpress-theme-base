@@ -61,11 +61,9 @@ const generalConfig = merge([
           eslint: {
             failOnWarning: false,
             failOnError: true,
-            fix: false, // TODO: Make configurable w/ user pref
           },
         },
       }),
-      new WriteFilePlugin(), // Writes files to disk instead of memory
       new CopyPlugin([
         {
           from: 'src/img',
@@ -99,6 +97,7 @@ const devConfig = merge([
   {
     plugins: [
       // new DashboardPlugin({ handler: dashboard.setData }),
+      new WriteFilePlugin(), // Writes files to disk instead of memory
       new webpack.HotModuleReplacementPlugin(),
       new OfflinePlugin(offlineOpts),
     ],
