@@ -58,7 +58,7 @@ input {
   }
 }
 
-.mockbox, .mockradio {
+.mockbox {
   display: inline-block
   width: r(20px)
   height: @width
@@ -75,6 +75,32 @@ input {
   &.checked {
     &:after {
       content: '✔️'
+    }
+  }
+}
+
+.mockradio {
+  display: inline-block
+  width: r(20px)
+  height: @width
+  background: colors.gray
+  vertical-align: middle
+  border-radius: 100%
+
+  &:after {
+    content: ''
+    display: inline-block
+    vertical-align: top
+    text-align: center
+    transform: scale(2)
+    position: relative
+    top: r(-1px)
+    width: @width
+  }
+
+  &.checked {
+    &:after {
+      content: '•'
     }
   }
 }
