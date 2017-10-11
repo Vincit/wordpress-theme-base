@@ -127,7 +127,6 @@ const prodConfig = merge([
 
   parts.extractCSS({
     filename: '[name].[contenthash].css',
-    use: ['css-loader', parts.autoprefix(), 'stylus-loader'],
   }),
 
   // no sourcemaps in prod, reason should be obvious.

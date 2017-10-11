@@ -120,6 +120,13 @@ exports.lintJavaScript = ({ include, exclude }) => ({
   },
 });
 
+const postcssLoader = {
+  loader: 'postcss-loader',
+  options: {
+    sourceMap: true,
+  },
+};
+
 exports.loadCSS = ({ include, exclude } = {}) => ({
   // https://survivejs.com/webpack/styling/loading/#understanding-lookups
   module: {
@@ -132,6 +139,7 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
         use: [
           'style-loader',
           'css-loader',
+          postcssLoader,
         ],
       },
       {
@@ -141,6 +149,7 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
         use: [
           'style-loader',
           'css-loader',
+          postcssLoader,
           {
             loader: 'stylus-loader',
             options: {
@@ -163,7 +172,7 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
   ],
 });
 
-exports.extractCSS = ({ filename, include, exclude, use }) => {
+exports.extractCSS = ({ filename, include, exclude }) => {
   // Output extracted CSS to a file
   const plugin = new ExtractTextPlugin({
     filename: filename || '[name].[hash].css',
@@ -177,8 +186,11 @@ exports.extractCSS = ({ filename, include, exclude, use }) => {
           include,
           exclude,
           use: plugin.extract({
-            use,
-            // fallback: ['css-loader', 'stylus-loader'], // enable and the world will explode
+            use: [
+              'css-loader',
+              postcssLoader,
+              'stylus-loader',
+            ],
           }),
         },
       ],
@@ -187,16 +199,6 @@ exports.extractCSS = ({ filename, include, exclude, use }) => {
   };
 };
 
-
-exports.autoprefix = () => ({
-  loader: 'postcss-loader',
-  options: {
-    plugins: () => ([
-      require('autoprefixer'),
-    ]),
-    sourceMap: true,
-  },
-});
 
 exports.sourceMaps = ({ type }) => ({
   devtool: type,

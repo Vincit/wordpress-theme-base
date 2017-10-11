@@ -6,6 +6,11 @@
     "publicPath": "/wp-content/themes/wordpress-theme-base/dist/",
     "proxyURL": "https://wordpress.local"
   },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "IE10"
+  ],
   "scripts": {
     "start": "webpack-dashboard -- npm run watch",
     "watch": "webpack-dev-server --env development --config ./build/webpack.config.js",
@@ -81,6 +86,7 @@
   "dependencies": {
     "normalize.css": "^7.0.0",
     "offline-plugin": "^4.8.3",
+    "postcss-flexbugs-fixes": "^3.2.0",
     "qs": "^6.5.1",
     "react": "^16.0.0-rc.3",
     "react-dom": "^16.0.0-rc.3",
