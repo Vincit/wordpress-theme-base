@@ -4,10 +4,14 @@ namespace Vincit\WP\Filters;
 function title_prefix($title) {
   $dev = "D";
   $production = "P";
+  $staging = "S";
+
   if (\Vincit\WP\is_prod() && is_user_logged_in()) {
     return "[$production] $title";
   } else if (\Vincit\WP\is_dev()) {
     return "[$dev] $title";
+  } elseif (!empty($_COOKIE["seravo_shadow"])) {
+    return "[$staging] $title";
   }
 
   // If both fail, fallback into this.
