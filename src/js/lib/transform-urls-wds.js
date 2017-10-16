@@ -5,17 +5,20 @@ export default function transformURLsWebpackDevServer() {
     const url = window.location.origin;
 
     switch (element.tagName.toLowerCase()) {
-    case 'a':
+    case 'a': {
       if (element.href) {
         element.href = element.href.replace(siteurl, url);
       }
       break;
+    }
 
-    case 'form':
-      if (element.getAttribute('action')) {
-        element.action = element.action.replace(siteurl, url);
+    case 'form': {
+      const action = element.getAttribute('action');
+      if (action) {
+        element.setAttribute('action', action.replace(siteurl, url));
       }
       break;
+    }
 
     default:
     }
