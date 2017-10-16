@@ -74,6 +74,10 @@ function enqueue_parts($path = null, $deps = [], $external = false) {
  */
 
 function enqueue($path = null, $deps = [], $external = false) {
+  if (!$path) {
+    return false;
+  }
+
   $parts = enqueue_parts($path, $deps, $external);
   $type = $parts["type"];
   $handle = $parts["handle"];
