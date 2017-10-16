@@ -14,6 +14,7 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const Imagemin = require('imagemin-webpack-plugin').default;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const OfflinePlugin = require('offline-plugin');
 
 const parts = require('./webpack.parts');
@@ -78,6 +79,7 @@ const generalConfig = merge([
         },
       ]),
       new Imagemin(),
+      new ManifestPlugin(),
     ],
   },
 

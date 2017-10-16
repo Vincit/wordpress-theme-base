@@ -1,7 +1,13 @@
 <?php
 namespace Vincit\WP\Assets;
 
-define('ENQUEUE_STRIP_PATH', '/data/wordpress/htdocs');
+define("ENQUEUE_STRIP_PATH", "/data/wordpress/htdocs");
+define("THEMEROOT", get_stylesheet_directory());
+define("MANIFEST", (array) json_decode(file_get_contents(THEMEROOT . "/dist/manifest.json")));
+
+function asset_path($asset) {
+  return get_stylesheet_directory_uri() . "/dist/" . MANIFEST[$asset];
+};
 
 function enqueue_parts($path = null, $deps = [], $external = false) {
   if (is_null($path)) {
@@ -11,6 +17,8 @@ function enqueue_parts($path = null, $deps = [], $external = false) {
   }
 
   if ($external) {
+    $file = $path;
+  } elseif (!(strpos($path, "*") > -1)) {
     $file = $path;
   } else {
     $files = glob($path, GLOB_MARK);
@@ -84,8 +92,6 @@ function enqueue($path = null, $deps = [], $external = false) {
 }
 
 function theme_assets() {
-  $themeroot = get_stylesheet_directory();
-
   // Webfonts:
   // enqueue("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700", [], true);
 
@@ -95,23 +101,21 @@ function theme_assets() {
   // In reality Webpack Offline Plugin handles it, but these serve as samples,
   // and may help you build things.
   \wp_localize_script("client-js", "theme", [
-    "directory" => str_replace(ENQUEUE_STRIP_PATH, "", $themeroot),
+    "directory" => str_replace(ENQUEUE_STRIP_PATH, "", THEMEROOT),
     "cache" => [
-      "stylesheet" => enqueue("$themeroot/dist/client.*.css"),
-      "javascript" => enqueue("$themeroot/dist/client.*.js"),
+      "stylesheet" => enqueue(asset_path("client.css")),
+      "javascript" => enqueue(asset_path("client.js"), ["wplf-form-js"]),
     ],
     "siteurl" => get_site_url(),
   ]);
 }
 
 function admin_assets() {
-  $themeroot = get_stylesheet_directory();
-
   \wp_localize_script("admin-js", "theme", [
-    "directory" => str_replace(ENQUEUE_STRIP_PATH, "", $themeroot),
+    "directory" => str_replace(ENQUEUE_STRIP_PATH, "", THEMEROOT),
     "cache" => [
-      "stylesheet" => enqueue("$themeroot/dist/admin.*.css"),
-      "javascript" => enqueue("$themeroot/dist/admin.*.js"),
+      "stylesheet" => enqueue(asset_path("admin.css")),
+      "javascript" => enqueue(asset_path("admin.js")),
     ],
     "siteurl" => get_site_url(),
   ]);
@@ -119,8 +123,7 @@ function admin_assets() {
 
 function editor_assets() {
   // Doesn't get hackier than this.
-  $themeroot = get_stylesheet_directory();
-  $editor = "dist/" . basename(enqueue_parts("$themeroot/dist/editor.*.css")["file"]);
+  $editor = "dist/" . basename(enqueue_parts(asset_path("editor.css"))["file"]);
   add_editor_style($editor);
 }
 

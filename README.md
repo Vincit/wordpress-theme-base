@@ -9,7 +9,8 @@ Bleeding edge starter theme.
 - [x] Accessible custom radiobuttons and checkboxes
 - [x] Automatic editor stylesheet
 - [x] (Multilingual) options page support
-- [x] Ground-breaking but controversial cachebusting for assets
+- [x] ~Ground-breaking but controversial cachebusting for assets~
+- [x] Automatic asset manifest makes sure that users always get the latest files
 - [x] Works with React (out-of-the-box, has demos)
 - [x] Modern JavaScript support
   - [x] Built with Webpack 3
