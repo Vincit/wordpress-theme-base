@@ -5,9 +5,12 @@ define("ENQUEUE_STRIP_PATH", "/data/wordpress/htdocs");
 define("THEMEROOT", get_stylesheet_directory());
 define("MANIFEST", (array) json_decode(file_get_contents(THEMEROOT . "/dist/manifest.json")));
 
-function asset_path($asset) {
+function asset_path($asset, $ignore_existence = false) {
   $path = get_stylesheet_directory_uri() . "/dist/";
   if (empty(MANIFEST[$asset])) {
+    if ($ignore_existence) {
+      return $path . $asset;
+    }
     // Certain assets (CSS) do not even exist in dev. Just handle it.
     return false;
   }
@@ -133,9 +136,8 @@ function admin_assets() {
 }
 
 function editor_assets() {
-  // Doesn't get hackier than this.
-  $editor = "dist/" . basename(enqueue_parts(asset_path("editor.css"))["file"]);
-  add_editor_style($editor);
+  // Tradeoff: only works with production build
+  add_editor_style(asset_path("editor.css", true));
 }
 
 \add_action("wp_enqueue_scripts", "\\Vincit\\WP\\Assets\\theme_assets");
