@@ -6,7 +6,13 @@ define("THEMEROOT", get_stylesheet_directory());
 define("MANIFEST", (array) json_decode(file_get_contents(THEMEROOT . "/dist/manifest.json")));
 
 function asset_path($asset) {
-  return get_stylesheet_directory_uri() . "/dist/" . MANIFEST[$asset];
+  $path = get_stylesheet_directory_uri() . "/dist/";
+  if (empty(MANIFEST[$asset])) {
+    // Certain assets (CSS) do not even exist in dev. Just handle it.
+    return false;
+  }
+
+  return $path . MANIFEST[$asset];
 };
 
 function enqueue_parts($path = null, $deps = [], $external = false) {
@@ -16,9 +22,10 @@ function enqueue_parts($path = null, $deps = [], $external = false) {
     trigger_error('You must define ENQUEUE_STRIP_PATH, 99% of the time it\'s /data/wordpress/htdocs', E_USER_ERROR);
   }
 
+  $isGlob = strpos($path, "*") > -1;
   if ($external) {
     $file = $path;
-  } elseif (!(strpos($path, "*") > -1)) {
+  } elseif (!$isGlob) {
     $file = $path;
   } else {
     $files = glob($path, GLOB_MARK);
@@ -35,7 +42,7 @@ function enqueue_parts($path = null, $deps = [], $external = false) {
     $file = $files[0];
   }
 
-  $parts = explode(".", $file);
+  $parts = explode(".", $isGlob ? $file : basename($file));
   $type = array_reverse($parts)[0];
   $handle = basename($parts[0]) . "-" . $type;
   $file = str_replace(ENQUEUE_STRIP_PATH, "", $file);
