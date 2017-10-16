@@ -53,7 +53,7 @@ function strip_empty_paragraphs($content) {
 add_filter("the_content", "\\Vincit\\WP\\Filters\\strip_empty_paragraphs");
 
 
-// Gravity Forms makes some absolutely mental decisions. 
+// Gravity Forms makes some absolutely mental decisions.
 // Loading scripts in head? Not on my watch.
 add_filter("gform_tabindex", "\\__return_false");
 add_filter("gform_init_scripts_footer", "\\__return_true");
@@ -65,3 +65,6 @@ add_filter("gform_cdata_open", function () {
 add_filter("gform_cdata_close", function () {
   return "}, false);";
 });
+
+// Disable "traffic lights"
+add_filter("the_seo_framework_show_seo_column", "__return_false");
