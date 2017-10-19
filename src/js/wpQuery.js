@@ -1,4 +1,5 @@
 import qs from 'qs';
+import fetch from './lib/fetch';
 
 const error = (status, message) => (JSON.stringify({ status, message }));
 

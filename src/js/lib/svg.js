@@ -1,4 +1,5 @@
 import { el } from 'redom';
+import fetch from './fetch';
 
 const loadSVG = (path) => {
   const placeholder = el('.svg-placeholder');
