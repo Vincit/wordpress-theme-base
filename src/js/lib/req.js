@@ -9,8 +9,8 @@
  * not like you'd think it does. fetch doesn't think 404 as an error, unless you tell it to.
  */
 
-export default function fetch(path, options = {}) {
-  return window.fetch(path, {
+export default function req(path, options = {}) {
+  return fetch(path, {
     credentials: 'same-origin',
     ...options,
   }).then((response) => {

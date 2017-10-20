@@ -1,10 +1,10 @@
 import { el } from 'redom';
-import fetch from './fetch';
+import req from './req';
 
 const loadSVG = (path) => {
   const placeholder = el('.svg-placeholder');
 
-  fetch(path)
+  req(path)
     .then((r) => r.text())
     .then((svg) => {
       placeholder.parentNode.insertAdjacentHTML('afterbegin', svg);

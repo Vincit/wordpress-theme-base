@@ -27,7 +27,12 @@ export default function () {
     totalPosts.textContent = `Total posts: ${headers['x-wp-total']}`;
     totalPages.textContent = `Total pages: ${headers['x-wp-totalpages']}`;
   }).catch((err) => {
-    setChildren(list, el('.error', JSON.parse(err.message).message));
+    if (err.message.contains('404')) {
+      setChildren(list, el('.error',
+        'Got 404 trying to query for posts. Is aucor/wp_query-route-to-rest-api installed?'));
+    }
+
+    console.error(err);
   });
 
   return postList();

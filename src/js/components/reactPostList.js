@@ -23,7 +23,11 @@ export default class PostList extends Component {
         maxPosts: headers['x-wp-total'],
       });
     }).catch((error) => {
-      this.setState({ error: JSON.parse(error.message).message });
+      if (error.message.contains('404')) {
+        this.setState({
+          error: 'Got 404 trying to query for posts. Is aucor/wp_query-route-to-rest-api installed?',
+        });
+      }
     });
   }
 
