@@ -50,6 +50,22 @@ Optional:
 
 The theme will fail with anything less than PHP 7, but making it PHP 5 compatible shouldn't be too hard, just fix the errors as they appear.
 
+## Things to keep in mind
+Webpack-dev-server will proxy your WordPress installation, and serve it through localhost:8080. WordPress doesn't know anything about this, and it will continue to output links with the original domain, so any forms or links do not work out of the box. The theme will enqueue a chunk of JS that will transform all links and forms that exist at DOMContentLoaded, so majority of links and forms will work. The adminbar is a prime example where links "do not work".
+
+While the admin works (for the most part!) through wds, I wouldn't recommend using it. If you want to keep the admin bar visible while you develop the site, simply login twice. Once at https://wordpress.local/wp-admin, and once at https://localhost:8080/wp-admin.
+
+**Why not?**
+
+You *WILL* run into problems. Two examples from JavaScript console:
+> Uncaught DOMException: Failed to execute 'replaceState' on 'History': A history state object with URL 'https://wordpress.local/wp-admin/post.php?post=439&action=edit' cannot be created in a document with origin 'https://localhost:8080' and URL 'https://localhost:8080/wp-admin/post.php?post=439&action=edit&message=6'.
+
+> Access to Font at 'https://wordpress.local/wp-content/plugins/advanced-custom-fields-pro/assets/font/acf.woff?57601716' from origin 'https://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'https://localhost:8080' is therefore not allowed access.
+
+CORS isn't a problem normally, as we set `header("Access-Control-Allow-Origin: *");` to any request that's coming from wds,but the font in question isn't going through wds.
+
+You're going to have a very bad time if you ignore this. If it's not a direct error, it's going to be a badly coded plugin that's going to cause it.
+
 ## Usage
 Clone the theme or install it with the installer that ships with [Vincit/wordpress](https://github.com/Vincit/wordpress). Composer is also an option.
 ```sh
