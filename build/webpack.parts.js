@@ -2,6 +2,8 @@ const path = require('path');
 const pjson = require(path.join(__dirname, '..', 'package.json'));
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const postcssLoader = require('./postcss.loader');
+const stylusLoader = require('./stylus.loader');
 
 const isWin = /^win/.test(process.platform);
 const isMac = /^darwin/.test(process.platform);
@@ -120,13 +122,6 @@ exports.lintJavaScript = ({ include, exclude }) => ({
   },
 });
 
-const postcssLoader = {
-  loader: 'postcss-loader',
-  options: {
-    sourceMap: true,
-  },
-};
-
 exports.loadCSS = ({ include, exclude } = {}) => ({
   // https://survivejs.com/webpack/styling/loading/#understanding-lookups
   module: {
@@ -150,15 +145,7 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
           'style-loader',
           'css-loader',
           postcssLoader,
-          {
-            loader: 'stylus-loader',
-            options: {
-              import: [
-                '~jeet/styl/index.styl'
-              ],
-              preferPathResolver: 'webpack',
-            }
-          }
+          stylusLoader,
         ],
       },
     ],
@@ -189,7 +176,7 @@ exports.extractCSS = ({ filename, include, exclude }) => {
             use: [
               'css-loader',
               postcssLoader,
-              'stylus-loader',
+              stylusLoader,
             ],
           }),
         },
