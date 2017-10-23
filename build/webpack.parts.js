@@ -175,7 +175,7 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
 exports.extractCSS = ({ filename, include, exclude }) => {
   // Output extracted CSS to a file
   const plugin = new ExtractTextPlugin({
-    filename: filename || '[name].[hash].css',
+    filename: filename || '[name].[contenthash].css',
   });
 
   return {
