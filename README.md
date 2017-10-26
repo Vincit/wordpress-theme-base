@@ -177,3 +177,9 @@ And if you figure out a way to remove this hack entirely (as in convert fs path 
 
 ## I got "TypeError: Cannot read property 'split' of null" when starting the watcher
 Most likely the proxyURL in package.json is wrong. Make sure to include protocol: `https://wordpress.local`
+
+## I've started the watcher, but I have no styles and JavaScript is broken? This started on it's own.
+It's possible that your browser has stopped trusting the certificate (happens surprisingly often, at least on Chrome on Linux).
+
+Scripts and styles are loaded from https://wordpress.local, even though the development server runs on https://localhost:8080. If your system doesn't trust self-signed certificates automatically, you might have to navigate to https://wordpress.local, and add an exception or confirm that you want to use the site, regardless of the "dangerous" cert.
+
