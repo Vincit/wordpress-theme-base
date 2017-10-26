@@ -1,8 +1,6 @@
 import qs from 'qs';
 import req from './lib/req';
 
-const error = (status, message) => (JSON.stringify({ status, message }));
-
 async function wpQuery(queryArgs = false) {
   const args = queryArgs || {
     post_type: 'post',
