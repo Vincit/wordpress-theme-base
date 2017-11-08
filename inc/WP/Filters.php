@@ -10,7 +10,7 @@ function title_prefix($title) {
     return "[$production] $title";
   } else if (\Vincit\WP\is_dev()) {
     return "[$dev] $title";
-  } elseif (!empty($_COOKIE["seravo_shadow"])) {
+  } elseif (!empty($_COOKIE["seravo_shadow"]) || \Vincit\WP\is_staging()) {
     return "[$staging] $title";
   }
 

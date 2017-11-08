@@ -27,6 +27,15 @@ function is_prod() {
 }
 
 /**
+ * Return whether env is staging or not.
+ *
+ * @return boolean
+ */
+function is_staging() {
+  return env() === 'staging';
+}
+
+/**
  * Return whether env is development or not.
  *
  * @return boolean
