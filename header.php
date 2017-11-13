@@ -36,7 +36,7 @@
         <img
           src="https://vincit.fi/wp-content/themes/vincit.com/images/Vincit_tirppa_white.png"
           class="custom-logo"
-          alt="Wordpress2"
+          alt="Vincit logo"
           itemprop="logo"
         >
       </a>
