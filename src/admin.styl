@@ -1,0 +1,19 @@
+@import 'styl/mixins'
+@import 'styl/variables'
+
+// Show ACF field names on hover, idea: https://gist.github.com/Apeli/28ff99a22d7c4a94e00dbea36df57192
+body:not(.post-type-acf-field-group) .acf-field:hover:before {
+  position: absolute
+  left: auto
+  right: 0
+  transform: translateX(r(-20px))
+  content: attr(data-name)
+  display: inline-block
+  background: #222
+  color: #fff
+  font-family: monospace
+  padding: r(2px) r(5px)
+  border: r(1px) solid #000
+  font-size: r(10px)
+  z-index: 10
+}
