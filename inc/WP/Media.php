@@ -76,13 +76,16 @@ function captioned_image($image, $size, $responsive = true) {
  * @param mixed $image
  * @param string $size
  */
-function get_image_data($image, $size = 'medium') {
+function get_image_data($image = null, $size = 'medium') {
   if (is_array($image)) {
     $id = $image['ID'];
   } else if (is_numeric($image)) {
     $id = absint($image);
+  } else if (!$image) {
+    return false;
   } else {
-    throw new \Exception('$image must be an array or id');
+    var_dump($image);
+    throw new \Exception('$image must be an array, falsy value, or numeric id.');
     return false;
   }
 
