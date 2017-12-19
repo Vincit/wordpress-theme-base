@@ -37,6 +37,13 @@ class Pagebuilder {
       throw new \Exception("Selected block layout can't be null.");
     }
 
+    if (isset($data[$layout])) {
+      // If there's an entry with the same key, it's most likely an ACF Group,
+      // which adds one more layer, unless we get rid of it.
+
+      $data = $data[$layout]; // Get rid of the extra layer
+    }
+
     ob_start();
     $this->templates[$layout]($data);
     $template = ob_get_clean();

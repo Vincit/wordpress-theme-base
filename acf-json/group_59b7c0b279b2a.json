@@ -16,63 +16,10 @@
                 "id": ""
             },
             "layouts": {
-                "59c393cd7c9b2": {
-                    "key": "59c393cd7c9b2",
-                    "name": "Hero",
-                    "label": "Hero",
-                    "display": "block",
-                    "sub_fields": [
-                        {
-                            "key": "field_59c393e67c9b3",
-                            "label": "Background",
-                            "name": "background",
-                            "type": "image",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "array",
-                            "preview_size": "thumbnail",
-                            "library": "all",
-                            "min_width": "",
-                            "min_height": "",
-                            "min_size": "",
-                            "max_width": "",
-                            "max_height": "",
-                            "max_size": "",
-                            "mime_types": ""
-                        },
-                        {
-                            "key": "field_59c393ff7c9b4",
-                            "label": "Content",
-                            "name": "content",
-                            "type": "wysiwyg",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "tabs": "all",
-                            "toolbar": "full",
-                            "media_upload": 1,
-                            "delay": 0
-                        }
-                    ],
-                    "min": "",
-                    "max": ""
-                },
                 "5a390e686e133": {
                     "key": "5a390e686e133",
-                    "name": "hero_v2",
-                    "label": "Hero v2",
+                    "name": "Hero",
+                    "label": "Hero",
                     "display": "block",
                     "sub_fields": [
                         {
@@ -334,5 +281,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1513688708
+    "modified": 1513690653
 }

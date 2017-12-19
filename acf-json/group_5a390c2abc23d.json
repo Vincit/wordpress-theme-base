@@ -5,7 +5,7 @@
         {
             "key": "field_5a39107d3a0d8",
             "label": "Hero",
-            "name": "hero",
+            "name": "Hero",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -79,5 +79,5 @@
     "hide_on_screen": "",
     "active": 0,
     "description": "",
-    "modified": 1513689296
+    "modified": 1513690529
 }
