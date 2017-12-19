@@ -1,0 +1,58 @@
+{
+    "key": "group_5a0addd599761",
+    "title": "Field: position",
+    "fields": [
+        {
+            "key": "field_5a0adddf7969f",
+            "label": "Position",
+            "name": "position",
+            "type": "select",
+            "instructions": "How background will be aligned?",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "left top": "Left top",
+                "left center": "Left center",
+                "left bottom": "Left bottom",
+                "right top": "Right top",
+                "right center": "Right center",
+                "right bottom": "Right bottom",
+                "center top": "Center top",
+                "center center": "Center center",
+                "center bottom": "Center bottom"
+            },
+            "default_value": [
+                "center top"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 0,
+    "description": "",
+    "modified": 1513689420
+}

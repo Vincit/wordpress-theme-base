@@ -69,6 +69,37 @@
                     "min": "",
                     "max": ""
                 },
+                "5a390e686e133": {
+                    "key": "5a390e686e133",
+                    "name": "hero_v2",
+                    "label": "Hero v2",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5a390e766e134",
+                            "label": "",
+                            "name": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5a390c2abc23d"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "59b7c143adb89": {
                     "key": "59b7c143adb89",
                     "name": "AlternatingBlock",
@@ -303,5 +334,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1513686589
+    "modified": 1513688708
 }
