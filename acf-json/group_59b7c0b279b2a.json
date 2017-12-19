@@ -78,7 +78,7 @@
                         {
                             "key": "field_59b7c2378e877",
                             "label": "Order",
-                            "name": "order",
+                            "name": "inverse_order",
                             "type": "true_false",
                             "instructions": "",
                             "required": 0,
@@ -303,5 +303,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1506690454
+    "modified": 1513686589
 }
