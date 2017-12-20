@@ -162,9 +162,10 @@ Place the font files in src/fonts. The loaders working directory is src, even if
 The solution is to put the SVG in src/img/no-inline/svg directory: `background: url('./img/no-inline/svg/close.svg')` => `background: url(data:image/svg+xml;base64...)`
 
 ### Asset paths (JavaScript, CSS...) are totally wrong
-Due to the ground-breakingness and controversiality of the way we enqueue assets, it's necessary to define a constant `ENQUEUE_STRIP_PATH` that contains the filesystem path until WordPress root directory. It's defined in `inc/Assets.php`, and the default is `/data/wordpress/htdocs`. It works out of the box with [Seravo/wordpress](https://github.com/Seravo/wordpress) and inside Seravo production instances.
+Looking for files on from the fs doesn't happen anymore, so this shouldn't happen either. The current version uses an asset manifest (or two) to load the correct file and bust the cache if necessary. 
+~~Due to the ground-breakingness and controversiality of the way we enqueue assets, it's necessary to define a constant `ENQUEUE_STRIP_PATH` that contains the filesystem path until WordPress root directory. It's defined in `inc/Assets.php`, and the default is `/data/wordpress/htdocs`. It works out of the box with [Seravo/wordpress](https://github.com/Seravo/wordpress) and inside Seravo production instances.
 
-If you develop using MAMP (or similar), or host the theme elsewhere, it's necessary to change the value. If you require two separate values (production and dev are different), that's easy too.
+~~If you develop using MAMP (or similar), or host the theme elsewhere, it's necessary to change the value. If you require two separate values (production and dev are different), that's easy too.~~
 ```php
 if (defined("WP_DEBUG") && WP_DEBUG) { // or use the domain from $_SERVER
   define("ENQUEUE_STRIP_PATH", "/path/to/strip/in/dev/");
@@ -173,7 +174,7 @@ if (defined("WP_DEBUG") && WP_DEBUG) { // or use the domain from $_SERVER
 }
 ```
 
-And if you figure out a way to remove this hack entirely (as in convert fs path to webserver path), please do tell.
+~~And if you figure out a way to remove this hack entirely (as in convert fs path to webserver path), please do tell.~~
 
 ## I got "TypeError: Cannot read property 'split' of null" when starting the watcher
 Most likely the proxyURL in package.json is wrong. Make sure to include protocol: `https://wordpress.local`
