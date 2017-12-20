@@ -69,6 +69,14 @@ add_filter("gform_cdata_close", function () {
 // Disable "traffic lights"
 add_filter("the_seo_framework_show_seo_column", "__return_false");
 
+// Add %home% tag to bcn breadcrumbs
+add_filter("bcn_template_tags", function ($replacements, $type, $id) {
+  // d(...func_get_args());
+  $replacements["%home%"] = gs("Breadcrumb: Home");
+
+  return $replacements;
+}, 3, 10);
+
 /*
  * Add stages to menus so if it's required for something it's there.
  */
