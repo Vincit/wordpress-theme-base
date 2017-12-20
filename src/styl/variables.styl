@@ -1,29 +1,15 @@
-media = json('../media-queries.json');
-colors = json('../colors.json');
+media = json('../media-queries.json', { hash: true });
+colors = json('../colors.json', { hash: true });
 
 
 /*
-  // Deprecated, values are imported from JSON
-  // To get white, use colors-white. To get black, use colors-black.
+// Stylus turns json files into variables: http://stylus-lang.com/docs/bifs.html#jsonpath-options
+// This is just for illustration purposes.
 
-  colors = {
-    black: #000000,
-  }
-*/
+colors = {
+  black: #000000,
+}
 
-
-/* Stylus is future-proof'd in such a way that it thinks `@media desktop` as a
-   valid rule, and doesn't parse it. `@media media.xlarge, media.large` works.
-   That targets desktop and laptop screeens. */
-
-/* media = {
+media = {
   xlarge: xlarge, // Desktop
-  large: large, // MBP 13" on default scaling
-  medium: medium, // Landscape tablet / netbook
-  small: small, // Tablet in portrait
-  xsmall: xsmall, // Phone
-
-  laptop: laptop,
-  tablet: tablet,
-  phone: phone,
 }; */

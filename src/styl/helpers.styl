@@ -1,0 +1,33 @@
+generateBackgroundClasses() {
+  .bg {
+    for key, value in colors {
+      &--{key} {
+        background: value
+
+        if (key == 'tangerine') {
+          color: colors.white
+        } else if (dark(value)) {
+          color: colors.white
+        } else {
+          color: colors.black
+        }
+      }
+    }
+  }
+}
+
+generateColorClasses() {
+  .color {
+    for key, value in colors {
+      &--{key} {
+        color: value;
+      }
+    }
+  }
+}
+
+// These are functions because if a selector is more precise and defines
+// a background color, .bg--white will not work.
+
+generateBackgroundClasses()
+generateColorClasses()
