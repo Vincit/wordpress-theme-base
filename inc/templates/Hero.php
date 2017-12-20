@@ -1,6 +1,11 @@
 <?php
 namespace Vincit\template;
 
+/**
+ * Generic hero block with an optional CTA button
+ *
+ * @param mixed $data
+ */
 function Hero($data = []) {
   $data = params([
     "background" => [
@@ -10,7 +15,9 @@ function Hero($data = []) {
     "wysiwyg" => [
       "editor" => null,
     ],
+    "button" => null,
   ], $data); ?>
+
   <div class="hero" style="
     background-image: url('<?=v($data, "background.image.url")?>');
     background-position: <?=v($data, "background.position")?>;
@@ -18,6 +25,7 @@ function Hero($data = []) {
     <div class="container">
       <div class="noop-wrapper"> <!-- Makes life with flexbox easier -->
         <?=v($data, "wysiwyg.editor")?>
+        <?=Button($data["button"])?>
       </div>
     </div>
   </div><?php

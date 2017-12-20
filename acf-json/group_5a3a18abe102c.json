@@ -1,11 +1,11 @@
 {
-    "key": "group_5a390c2abc23d",
-    "title": "Component: Hero",
+    "key": "group_5a3a18abe102c",
+    "title": "Field: Button",
     "fields": [
         {
-            "key": "field_5a39107d3a0d8",
-            "label": "Hero",
-            "name": "Hero",
+            "key": "field_5a3a18ca12b32",
+            "label": "Button",
+            "name": "button",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -15,54 +15,50 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "row",
+            "layout": "table",
             "sub_fields": [
                 {
-                    "key": "field_5a390d5db5415",
-                    "label": "Background",
-                    "name": "background",
-                    "type": "clone",
+                    "key": "field_5a3a193b12b36",
+                    "label": "Text",
+                    "name": "text",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "50",
+                        "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "clone": [
-                        "group_5a390d4875b31"
-                    ],
-                    "display": "seamless",
-                    "layout": "block",
-                    "prefix_label": 0,
-                    "prefix_name": 0
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 },
                 {
-                    "key": "field_5a390e43b5416",
-                    "label": "WYSIWYG",
-                    "name": "wysiwyg",
-                    "type": "clone",
+                    "key": "field_5a3a192512b35",
+                    "label": "Link",
+                    "name": "link",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "50",
+                        "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "clone": [
-                        "group_5a390df209399"
-                    ],
-                    "display": "seamless",
-                    "layout": "block",
-                    "prefix_label": 0,
-                    "prefix_name": 0
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 },
                 {
-                    "key": "field_5a3a1978c398f",
-                    "label": "CTA Button",
-                    "name": "",
+                    "key": "field_5a3a18f312b34",
+                    "label": "Color",
+                    "name": "color",
                     "type": "clone",
                     "instructions": "",
                     "required": 0,
@@ -73,7 +69,7 @@
                         "id": ""
                     },
                     "clone": [
-                        "group_5a3a18abe102c"
+                        "group_5a39209623ace"
                     ],
                     "display": "seamless",
                     "layout": "block",
@@ -100,5 +96,5 @@
     "hide_on_screen": "",
     "active": 0,
     "description": "",
-    "modified": 1513757134
+    "modified": 1513757219
 }
