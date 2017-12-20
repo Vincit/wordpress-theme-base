@@ -3,7 +3,7 @@
  * Handy functions under the template namespace for easy use.
  */
 
-namespace Vincit\template;
+namespace Vincit\Template;
 
 /**
  * Shorthand for dotty helper.

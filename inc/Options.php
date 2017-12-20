@@ -1,5 +1,5 @@
 <?php
-namespace Vincit\WP\Options;
+namespace Vincit\Options;
 
 if (function_exists("acf_add_options_page")) {
   $parent = acf_add_options_page([

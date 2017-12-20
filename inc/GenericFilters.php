@@ -1,16 +1,16 @@
 <?php
-namespace Vincit\WP\Filters;
+namespace Vincit\GenericFilters;
 
 function title_prefix($title) {
   $dev = "D";
   $production = "P";
   $staging = "S";
 
-  if (\Vincit\WP\is_prod() && is_user_logged_in()) {
+  if (\Vincit\is_prod() && is_user_logged_in()) {
     return "[$production] $title";
-  } else if (\Vincit\WP\is_dev()) {
+  } else if (\Vincit\is_dev()) {
     return "[$dev] $title";
-  } elseif (!empty($_COOKIE["seravo_shadow"]) || \Vincit\WP\is_staging()) {
+  } elseif (!empty($_COOKIE["seravo_shadow"]) || \Vincit\is_staging()) {
     return "[$staging] $title";
   }
 
@@ -25,7 +25,7 @@ function title_prefix($title) {
   ];
 
   foreach ($domains as $domain => $tag) {
-    if (strpos(\Vincit\WP\current_url(), $domain) > -1) {
+    if (strpos(\Vincit\current_url(), $domain) > -1) {
       if ($tag === $production) {
         if (!is_user_logged_in()) {
           return $title;
@@ -37,9 +37,9 @@ function title_prefix($title) {
   return $title;
 }
 
-add_filter("the_seo_framework_pro_add_title", "\\Vincit\\WP\\Filters\\title_prefix");
-add_filter("admin_title", "\\Vincit\\WP\\Filters\\title_prefix");
-add_filter("wp_title", "\\Vincit\\WP\\Filters\\title_prefix");
+add_filter("the_seo_framework_pro_add_title", "\\Vincit\\GenericFilters\\title_prefix");
+add_filter("admin_title", "\\Vincit\\GenericFilters\\title_prefix");
+add_filter("wp_title", "\\Vincit\\GenericFilters\\title_prefix");
 
 /**
  * Strip empty paragraphs
@@ -50,7 +50,7 @@ function strip_empty_paragraphs($content) {
   return str_replace("<p>&nbsp;</p>", "", $content);
 }
 
-add_filter("the_content", "\\Vincit\\WP\\Filters\\strip_empty_paragraphs");
+add_filter("the_content", "\\Vincit\\GenericFilters\\strip_empty_paragraphs");
 
 
 // Gravity Forms makes some absolutely mental decisions.

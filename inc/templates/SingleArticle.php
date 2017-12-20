@@ -1,12 +1,14 @@
 <?php
-namespace Vincit\template;
+namespace Vincit\Template;
+
+use \Vincit\Media;
 
 function SingleArticle($data = []) { ?>
   <article <?php post_class("single-article")?>>
     <header class="article-header">
       <?php
       if ($data["featured_image"]) {
-        echo \Vincit\WP\Media\image($data["featured_image"], "large");
+        echo Media\image($data["featured_image"], "large");
       }
       ?>
       <?php if (is_singular()) { ?>

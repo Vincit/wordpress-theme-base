@@ -1,5 +1,5 @@
 <?php
-namespace Vincit\WP\Post;
+namespace Vincit\Post;
 
 /**
  * Return post excerpt. Tries to get a dedicated custom field first, then falls
@@ -50,7 +50,7 @@ function get_preview($post_id = null) {
 function excerpt($post_id = null, $fallback = true) {
   $excerpt = get_excerpt($post_id, $fallback);
 
-  return \Vincit\WP\tag([
+  return \Vincit\tag([
     "<div class='wpt-excerpt'>",
     strpos($excerpt, "<p>") > -1
     ? $excerpt
@@ -69,7 +69,7 @@ function excerpt($post_id = null, $fallback = true) {
 function preview($word_count = 30, $more = "&hellip;", $post_id = null) {
   $preview = get_preview($post_id);
 
-  return \Vincit\WP\tag([
+  return \Vincit\tag([
     "<div class='wpt-preview'>",
     "<p>" . wp_trim_words($preview, $word_count, $more) . "</p>",
     "</div>"

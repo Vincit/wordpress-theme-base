@@ -1,3 +1,9 @@
+<?php
+namespace Vincit;
+
+use \Vincit\Options;
+
+?>
   </main>
   <footer class="site-footer">
     <div class="container">
@@ -10,7 +16,7 @@
       </div>
       <div class="react-widget-container"></div>
 
-      <p class="copyright"><?=\Vincit\WP\Options\get("copyright_text")?></p>
+      <p class="copyright"><?=Options\get("copyright_text")?></p>
     </div>
   </footer>
   <?php wp_footer(); ?>

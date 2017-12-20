@@ -1,10 +1,10 @@
 <?php
-namespace Vincit\template;
+namespace Vincit\Template;
 
 function CommentList($data = []) {
   $data = params([
     "post_id" => null,
-    "wp_list_comments" => [],
+    "wp_list_comments_args" => [],
     "get_comments_args" => [],
   ], $data);
 

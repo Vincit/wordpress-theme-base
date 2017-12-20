@@ -1,3 +1,9 @@
+<?php
+namespace Vincit;
+
+use \Vincit\Media;
+
+?>
 <!doctype html>
 <html>
   <head>
@@ -60,16 +66,16 @@
     <div class="header-bar">
       <div class="container">
         <button class="menu-toggle">
-          <?=\Vincit\WP\Media\svg("menu-2.svg", "open-icon")?>
-          <?=\Vincit\WP\Media\svg("close.svg", "close-icon")?>
+          <?=Media\svg("menu-2.svg", "open-icon")?>
+          <?=Media\svg("close.svg", "close-icon")?>
           <span class="screen-reader-text">Menu</span>
         </button>
 
         <?=$logo()?>
 
         <button class="search-toggle">
-          <?=\Vincit\WP\Media\svg("search.svg", "open-icon")?>
-          <?=\Vincit\WP\Media\svg("close.svg", "close-icon")?>
+          <?=Media\svg("search.svg", "open-icon")?>
+          <?=Media\svg("close.svg", "close-icon")?>
           <span class="screen-reader-text">Menu</span>
         </button>
       </div>

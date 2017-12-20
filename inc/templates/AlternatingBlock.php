@@ -1,5 +1,7 @@
 <?php
-namespace Vincit\template;
+namespace Vincit\Template;
+
+use \Vincit\Media;
 
 function AlternatingBlock($data = []) {
   $data = params([
@@ -52,7 +54,7 @@ function AlternatingBlock($data = []) {
         <?=$isShortcode ? (
           do_shortcode(v($data, "content.secondary.shortcode"))
         ) : (
-          \Vincit\WP\Media\image(
+          Media\image(
             v($data, "content.secondary.image", null),
             "large",
             false

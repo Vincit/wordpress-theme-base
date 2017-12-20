@@ -1,5 +1,5 @@
 <?php
-namespace Vincit\WP\Media;
+namespace Vincit\Media;
 
 function svg($path, $args = []) {
   $data = false;
@@ -41,7 +41,7 @@ function svg($path, $args = []) {
 
 /**
  * Returns an image element.
- * Usage: <?=\Vincit\WP\Media\image($image, 'your-size')?>
+ * Usage: <?=\Vincit\Media\image($image, 'your-size')?>
  *
  * @param mixed $image
  * @param string $size
@@ -58,7 +58,7 @@ function image($image, $size = 'medium', $responsive = true) {
   $has_title = strpos($data['src'], $data['title']) > -1 ? false : true;
   $class = $responsive ? 'vincit-image vincit-image--responsive' : 'vincit-image';
 
-  return  \Vincit\WP\tag([
+  return  \Vincit\tag([
     "<img src='$data[src]'",
     $responsive ? "srcset='$data[srcset]'" : "",
     $has_title ? "title='$data[title]'" : "",
@@ -83,7 +83,7 @@ function captioned_image($image, $size, $responsive = true) {
 
   $caption = get_image_data($image, $size)['caption'];
 
-  return \Vincit\WP\tag([
+  return \Vincit\tag([
     "<figure class='vincit-captioned'>",
       $image,
       "<figcaption class='vincit-captioned__caption'>",

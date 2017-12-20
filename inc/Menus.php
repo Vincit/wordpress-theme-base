@@ -1,5 +1,5 @@
 <?php
-namespace Vincit\WP\Menus;
+namespace Vincit\Menus;
 
 add_action("init", function () {
   register_nav_menus([

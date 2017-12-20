@@ -1,5 +1,5 @@
 <?php
-namespace Vincit\WP\Taxonomy;
+namespace Vincit\Taxonomy;
 
 /**
  * Returns the "primary" term, which means the first that is in the list. Respects term order.
