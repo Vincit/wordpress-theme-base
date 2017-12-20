@@ -1,15 +1,38 @@
 <?php
 namespace Vincit\WP\Media;
 
-function svg($path, $classes = "") {
+function svg($path, $args = []) {
   $data = false;
-  $wrap = function ($x) use ($classes) {
+  $wrap = function ($x) use (&$classes) {
     return "<div class='inline-svg $classes'>$x</div>";
   };
 
-  if (file_exists($path)) {
+  if (is_string($args)) {
+    // Used to take $classes as the second param, so this is for "legacy"
+    $classes = $args;
+  } else {
+    $classes = $args["class"] ?? "";
+  }
+
+  $classes .= " ";
+  if (strpos($path, "#") === 0) {
+    $template = parse_url(get_template_directory_uri());
+
+    $viewbox = apply_filters("vincit_svg_viewbox", "0 0 10 10", $path, "use");
+    // add_filter("vincit_svg_viewbox", function($viewbox, $path, $type), 10, 3);
+
+    $classes .= substr($path, 1);
+    $data = $wrap("
+    <svg class='use-tag' viewbox='$viewbox'>
+      <use xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='$template[path]/dist/img/no-inline/svg/svgs.svg$path'>
+      </use>
+    </svg>
+    ");
+  } else if (file_exists($path)) {
+    $classes .= pathinfo($path)["filename"];
     $data = $wrap(file_get_contents($path));
   } else {
+    $classes .= pathinfo($path)["filename"];
     $data = $wrap(file_get_contents(get_template_directory() . "/dist/img/svg/$path"));
   }
 
