@@ -35,7 +35,8 @@ const offlineOpts = {
 const generalConfig = merge([
   {
     entry: {
-      client: ['babel-polyfill', 'react-hot-loader/patch', path.join(paths.src, 'client.js')], // CSS & JS for the client
+      polyfill: ['babel-polyfill'],
+      client: ['react-hot-loader/patch', path.join(paths.src, 'client.js')], // CSS & JS for the client
       editor: path.join(paths.src, 'editor'), // CSS & JS for the TinyMCE editor
       admin: path.join(paths.src, 'admin'), // CSS & JS for wp-admin
     },
@@ -106,7 +107,7 @@ const devConfig = merge([
   },
   parts.loadCSS(),
   parts.extractCSS({
-    include: (fn) => fn.includes('editor.js'), // Extract editor styles everytime because we can't include JS inside it. 
+    include: (fn) => fn.includes('editor.js'), // Extract editor styles everytime because we can't include JS inside it.
   }),
 
   parts.sourceMaps({ type: 'cheap-module-source-map' }),
