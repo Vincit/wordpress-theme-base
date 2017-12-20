@@ -14,3 +14,11 @@ if (is_admin()) {
   // Same with metaboxes.
   \MetaBoxConfig::$lock_meta_box_order = true;
 }
+
+// Users who will edit navigations will wonder where are the options
+// if this doesn't exist.
+add_action("user_register", function ($user_id) {
+  update_user_option($user_id, "metaboxhidden_nav-menus", [
+
+  ]); // No hidden metaboxes. Show them all.
+}, 10);
