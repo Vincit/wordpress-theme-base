@@ -145,6 +145,6 @@ function editor_assets() {
 \add_action("admin_enqueue_scripts", "\\Vincit\\Assets\\admin_assets");
 \add_action("login_enqueue_scripts", "\\Vincit\\Assets\\admin_assets");
 
-if (is_admin() && !\Vincit\WP\is_dev()) {
+if (is_admin() && !\Vincit\is_dev()) {
   editor_assets();
 }
