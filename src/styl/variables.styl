@@ -1,4 +1,5 @@
-json('../shared-variables.json');
+media = json('../media-queries.json');
+colors = json('../colors.json');
 
 
 /*
@@ -15,7 +16,7 @@ json('../shared-variables.json');
    valid rule, and doesn't parse it. `@media media.xlarge, media.large` works.
    That targets desktop and laptop screeens. */
 
-media = {
+/* media = {
   xlarge: xlarge, // Desktop
   large: large, // MBP 13" on default scaling
   medium: medium, // Landscape tablet / netbook
@@ -25,4 +26,4 @@ media = {
   laptop: laptop,
   tablet: tablet,
   phone: phone,
-};
+}; */

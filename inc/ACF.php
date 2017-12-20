@@ -1,10 +1,10 @@
 <?php
 namespace Vincit\ACF;
 
-$shared = json_decode(
-  file_get_contents(get_template_directory() . "/src/shared-variables.json")
+$colorsJSON = json_decode(
+  file_get_contents(get_template_directory() . "/src/colors.json")
 );
-$sharedColors = array_keys((array) $shared->colors);
+$sharedColors = array_keys((array) $colorsJSON);
 
 $colors = [];
 foreach ($sharedColors as $color) {
