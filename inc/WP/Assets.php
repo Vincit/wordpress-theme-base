@@ -109,7 +109,8 @@ function theme_assets() {
   // Webfonts:
   // enqueue("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700", [], true);
 
-  enqueue("https://cdn.polyfill.io/v2/polyfill.min.js?features=default,es6,fetch", [], true);
+  // Own polyfills supplied instead
+  // enqueue("https://cdn.polyfill.io/v2/polyfill.min.js?features=default,es6,fetch", [], true);
 
   // Used to determine what to cache for offline use and so on.
   // In reality Webpack Offline Plugin handles it, but these serve as samples,
@@ -121,6 +122,7 @@ function theme_assets() {
       "javascript" => enqueue(asset_path("client.js"), ["wplf-form-js"]),
     ],
     "siteurl" => get_site_url(),
+    "lang" => pll_current_language(),
   ]);
 }
 
@@ -136,7 +138,6 @@ function admin_assets() {
 }
 
 function editor_assets() {
-  // Tradeoff: only works with production build
   add_editor_style(asset_path("editor.css", true));
 }
 
@@ -144,6 +145,6 @@ function editor_assets() {
 \add_action("admin_enqueue_scripts", "\\Vincit\\WP\\Assets\\admin_assets");
 \add_action("login_enqueue_scripts", "\\Vincit\\WP\\Assets\\admin_assets");
 
-if (is_admin()) {
+if (is_admin() && !\Vincit\WP\is_dev()) {
   editor_assets();
 }
