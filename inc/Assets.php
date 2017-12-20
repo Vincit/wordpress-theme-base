@@ -3,19 +3,32 @@ namespace Vincit\Assets;
 
 define("ENQUEUE_STRIP_PATH", "/data/wordpress/htdocs");
 define("THEMEROOT", get_stylesheet_directory());
-define("MANIFEST", (array) json_decode(file_get_contents(THEMEROOT . "/dist/manifest.json")));
+define("CLIENT_MANIFEST", (array) json_decode(file_get_contents(THEMEROOT . "/dist/client-manifest.json")));
+define("ADMIN_MANIFEST", (array) json_decode(file_get_contents(THEMEROOT . "/dist/admin-manifest.json")));
 
 function asset_path($asset, $ignore_existence = false) {
   $path = get_stylesheet_directory_uri() . "/dist/";
-  if (empty(MANIFEST[$asset])) {
+  $notInClient = empty(CLIENT_MANIFEST[$asset]);
+  $notInAdmin = empty(ADMIN_MANIFEST[$asset]);
+
+  if ($notInClient && $notInAdmin) {
     if ($ignore_existence) {
       return $path . $asset;
     }
+
     // Certain assets (CSS) do not even exist in dev. Just handle it.
     return false;
   }
 
-  return $path . MANIFEST[$asset];
+  if (!$notInClient) {
+    return $path . CLIENT_MANIFEST[$asset];
+  }
+
+  if (!$notInAdmin) {
+    return $path . ADMIN_MANIFEST[$asset];
+  }
+
+  throw new Exception("This shouldn't happen");
 };
 
 function enqueue_parts($path = null, $deps = [], $external = false) {

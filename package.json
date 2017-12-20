@@ -13,10 +13,19 @@
   ],
   "scripts": {
     "start": "webpack-dashboard -- npm run watch",
-    "watch": "webpack-dev-server --env development --config ./build/webpack.config.js",
+    "clean": "del-cli -f 'dist/*' '!dist/.gitkeep'",
+
+    "dev:client": "webpack-dev-server --config ./build/webpack.client.js",
+    "dev:admin": "webpack --watch --config ./build/webpack.admin.js",
+
+    "watch": "npm-run-all clean --parallel dev:client dev:admin",
     "dev": "nodemon --watch ./build --exec \"npm run watch\"",
-    "build": "webpack --env production --config ./build/webpack.config.js",
-    "build:dev": "webpack --env development --config ./build/webpack.config.js",
+
+
+    "build:client": "webpack --env production --config ./build/webpack.client.js",
+    "build:admin": "webpack --env production --config ./build/webpack.admin.js",
+    "build": "npm-run-all clean --parallel build:admin build:client",
+
     "lint:js": "eslint src/ --cache",
     "phpcs": "./vendor/bin/phpcs --extensions=php -n -p -s --colors --ignore=/vendor ./",
     "test": "npm run phpcs && npm run lint:js",
@@ -50,6 +59,7 @@
     "clean-webpack-plugin": "^0.1.17",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.5",
+    "del-cli": "^1.1.0",
     "eslint": "^4.8.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-loader": "^1.9.0",
@@ -66,6 +76,7 @@
     "jeet": "^7.1.0",
     "nodemon": "^1.11.0",
     "npm-install-webpack-plugin": "^4.0.5",
+    "npm-run-all": "^4.1.2",
     "nyan-progress-webpack-plugin": "^1.2.0",
     "postcss-loader": "^2.0.6",
     "precss": "^2.0.0",

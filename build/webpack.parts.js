@@ -2,12 +2,74 @@ const path = require('path');
 const pjson = require(path.join(__dirname, '..', 'package.json'));
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const NpmInstallPlugin = require('npm-install-webpack-plugin');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const Imagemin = require('imagemin-webpack-plugin').default;
+const ManifestPlugin = require('webpack-manifest-plugin');
+
 const postcssLoader = require('./postcss.loader');
 const stylusLoader = require('./stylus.loader');
 
 const isWin = /^win/.test(process.platform);
 const isMac = /^darwin/.test(process.platform);
 const isHTTPS = pjson.wptheme.proxyURL.includes('https');
+
+const paths = require('./paths');
+
+exports.genericConfig = () => ({
+  output: {
+    path: paths.dist,
+    filename: '[name].js',
+    publicPath: pjson.wptheme.publicPath,
+  },
+
+  target: 'web',
+  node: {
+    fs: 'empty', // Don't ask why.
+  },
+});
+
+exports.genericPlugins = () => ({
+  plugins: [
+    new webpack.NamedModulesPlugin(),
+    new CaseSensitivePathsPlugin(), // for filesystems that aren't case sensitive (looking at you macOS and Windows...)
+    new NpmInstallPlugin(), // Because no one wants to do it manually
+    new FriendlyErrorsPlugin(), // Disable if you want webpack to be mean
+    // new NyanProgressPlugin(), // Best progress bar.
+    new webpack.LoaderOptionsPlugin({ // Look at the name.
+      options: {
+        eslint: {
+          failOnWarning: false,
+          failOnError: true,
+        },
+      },
+    }),
+    new CopyPlugin([
+      {
+        from: 'src/img',
+        to: 'img',
+        transform: (content) => {
+          return content;
+        },
+      },
+      {
+        from: 'src/img/**/*',
+        to: 'img/',
+      },
+    ]),
+    new Imagemin(),
+  ],
+});
+
+exports.manifestPlugin = (opts) => ({
+  plugins: [
+    new ManifestPlugin(opts),
+  ],
+});
 
 exports.devServer = ({ host, port } = {}) => {
   const options = {
