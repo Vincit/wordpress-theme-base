@@ -16,13 +16,16 @@ function PostList($data = []) {
     // https://stackoverflow.com/questions/16380745/is-is-possible-to-store-a-reference-to-an-object-method
     $havePosts = [$data["query"], "have_posts"];
     $thePost = [$data["query"], "the_post"];
-  }
+  } ?>
 
+  <div class="post-list"><?php
   while ($havePosts()) { $thePost();
-    SingleArticle([
-      "title" => apply_filters("the_title", get_the_title()),
+    PostListItem([
+      "title" => get_the_title(),
+      "image" => get_post_thumbnail_id(),
       "content" => \Vincit\Post\excerpt(),
       "permalink" => get_permalink(),
     ]);
-  } wp_reset_postdata();
+  } wp_reset_postdata(); ?>
+  </div><?php
 }

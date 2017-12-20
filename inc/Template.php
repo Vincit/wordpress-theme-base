@@ -41,3 +41,27 @@ function className() {
 
   return "class=\"$classes\"";
 }
+
+function permalink($link = null) {
+  if (!$link) {
+    return false;
+  }
+
+  return "href=\"$link\"";
+}
+
+function title($title = null) {
+  if (!$title) {
+    $title = get_the_title();
+  }
+
+  return apply_filters("the_title", $title);
+}
+
+function content($content = null) {
+  if (!$content) {
+    $content = get_the_content();
+  }
+
+  return apply_filters("the_content", $content);
+}
