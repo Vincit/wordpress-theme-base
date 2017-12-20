@@ -3,20 +3,29 @@ namespace Vincit\template;
 
 function AlternatingBlock($data = []) {
   $data = params([
-    "inverse_order" => false,
-    "content" => "",
-    "secondary_content" => [
-      "embed_a_shortcode" => false,
-      "shortcode" => null,
-      "image" => null,
-    ],
     "background" => [
       "image" => null,
-      "color" => null
-    ]
+      "color" => null,
+      "position" => "top",
+    ],
+    "content" => [
+      "main_wysiwyg" => [
+        "editor" => null,
+      ],
+      "secondary" => [
+        "type" => null,
+        "shortcode" => null,
+        "image" => null,
+      ],
+    ],
+    "options" => [
+      "inverse_order" => false,
+      "color" => false,
+    ],
   ], $data);
 
-  $bgColor = v($data, "background.color", false);
+  $isShortcode = v($data, "content.secondary.type") === "shortcode";
+  $bgColor = v($data, "options.color.value", false);
   $bgClass = $bgColor ? "bg--$bgColor" : ""; ?>
 
   <div
@@ -31,24 +40,20 @@ function AlternatingBlock($data = []) {
     <div
       <?=className(
         "container",
-        $data["inverse_order"] ? "reverse" : "normal",
-        v($data, "secondary_content.embed_a_shortcode") ? (
-            "shortcode"
-          ) : (
-            "no-shortcode"
-          )
+        v($data, "options.inverse_order") ? "reverse" : "normal",
+        $isShortcode ? "shortcode" : "no-shortcode"
       )?>
     >
       <div class="alternating-block__main">
-        <?=$data["content"]?>
+        <?=v($data, "content.main_wysiwyg.editor")?>
       </div>
 
       <div class="alternating-block__secondary">
-        <?=v($data, "secondary_content.embed_a_shortcode") ? (
-          do_shortcode($data["secondary_content"]["shortcode"])
+        <?=$isShortcode ? (
+          do_shortcode(v($data, "content.secondary.shortcode"))
         ) : (
           \Vincit\WP\Media\image(
-            v($data, "secondary_content.image", null),
+            v($data, "content.secondary.image", null),
             "large",
             false
           )
