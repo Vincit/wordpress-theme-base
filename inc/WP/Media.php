@@ -107,7 +107,6 @@ function get_image_data($image = null, $size = 'medium') {
   } else if (!$image) {
     return false;
   } else {
-    var_dump($image);
     throw new \Exception('$image must be an array, falsy value, or numeric id.');
     return false;
   }
