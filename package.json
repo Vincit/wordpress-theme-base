@@ -14,18 +14,13 @@
   "scripts": {
     "start": "webpack-dashboard -- npm run watch",
     "clean": "del-cli -f 'dist/*' '!dist/.gitkeep'",
-
     "dev:client": "webpack-dev-server --config ./build/webpack.client.js",
     "dev:admin": "webpack --watch --config ./build/webpack.admin.js",
-
     "watch": "npm-run-all clean --parallel dev:client dev:admin",
     "dev": "nodemon --watch ./build --exec \"npm run watch\"",
-
-
     "build:client": "webpack --env production --config ./build/webpack.client.js",
     "build:admin": "webpack --env production --config ./build/webpack.admin.js",
     "build": "npm-run-all clean --parallel build:admin build:client",
-
     "lint:js": "eslint src/ --cache",
     "phpcs": "./vendor/bin/phpcs --extensions=php -n -p -s --colors --ignore=/vendor ./",
     "test": "npm run phpcs && npm run lint:js",
@@ -101,8 +96,8 @@
     "offline-plugin": "^4.8.3",
     "postcss-flexbugs-fixes": "^3.2.0",
     "qs": "^6.5.1",
-    "react": "^16.0.0-rc.3",
-    "react-dom": "^16.0.0-rc.3",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-hot-loader": "^3.0.0-beta.7",
     "redom": "^3.4.0",
     "regenerator-runtime": "^0.11.1"
