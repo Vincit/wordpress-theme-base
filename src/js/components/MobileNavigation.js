@@ -1,5 +1,6 @@
 import { el, setChildren } from 'redom';
 import { inlineSVG } from '../lib/svg';
+import { scrollBlock } from '../lib/scrollBlock';
 
 class MobileNavigation {
   constructor({
@@ -134,6 +135,12 @@ class MobileNavigation {
         [stateKey]: status,
       };
     }, (state) => {
+      if (state[stateKey]) {
+        scrollBlock.activate();
+      } else {
+        scrollBlock.deactivate();
+      }
+
       element.classList.toggle('open', state[stateKey]);
       this.root.classList.toggle(rootClass, state[stateKey]);
     });
