@@ -4,6 +4,7 @@ namespace Vincit\Template;
 function PostList($data = []) {
   $data = params([
     "query" => null, // Pass in a new WP_Query() to see magic
+    "template" => __NAMESPACE__ . "\PostListItem", // could also pass a callable directly
   ], $data);
 
   // And now, for my next trick...
@@ -20,7 +21,7 @@ function PostList($data = []) {
 
   <div class="post-list"><?php
   while ($havePosts()) { $thePost();
-    PostListItem([
+    $data["template"]([
       "title" => get_the_title(),
       "image" => get_post_thumbnail_id(),
       "content" => \Vincit\Post\excerpt(),
