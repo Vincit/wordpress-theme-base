@@ -1,0 +1,142 @@
+.site-header {
+  if (fixedDesktopMenu) {
+    position: fixed
+    top: 0
+  }
+
+  background: colors.orange
+  color: colors.white
+  width: 100%
+  min-height: desktopMenuHeight
+  display: flex
+  align-items: center
+  z-index: 1000
+
+  @media media.medium, media.small, media.xsmall {
+    display: none
+  }
+
+  .container {
+    overflow: visible
+  }
+
+  a {
+    color: colors.white
+  }
+}
+
+.main-navigation {
+  flex-basis: 100%
+  display: flex
+  flex-flow: row nowrap
+  align-items: center
+  justify-content: space-between
+
+  .custom-logo-link {
+    img {
+      max-width: r(200px)
+    }
+  }
+
+  .menu, .sub-menu {
+    list-style: none
+    padding: 0
+    margin: 0
+  }
+
+  > .menu {
+    flex-basis: 100%
+    display: flex
+    flex-flow: row nowrap
+    justify-content: space-around
+
+    .sub-menu {
+      display: none
+      position: absolute
+      background: colors.white
+      color: colors.black
+      text-align: center
+      margin-left: 50%
+      transform: translateX(-50%)
+
+      .sub-menu {
+        // level 2 menu
+        top: 0
+        margin-left: 0
+        transform: translateX(100%)
+      }
+    }
+  }
+
+  .menu-item {
+    position: relative
+
+    openSubmenu() {
+      display: block
+    }
+
+    &.active {
+      > a {
+        color: colors.black
+      }
+    }
+
+    &:hover {
+      > .sub-menu {
+        openSubmenu()
+      }
+    }
+
+    a {
+      color: currentColor
+      padding: r(2px) r(5px)
+      border-radius: r(2px)
+
+      &:focus, &:hover {
+        color: colors.black
+
+        & + > .sub-menu {
+          openSubmenu()
+        }
+      }
+    }
+
+    /*
+      Keep menu open when focus is inside, browser support is okayish:
+      http://caniuse.com/#feat=css-focus-within
+
+      Problem resolved by @tnottu
+    */
+    &:focus-within  {
+      > .sub-menu {
+        openSubmenu()
+      }
+    }
+  }
+
+  .sub-menu {
+    .menu-item {
+      white-space: nowrap
+      border-bottom: r(1px) solid colors.orange
+
+      &:last-child {
+        border-bottom: none
+      }
+
+      &.active {
+        > a {
+          color: colors.orange
+        }
+      }
+
+      a {
+        line-height: 1.4
+        padding: r(5px) r(15px)
+
+        &:hover {
+          color: colors.orange
+        }
+      }
+    }
+  }
+}
