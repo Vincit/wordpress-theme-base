@@ -152,6 +152,8 @@ By using namespaced functions as templates, we can avoid using globals, for the 
 
 A function takes parameters, and returns a value. You can easily have default parameters and automatically override all of them should you want to.
 
+Now that that's said, our template functions can't really return. Or they can, but the only use for returning is to stop the execution of the function, and thus to prevent the template from displaying at all. The template rendering itself is a side effect. When used through an output buffer (more on that later) the return value is discarded. But that's not a problem, templates shouldn't return a value. A function shouldn't do more than one thing, and our template functions thing is to print the template
+
 In this theme, templates live in the `inc/templates` folder, and have the following structure:
 
 ```php
@@ -189,9 +191,9 @@ Let's break it down. On the first line, there's a namespace declaration. This is
 
 On the parameter definition, we're making the function receive one parameter, the default being empty array. We're then using that parameter to override our default parameters.
 
-Then, we're checking that the button has a text, and a link, or return early, and do not print the button. We're then closing the PHP tag, in order to write plain HTML. As you can see, the HTML is not part of a return statement.
+Then, we're checking that the button has a text, and a link, or return early, and do not print the button. We're then closing the PHP tag, in order to write plain HTML. As you can see, the HTML is not part of a return statement, but a side effect.
 
-Unfortunely, JSX isn't a thing in PHP, so we're forced to resort into side effects. Whenever you call `Button`, everything that's not inside PHP tags is immediately outputted, so you can't save the button to a variable:
+Unfortunately, JSX isn't a thing in PHP, so we're forced to resort into side effects. Whenever you call `Button`, everything that's not inside PHP tags is immediately outputted, so you can't save the button to a variable:
 
 ```
 // Inside another template, under namespace \Vincit\Template
@@ -203,6 +205,7 @@ echo $button; // Button is actually before the content!
 ```
 
 This may, or may not be an actual problem, depending on your use case. One solution is to use output buffering in order to capture the output. The built-in pagebuilder class does that with the `block()` method.
+
 
 ```php
 $builder = \Vincit\Pagebuilder::instance();
