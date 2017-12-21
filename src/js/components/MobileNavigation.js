@@ -77,11 +77,11 @@ class MobileNavigation {
         const handle = item.classList.contains('menu-item-has-children')
           ? el('button.menu-handle',
             inlineSVG(
-              `${window.theme.directory}/dist/img/svg/menu-with-open.svg`,
+              `${window.theme.path}/dist/img/svg/menu-with-open.svg`,
               '.open-icon'
             ),
             inlineSVG(
-              `${window.theme.directory}/dist/img/svg/close.svg`,
+              `${window.theme.path}/dist/img/svg/close.svg`,
               '.close-icon'
             )
           )
