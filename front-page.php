@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="container singular">
+<div class="container frontpage">
   <?php
   $builder = \Vincit\Pagebuilder::instance();
 
@@ -10,11 +10,12 @@
       "content" => get_the_content(),
       "image" => get_post_thumbnail_id(),
     ]);
-
-    echo $builder->block("CommentList", [
-      "post_id" => get_the_ID(),
-    ]);
   } ?>
 </div>
+
+<?=$builder->block("SampleWidgets", [
+  "react" => true,
+  "vanilla" => true,
+])?>
 
 <?php get_footer();

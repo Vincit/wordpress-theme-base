@@ -20,8 +20,8 @@ function main(err) {
   mobileNavigation();
   enhanceWPElements(['body .pagebuilder', 'article']);
   showSampleWidgets({
-    react: document.querySelector('.site-footer .react-widget-container'),
-    vanilla: document.querySelector('.site-footer .vanilla-widgets'),
+    react: document.querySelector('.sample-widgets .react'),
+    vanilla: document.querySelector('.sample-widgets .vanilla'),
   });
 
   if (module.hot) {

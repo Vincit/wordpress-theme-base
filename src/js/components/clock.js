@@ -1,3 +1,5 @@
+import { el } from 'redom';
+
 export const maybePad = (number) => (number.toString().length > 1 ? number : `0${number}`);
 export const ymdhis = () => {
   const date = new Date();
@@ -12,7 +14,7 @@ export const ymdhis = () => {
 };
 
 export default function clock() {
-  const element = document.createElement('time');
+  const element = el('time.clock');
 
   // To stop the interval: clearInterval(clock._interval);
   element._interval = setInterval(() => {

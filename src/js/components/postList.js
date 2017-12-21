@@ -6,7 +6,7 @@ export default function () {
   const totalPosts = el('p', 'Total posts: ');
   const totalPages = el('p', 'Total pages: ');
   const footer = el('footer', totalPosts, totalPages);
-  const postList = () => el('div',
+  const postList = () => el('div.post-list',
     el('header',
       el('h2', 'Vanilla: Latest posts')
     ),
@@ -28,8 +28,10 @@ export default function () {
     totalPages.textContent = `Total pages: ${headers['x-wp-totalpages']}`;
   }).catch((err) => {
     if (err.message.contains('404')) {
-      setChildren(list, el('.error',
-        'Got 404 trying to query for posts. Is aucor/wp_query-route-to-rest-api installed?'));
+      setChildren(
+        list,
+        el('.error', 'Got 404 trying to query for posts. Is aucor/wp_query-route-to-rest-api installed?')
+      );
     }
 
     console.error(err);

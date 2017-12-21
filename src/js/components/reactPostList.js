@@ -37,7 +37,7 @@ export default class PostList extends Component {
     }
 
     return (
-      <div>
+      <div className="post-list">
         <header>
           <h2>React: Latest posts</h2>
         </header>
