@@ -4,14 +4,23 @@ namespace Vincit;
 class Pagebuilder {
   public $data;
   public $templates;
+  public static $instance;
 
-  public function __construct($field_name = "pagebuilder") {
+  public function __construct($field_name = null) {
     $this->templates = $this->loadTemplates();
 
     $this->hasACF = function_exists("get_field");
-    if ($this->hasACF) {
+    if ($this->hasACF && $field_name) {
       $this->data = \get_field($field_name);
     }
+  }
+
+  public static function instance($field_name = "pagebuilder") {
+    if (is_null(self::$instance)) {
+      self::$instance = new Pagebuilder($field_name);
+    }
+
+    return self::$instance;
   }
 
   public function loadTemplates() {

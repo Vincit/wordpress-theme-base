@@ -2,7 +2,7 @@
 
 <div class="container">
   <?php
-  $builder = new \Vincit\Pagebuilder();
+  $builder = \Vincit\Pagebuilder::instance();
 
   echo $builder->block("PostList");
   echo $builder->block("Pagination") ?>

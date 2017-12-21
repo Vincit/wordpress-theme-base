@@ -2,7 +2,8 @@
 
 <div class="container">
   <?php
-  $builder = new \Vincit\Pagebuilder();
+  $builder = \Vincit\Pagebuilder::instance();
+
   while (have_posts()) { the_post();
     echo $builder->block("SinglePost", [
       "title" => get_the_title(),
