@@ -2,15 +2,18 @@
 Bleeding edge starter theme.
 
 ## Features
+
+### Theme features
+- [x] Templates
 - [x] Pagebuilder, powered by [ACF](https://www.advancedcustomfields.com/resources/flexible-content/)
 - [x] Cleaner menus that are accessible
-- [x] Saner the_content() to make certain layouts easier to build
-- [x] Current environment is listed in window title
-- [x] Accessible custom radiobuttons and checkboxes
 - [x] Automatic editor stylesheet
 - [x] (Multilingual) options page support
-- [x] ~Ground-breaking but controversial cachebusting for assets~
-- [x] Automatic asset manifest makes sure that users always get the latest files
+- [x] Automatic asset manifest handles asset cachebusting and delivers latest assets
+
+### Developer features
+- [x] Current environment is listed in window title
+- [x] Accessible custom radiobuttons and checkboxes
 - [x] Works with React (out-of-the-box, has demos)
 - [x] Modern JavaScript support
   - [x] Built with Webpack 3
@@ -19,7 +22,6 @@ Bleeding edge starter theme.
   - [x] ES6+ (stage-2)
   - [x] ESLint
   - [x] Sourcemaps
-  - [x] Nyancat progress bar
   - [x] Enforces case sensitive paths so build works on all platforms
 - [x] CSS Preprocessor support
   - [×] Preconfigured with Stylus
@@ -46,7 +48,7 @@ Bleeding edge starter theme.
 
 Optional:
 - [aucor/wp_query-route-to-rest-api](https://github.com/aucor/wp_query-route-to-rest-api) for sample widgets
-- [ACF](https://advancedcustomfields.com) for options page support
+- [ACF](https://advancedcustomfields.com) for options page and pagebuilder support
 
 The theme will fail with anything less than PHP 7, but making it PHP 5 compatible shouldn't be too hard, just fix the errors as they appear.
 
@@ -104,6 +106,141 @@ find . -not -path "./node_modules/*" -type f -name "*.*" -exec sed -i'' -e 's/wo
 find . -not -path "./node_modules/*" -type f -name "*.*" -exec sed -i'' -e 's/WordPress theme base/Your theme name/g' {} +
 ```
 
+## Templating
+Most people seem to start building themes using "the underscores" way:
+
+```php
+/* Start the Loop */
+while ( have_posts() ) : the_post();
+
+  /*
+   * Include the Post-Format-specific template for the content.
+   * If you want to override this in a child theme, then include a file
+   * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+   */
+
+  get_template_part( 'template-parts/content', get_post_format() );
+
+endwhile;
+
+the_posts_navigation();
+```
+
+This is problematic in a few ways. One is scoping. `get_template_part()` uses require under the hood,
+but your variables are not in scope if you try to do this:
+
+```php
+$variable = "string";
+
+get_template_part("variableOutOfScope");
+```
+
+`$variable` is simply `null` inside variableOutOfScope. Things are different if you were to use require directly:
+
+```php
+$variable = "string";
+
+require "variableInScope.php"; // try echoing $variable!
+```
+
+But using `require` is frowned upon. The underscore way advices you to define your variables as globals.
+
+Globals are a code smell, and you should avoid them whenever possible.
+
+### Meet functions as templates
+By using namespaced functions as templates, we can avoid using globals, for the most part.
+
+A function takes parameters, and returns a value. You can easily have default parameters and automatically override all of them should you want to.
+
+In this theme, templates live in the `inc/templates` folder, and have the following structure:
+
+```php
+<?php
+namespace Vincit\Template;
+
+// use \Vincit\Media; // Optional use declarations, get image helpers or similar
+
+/**
+ * Is actually a link, but looks like a button.
+ *
+ * @param mixed $data
+ */
+function Button($data = []) {
+  $data = params([
+    "text" => null,
+    "link" => null,
+    "color" => [
+      "value" => "white",
+    ],
+  ], $data);
+
+  if (empty($data["text"]) || empty($data["link"])) {
+    // Default is null, but ACF may populate this with empty string
+    return false;
+  } ?>
+
+  <a <?=className("button", "bg--{$data[color][value]}")?> href="<?=$data["link"]?>">
+    <?=$data["text"]?>
+  </a><?php
+}
+```
+
+Let's break it down. On the first line, there's a namespace declaration. This is important.
+
+On the parameter definition, we're making the function receive one parameter, the default being empty array. We're then using that parameter to override our default parameters.
+
+Then, we're checking that the button has a text, and a link, or return early, and do not print the button. We're then closing the PHP tag, in order to write plain HTML. As you can see, the HTML is not part of a return statement.
+
+Unfortunely, JSX isn't a thing in PHP, so we're forced to resort into side effects. Whenever you call `Button`, everything that's not inside PHP tags is immediately outputted, so you can't save the button to a variable:
+
+```
+// Inside another template, under namespace \Vincit\Template
+
+$button = Button(["text" => "Click me!", "link" => "#"]);
+
+echo get_the_content();
+echo $button; // Button is actually before the content!
+```
+
+This may, or may not be an actual problem, depending on your use case. One solution is to use output buffering in order to capture the output. The built-in pagebuilder class does that with the `block()` method.
+
+```php
+$builder = \Vincit\Pagebuilder::instance();
+$button = $builder->block("Button", ["text" => "Click me!", "link" => "#"]);
+// Equivalent to calling Button() manually, but with output buffer and error is catchable.
+
+echo get_the_content();
+echo $button; // Button is after the content!
+```
+
+When the current namespace is Vincit\Template, you can and probably should call the template functions directly, instead of going through the pagebuilder class. When working with files such as `singular.php`, use the class.
+
+```php
+$builder = \Vincit\Pagebuilder::instance();
+
+while (have_posts()) { the_post();
+  echo $builder->block("SinglePost", [
+    "title" => get_the_title(),
+    "content" => get_the_content(),
+    "image" => get_post_thumbnail_id(),
+  ]);
+
+  echo $builder->block("CommentList", [
+    "post_id" => get_the_ID(),
+  ]);
+}
+```
+
+It's possible to build highly dynamic but maintainable components this way. You can create a generic [PostList](https://github.com/Vincit/wordpress-theme-base/blob/master/inc/templates/PostList.php) component that uses the main query by default, but switches to a custom query if it's supplied and even supply a different (template) function.
+
+Try it out by modifying the PostList call on `index.php`.
+
+```php
+echo $builder->block("PostList", ["template" => "print_r"]);
+```
+
+It's the same magic that's behind actions and filters.
+
 ## FAQ
 ### What's with the folder structure?
 - build/ contains build related things, such as Webpack config.
@@ -116,10 +253,11 @@ find . -not -path "./node_modules/*" -type f -name "*.*" -exec sed -i'' -e 's/Wo
   - Files inside src/ directly will be used to build files: `client.styl` => `client.css` and so on.
 
 ### Why are the styles flashing when I'm first loading the page?
-In development styles are included in JS, and take a bit of time to load. The flashing does not occur when using the production build.
+Styles are bundled in the JavaScript bundle, and applying them takes a moment. This is how Webpack works.
+When using the production build, styles are extracted from the bundle and loaded as normal.
 
 ### WTF, why are you importing a `.styl` file inside JavaScript?
-Ask Webpack. Get over it. Basically Webpack doesn't know about them otherwise.
+To bundle the styles to the JS bundle.
 
 ### I installed all the dependencies and ran npm run watch, but when I try to access http://localhost:8080 I get the following error: Error occured while trying to proxy to: localhost:8080/
 You don't have WordPress installed at https://wordpress.local, which is the default address. Change the proxyURL value in package.json and try again.
