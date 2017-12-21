@@ -12,7 +12,7 @@ function asset_path($asset, $ignore_existence = false) {
   $notInAdmin = empty(ADMIN_MANIFEST[$asset]);
 
   if ($notInClient && $notInAdmin) {
-    throw new \Exception("Asset wasn't found in any manifest.");
+    error_log("Asset $asset wasn't found in any manifest.");
     return false;
   }
 
