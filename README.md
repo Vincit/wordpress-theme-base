@@ -272,7 +272,7 @@ Change the value in package.json.
 ### I did the above but HMR still doesn't work?
 Git gud. HMR requires you to write your code accordingly, example:
 - [Module](https://github.com/Vincit/wordpress-theme-base/blob/master/src/js/components/clock.js)
-- [sample.js](https://github.com/Vincit/wordpress-theme-base/blob/master/src/sample.js)
+- [sample.js](https://github.com/Vincit/wordpress-theme-base/blob/master/src/js/sample.js)
 
 If using React, you should be set.
 
