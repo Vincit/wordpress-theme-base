@@ -22,8 +22,10 @@ export default function showSampleWidgets({ react, vanilla }) {
   const postListEl = postList();
   const clockEl = clock();
 
-  vanilla.appendChild(postListEl);
-  vanilla.appendChild(clockEl);
+  if (vanilla) {
+    vanilla.appendChild(postListEl);
+    vanilla.appendChild(clockEl);
+  }
 
   if (react) {
     renderReact(react);
