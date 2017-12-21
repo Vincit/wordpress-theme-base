@@ -23,7 +23,6 @@ function main(err) {
     react: document.querySelector('.site-footer .react-widget-container'),
     vanilla: document.querySelector('.site-footer .vanilla-widgets'),
   });
-  OfflinePluginRuntime.install();
 
   if (module.hot) {
     transformURLsWebpackDevServer();
@@ -48,6 +47,7 @@ function loadScript(src, done) {
   document.head.appendChild(js);
 }
 
+OfflinePluginRuntime.install();
 if (browserSupportsAllFeatures()) {
   main();
 } else {

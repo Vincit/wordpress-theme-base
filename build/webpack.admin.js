@@ -6,6 +6,9 @@ const paths = require('./paths');
 const parts = require('./webpack.parts');
 const pjson = require(path.join(__dirname, '..', 'package.json'));
 
+const OfflinePlugin = require('offline-plugin');
+const offlineOpts = require('./offlineOpts');
+
 const entries = {
   entry: {
     editor: path.join(paths.src, 'editor'), // CSS & JS for the TinyMCE editor
@@ -15,9 +18,17 @@ const entries = {
 
 const generalConfig = merge(
   parts.genericConfig(),
+  parts.genericPlugins(),
+
   parts.lintJavaScript({ include: paths.src }),
   parts.transpileJavaScript(),
-  parts.genericPlugins(),
+
+  parts.loadImages(),
+
+  parts.extractCSS({
+    filename: '[name].[contenthash].css',
+  }),
+
   parts.manifestPlugin({
     fileName: 'admin-manifest.json',
   }),
@@ -27,21 +38,26 @@ const prodConfig = merge(
   {
     output: {
       filename: '[name].[chunkhash].js',
-      publicPath: pjson.wptheme.publicPath.replace('http://localhost:8080', ''),
     },
     plugins: [
       new webpack.optimize.UglifyJsPlugin(),
-      // new (require('offline-plugin')(require('./offlineOpts'))),
+      new OfflinePlugin(offlineOpts),
     ],
   },
-
-  parts.extractCSS({
-    filename: '[name].css', // put content hash here
+  parts.loadFonts({
+    options: {
+      name: '[name].[chunkhash].[ext]',
+    },
   }),
 );
 
 const devConfig = merge(
-  parts.loadCSS(),
+  parts.loadFonts({
+    options: {
+      name: '[name].[ext]',
+    },
+  }),
+
   parts.sourceMaps({ type: 'cheap-module-source-map' }),
 );
 
