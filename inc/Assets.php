@@ -96,25 +96,27 @@ function theme_assets() {
   // Used to determine what to cache for offline use and so on.
   // In reality Webpack Offline Plugin handles it, but these serve as samples,
   // and may help you build things.
+  $siteurl = get_site_url();
   \wp_localize_script("client-js", "theme", [
-    "path" => get_stylesheet_directory_uri(),
+    "path" => str_replace($siteurl, "", get_stylesheet_directory_uri()),
     "cache" => [
       "stylesheet" => IS_WDS ? false : enqueue(asset_path("client.css")),
       "javascript" => enqueue(asset_path("client.js"), ["wplf-form-js"]),
     ],
-    "siteurl" => get_site_url(),
+    "siteurl" => $siteurl,
     "lang" => pll_current_language(),
   ]);
 }
 
 function admin_assets() {
+  $siteurl = get_site_url();
   \wp_localize_script("admin-js", "theme", [
-    "path" => get_stylesheet_directory_uri(),
+    "path" => str_replace($siteurl, "", get_stylesheet_directory_uri()),
     "cache" => [
       "stylesheet" => enqueue(asset_path("admin.css")),
       "javascript" => enqueue(asset_path("admin.js")),
     ],
-    "siteurl" => get_site_url(),
+    "siteurl" => $siteurl,
     "lang" => pll_current_language(),
   ]);
 }
