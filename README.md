@@ -244,6 +244,20 @@ echo $builder->block("PostList", ["template" => "print_r"]);
 
 It's the same magic that's behind actions and filters.
 
+## ACF
+The theme works without ACF, and it's not required. However, ACF is a great way to make your templates editable from the admin.
+
+There's a certain way you want to do things in order to keep things simple.
+
+When creating fields for a template / component, create it as a new **disabled** field group. You'll probably want to use the Group field to enclose your fields under a single key, and to make styling the admin easier. There are some exceptions, but in most cases, stick with the Group field.
+
+Let's say you have a special front page template, and a pagebuilder.
+
+You create a new field group for your front page, or use the existing one, and use the Clone (seamless) field to clone the newly created field group. Most likely you do not have to use a prefix, you can just leave the field name and key empty.
+
+The pagebuilder field group is a flexible content field. Simply add a new "layout", enter the layout label and name. Pay extra attention to the name field, ACF wants to lowercase the value of label, but you **need** to make sure the field value matches your template function name, such as Hero.
+
+
 ## FAQ
 ### What's with the folder structure?
 - build/ contains build related things, such as Webpack config.
