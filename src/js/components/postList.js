@@ -15,13 +15,19 @@ function populatePostList(response, ...elements) {
   const { headers, posts, next } = response;
   const [list, nextBtn, totalPosts, totalPages, currPage] = elements;
 
+  console.log(response);
+
   if (list) {
     setListContents(list, posts);
 
-    nextBtn.addEventListener('click', function _next() {
-      next(populatePostList, ...elements);
-      nextBtn.removeEventListener('click', _next);
-    });
+    if (!next) {
+      nextBtn.parentNode.removeChild(nextBtn);
+    } else {
+      nextBtn.addEventListener('click', function _next() {
+        next(populatePostList, ...elements);
+        nextBtn.removeEventListener('click', _next);
+      });
+    }
 
     totalPosts.textContent = `Total posts: ${headers['x-wp-total']}`;
     totalPages.textContent = `Total pages: ${headers['x-wp-totalpages']}`;

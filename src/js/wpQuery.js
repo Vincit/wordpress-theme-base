@@ -17,7 +17,7 @@ async function wpQuery(queryArgs = {}) {
   const posts = await response.json();
   const returnObj = { headers, posts };
 
-  if (headers['x-wp-total'] > args.paged) {
+  if (args.paged < parseInt(headers['x-wp-totalpages'], 10)) {
     returnObj.next = async function next(cb, ...args2) {
       const result = await wpQuery({
         ...args,
