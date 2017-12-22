@@ -1,6 +1,5 @@
-@import 'styl/mixins'
 @import 'styl/variables'
-@import 'styl/helpers'
+@import 'styl/helpers/*'
 
 // Show ACF field names on hover, idea: https://gist.github.com/Apeli/28ff99a22d7c4a94e00dbea36df57192
 body:not(.post-type-acf-field-group) .acf-field:hover:before {
@@ -21,5 +20,5 @@ body:not(.post-type-acf-field-group) .acf-field:hover:before {
 }
 
 #poststuff #post-body .acf-input {
-  generateBackgroundClasses()
+  generateBackgroundClasses('false')
 }

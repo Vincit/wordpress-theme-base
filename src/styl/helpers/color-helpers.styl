@@ -1,15 +1,17 @@
-generateBackgroundClasses() {
+generateBackgroundClasses(addColor = 'true') {
   .bg {
     for key, value in colors {
       &--{key} {
         background: value
 
-        if (key == 'tangerine') {
-          color: colors.white
-        } else if (dark(value)) {
-          color: colors.white
-        } else {
-          color: colors.black
+        if (addColor == 'true') {
+          if (key == 'tangerine') { // Just an example override
+            color: colors.white
+          } else if (dark(value)) {
+            color: colors.white
+          } else {
+            color: colors.black
+          }
         }
       }
     }
@@ -28,6 +30,3 @@ generateColorClasses() {
 
 // These are functions because if a selector is more precise and defines
 // a background color, .bg--white will not work.
-
-generateBackgroundClasses()
-generateColorClasses()
