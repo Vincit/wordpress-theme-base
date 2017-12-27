@@ -11,19 +11,10 @@
   </h1>
 
   <?php
-  $builder = new \Vincit\Pagebuilder();
-  while (have_posts()) { the_post();
-    echo $builder->block("SingleArticle", [
-      "title" => apply_filters("the_title", get_the_title()),
-      "content" => \Vincit\WP\Post\excerpt(),
-      "permalink" => get_permalink(),
-    ]);
-  }
+  $builder = \Vincit\Pagebuilder::instance();
 
-  if (!have_posts()) {
-    echo "<p>No results.</p>";
-  }
-  ?>
+  echo $builder->block("PostList");
+  echo $builder->block("Pagination") ?>
 </div>
 
 <?php get_footer(); ?>
