@@ -4,7 +4,7 @@
   "description": "",
   "wptheme": {
     "publicPath": "/wp-content/themes/wordpress-theme-base/dist/",
-    "proxyURL": "https://wordpress.local"
+    "proxyURL": "https://wordpressvincitio.local"
   },
   "browserslist": [
     "> 1%",
