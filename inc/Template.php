@@ -65,3 +65,15 @@ function content($content = null) {
 
   return apply_filters("the_content", $content);
 }
+
+function wrapper($wrappable, $options = []) {
+  $options = params([
+    "element" => "div",
+    "className" => "wrapper",
+  ], $options);
+
+  $tag = $options["element"];
+  $class = $options["className"];
+
+  return "<$tag class='$class'>$wrappable</$tag>";
+}

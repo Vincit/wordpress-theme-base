@@ -54,11 +54,11 @@ function AlternatingBlock($data = []) {
         <?=$isShortcode ? (
           do_shortcode(v($data, "content.secondary.shortcode"))
         ) : (
-          Media\image(
+          wrapper(Media\image(
             v($data, "content.secondary.image", null),
             "large",
             false
-          )
+          ))
         )?>
       </div>
     </div>
