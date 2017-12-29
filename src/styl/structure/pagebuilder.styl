@@ -74,6 +74,7 @@
 
       > :first-child {
         margin-right: r(120px)
+        width: 'calc(50% - %s)' % @margin-right
 
         @media media.medium, media.small, media.xsmall {
           margin-right: 0
@@ -90,6 +91,7 @@
         > :first-child {
           margin-right: 0
           margin-left: r(120px)
+          width: 'calc(50% - %s)' % @margin-left
 
           @media media.medium, media.small, media.xsmall {
             margin-left: 0
