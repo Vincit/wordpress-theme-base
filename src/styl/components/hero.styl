@@ -1,0 +1,41 @@
+.hero {
+  background-size: cover
+  margin-top: r(-20px)
+
+  @media media.medium, media.small, media.xsmall {
+    padding-top: r(20px)
+  }
+
+  .container {
+    color: colors.white
+    min-height: r(350px)
+    position: relative
+
+    @media media.medium, media.small, media.xsmall {
+      min-height: r(200px)
+    }
+
+    .noop-wrapper {
+      max-width: r(750px)
+      position: absolute
+      bottom: 0
+    }
+  }
+
+  h1 {
+    margin-bottom: r(44px)
+
+    @media media.medium, media.small, media.xsmall {
+      margin-bottom: r(20px)
+    }
+
+    small {
+      margin-bottom: r(20px)
+      display: inline-block
+    }
+  }
+
+  .button {
+    margin-bottom: r(50px)
+  }
+}

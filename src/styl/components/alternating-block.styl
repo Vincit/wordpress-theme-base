@@ -1,0 +1,117 @@
+.alternating-block {
+  padding-top: r(60px)
+  padding-bottom: r(40px)
+  background-size: cover
+
+  &.bg--dark {
+    color: colors.white
+  }
+
+  &.bg--light {
+    color: colors.black
+  }
+
+  @media media.medium, media.small, media.xsmall {
+    padding-top: r(45px)
+    padding-bottom: r(30px)
+  }
+
+  .container {
+    display: flex
+    flex-flow: row nowrap
+    // align-items: center
+    align-items: flex-start
+    justify-content: center
+    overflow: visible
+
+    @media media.medium, media.small, media.xsmall {
+      flex-flow: column-reverse wrap
+      align-items: center
+    }
+
+    > :first-child {
+      margin-right: r(120px)
+      width: 'calc(50% - %s)' % @margin-right
+
+      @media media.medium, media.small, media.xsmall {
+        margin-right: 0
+        // width: 100%
+        width: auto
+      }
+    }
+
+    &.reverse {
+      flex-flow: row-reverse nowrap
+
+      @media media.medium, media.small, media.xsmall {
+        flex-flow: column-reverse wrap
+      }
+
+      > :first-child {
+        margin-right: 0
+        margin-left: r(120px)
+        width: 'calc(50% - %s)' % @margin-left
+
+        @media media.medium, media.small, media.xsmall {
+          // width: 100%
+          width: auto
+          margin-left: 0
+        }
+      }
+    }
+
+    &.shortcode {
+      align-items: center
+      justify-content: space-around
+
+      > * {
+        max-width: r(450px) // IE fix
+      }
+    }
+
+    &.reverse.shortcode {
+      justify-content: flex-end
+    }
+  }
+
+  &__main {
+    max-width: r(565px)
+    // flex-basis: 50%
+    width: 50%
+    flex: 0 0 auto
+
+    @media media.large, media.medium {
+      max-width: 50%
+    }
+
+    @media media.medium, media.small, media.xsmall {
+      max-width: 100%
+      // width: 100%
+      width: auto
+    }
+  }
+
+  &__secondary {
+    min-width: r(475px)
+    // flex-basis: 50%
+    width: 50%
+    flex: 0 0 auto
+    text-align: center
+    align-self: center
+
+    @media media.medium, media.small, media.xsmall {
+      min-width: auto
+      // width: 100%
+      width: auto
+
+      img {
+        padding: r(20px)
+      }
+    }
+
+    img {
+      max-width: 100%
+      height: auto
+    }
+  }
+}
