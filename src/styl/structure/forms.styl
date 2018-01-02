@@ -34,6 +34,10 @@ inputBase() {
 
 select {
   inputBase()
+  background-image: url('img/no-inline/svg/caret-down.svg')
+  background-repeat: no-repeat
+  background-position: right r(10px) center
+  background-size: r(20px)
 }
 
 input {
@@ -56,6 +60,11 @@ input {
     margin-left: auto
     margin-right: auto
   }
+}
+
+textarea {
+  inputBase()
+  height: r(120px)
 }
 
 .mockbox {
