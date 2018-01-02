@@ -11,13 +11,15 @@ function AlternatingBlock($data = []) {
       "position" => "top",
     ],
     "content" => [
-      "main_wysiwyg" => [
-        "editor" => null,
+      "main" => [
+        "wysiwyg" => ["editor" => null],
+        "vertical_alignment" => "top",
       ],
       "secondary" => [
         "type" => null,
         "shortcode" => null,
         "image" => null,
+        "vertical_alignment" => "top",
       ],
     ],
     "options" => [
@@ -46,11 +48,21 @@ function AlternatingBlock($data = []) {
         $isShortcode ? "shortcode" : "no-shortcode"
       )?>
     >
-      <div class="alternating-block__main">
-        <?=v($data, "content.main_wysiwyg.editor")?>
+      <div
+        <?=className(
+          "alternating-block__main",
+          "align--" . v($data, "content.main.vertical_alignment")
+        )?>
+      >
+        <?=v($data, "content.main.wysiwyg.editor")?>
       </div>
 
-      <div class="alternating-block__secondary">
+      <div
+        <?=className(
+          "alternating-block__secondary",
+          "align--" . v($data, "content.secondary.vertical_alignment")
+        )?>
+      >
         <?=$isShortcode ? (
           do_shortcode(v($data, "content.secondary.shortcode"))
         ) : (

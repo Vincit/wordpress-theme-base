@@ -1,0 +1,52 @@
+{
+    "key": "group_5a4b50d4a1286",
+    "title": "Field: Vertical alignment",
+    "fields": [
+        {
+            "key": "field_5a4b50e59d9c7",
+            "label": "Vertical alignment",
+            "name": "vertical_alignment",
+            "type": "select",
+            "instructions": "Not to be confused with CSS vertical-align.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "top": "Top",
+                "center": "Center",
+                "bottom": "Bottom"
+            },
+            "default_value": [
+                "center"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 0,
+    "description": "",
+    "modified": 1514885422
+}
