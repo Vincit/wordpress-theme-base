@@ -20,7 +20,7 @@ function Button($data = []) {
     return false;
   } ?>
 
-  <a <?=className("button", "bg--{$data[color][value]}")?> href="<?=$data["link"]?>">
+  <a <?=className("button", "bg--{$data["color"]["value"]}")?> href="<?=$data["link"]?>">
     <?=$data["text"]?>
   </a><?php
 }
