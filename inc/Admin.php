@@ -14,7 +14,7 @@ if (is_admin()) {
 
     // Same with metaboxes.
     \MetaBoxConfig::$lock_meta_box_order = true;
-    }
+  }
 }
 
 // Users who will edit navigations will wonder where are the options
