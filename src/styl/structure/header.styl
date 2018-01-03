@@ -3,6 +3,9 @@ desktopMenuHeight = r(120px)
 mobileMenuHeight = r(60px)
 
 body {
+  // Show the scrollbar at all times so the content doesn't appear jumpy
+  overflow-y: scroll
+
   if (fixedDesktopMenu) {
     padding-top: desktopMenuHeight + r(20px)
   }
