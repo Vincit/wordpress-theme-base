@@ -4,6 +4,29 @@
     padding-bottom: r(20px)
     margin-bottom: r(20px)
 
+    &--content {
+      overflow: hidden
+
+      .vincit-image {
+        float: left
+        margin-right: r(25px)
+        max-width: r(200px)
+
+        @media media.tablet {
+          max-width: r(100px)
+        }
+
+        @media media.phone {
+          max-width: r(50px)
+        }
+      }
+
+      .vincit-excerpt {
+
+      }
+    }
+
+
     &:last-of-type {
       border-bottom: 0
     }

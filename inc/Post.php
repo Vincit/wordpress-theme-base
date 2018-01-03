@@ -51,7 +51,7 @@ function excerpt($post_id = null, $fallback = true) {
   $excerpt = get_excerpt($post_id, $fallback);
 
   return \Vincit\tag([
-    "<div class='wpt-excerpt'>",
+    "<div class='vincit-excerpt'>",
     strpos($excerpt, "<p>") > -1
     ? $excerpt
     : "<p>$excerpt</p>",
@@ -70,7 +70,7 @@ function preview($word_count = 30, $more = "&hellip;", $post_id = null) {
   $preview = get_preview($post_id);
 
   return \Vincit\tag([
-    "<div class='wpt-preview'>",
+    "<div class='vincit-preview'>",
     "<p>" . wp_trim_words($preview, $word_count, $more) . "</p>",
     "</div>"
   ]);
