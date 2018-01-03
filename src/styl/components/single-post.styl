@@ -1,8 +1,14 @@
 .spost { // single-post conflicts with WP
   padding: r(40px) 0 // affects body
 
-  &__header {
+  &:first-child {
+    padding-top: 0
+  }
 
+  &__header {
+    h1 {
+      margin-top: 0.5em
+    }
   }
 
   &__content {

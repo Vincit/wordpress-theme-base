@@ -23,14 +23,14 @@ function SinglePost($data = []) {
       if ($data["image"]) {
         echo Media\image($data["image"], "large");
       } ?>
-      <h1><?=title($data["title"])?></h1>
+      <h1 class="container"><?=title($data["title"])?></h1>
     </header>
 
-    <section class="spost__content">
+    <section class="spost__content container">
       <?=content($data["content"])?>
     </section>
 
-    <footer class="spost__footer">
+    <footer class="spost__footer container">
       <?php
       if ($data["pagination"]) { ?>
         <div class="pagination spost__pagination">

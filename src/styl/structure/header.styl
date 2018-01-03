@@ -14,6 +14,14 @@ body {
     padding-top: mobileMenuHeight + r(20px)
   }
 
+  &.single {
+    padding-top: desktopMenuHeight
+
+    @media media.medium, media.small, media.xsmall {
+      padding-top: mobileMenuHeight
+    }
+  }
+
   &.admin-bar {
     if (fixedDesktopMenu) {
       .site-header {
