@@ -17,8 +17,8 @@ function SinglePost($data = []) {
     return false;
   } ?>
 
-  <article <?php post_class("single-post")?>>
-    <header class="single-post__header">
+  <article <?php post_class("spost")?>>
+    <header class="spost__header">
       <?php
       if ($data["image"]) {
         echo Media\image($data["image"], "large");
@@ -26,14 +26,14 @@ function SinglePost($data = []) {
       <h1><?=title($data["title"])?></h1>
     </header>
 
-    <section class="single-post__content">
+    <section class="spost__content">
       <?=content($data["content"])?>
     </section>
 
-    <footer class="single-post__footer">
+    <footer class="spost__footer">
       <?php
       if ($data["pagination"]) { ?>
-        <div class="pagination single-post__pagination">
+        <div class="pagination spost__pagination">
           <?php wp_link_pages(); ?>
         </div>
       <?php } ?>
