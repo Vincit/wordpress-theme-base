@@ -88,7 +88,7 @@ function enqueue($path = null, $deps = []) {
 
 function theme_assets() {
   // Webfonts:
-  // enqueue("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700", [], true);
+  enqueue("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Serif+Pro:700", [], true);
 
   // Own polyfills supplied instead
   // enqueue("https://cdn.polyfill.io/v2/polyfill.min.js?features=default,es6,fetch", [], true);
