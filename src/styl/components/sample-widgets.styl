@@ -16,5 +16,18 @@
     align-items: center
     justify-content: space-between
     padding: r(40px) 0
+
+    @media media.mobile {
+      flex-flow: column wrap
+      text-align: center
+
+      ul {
+        text-align: left
+      }
+    }
+
+    button {
+      margin-bottom: r(15px)
+    }
   }
 }
