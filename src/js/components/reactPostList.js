@@ -6,29 +6,65 @@ export default class PostList extends Component {
     super(props);
 
     this.state = {
+      offset: 0,
+      postsPerPage: 10,
+
+      next: () => {},
       posts: [],
-      maxPages: 0,
-      maxPosts: 0,
       error: false,
     };
   }
 
-  componentDidMount() {
-    wpQuery().then((response) => {
-      const { headers, posts } = response;
+  async componentDidMount() {
+    // TODO: Get rid of try/catch by handling errors internally inside wpQuery, maybe.
+
+    try {
+      const response = await wpQuery();
+      const { posts, next } = response;
 
       this.setState({
+        currentPage: 1,
         posts,
-        maxPages: headers['x-wp-totalpages'],
-        maxPosts: headers['x-wp-total'],
+        next, // assign function that fetches a new set of posts if it exists
       });
-    }).catch((error) => {
+    } catch (error) {
+      console.error(error);
+
       if (error.message.contains('404')) {
         this.setState({
           error: 'Got 404 trying to query for posts. Is aucor/wp_query-route-to-rest-api installed?',
         });
       }
-    });
+    }
+  }
+
+  async nextPage() {
+    const { offset, postsPerPage } = this.state; // Can only extract these due to name conflicts
+
+    if (this.state.next) {
+      const response = await this.state.next();
+      const { posts, next } = response;
+
+      this.setState((prev) => ({
+        offset: prev.offset + prev.postsPerPage,
+
+        posts: [
+          ...prev.posts,
+          ...posts,
+        ],
+        next,
+      }));
+    } else if (this.state.posts.length > offset + postsPerPage) {
+      this.setState((prev) => ({
+        offset: prev.offset + prev.postsPerPage,
+      }));
+    }
+  }
+
+  previousPage() {
+    this.setState((prev) => ({
+      offset: prev.offset - prev.postsPerPage,
+    }));
   }
 
   render() {
@@ -36,21 +72,43 @@ export default class PostList extends Component {
       return <p>{this.state.error}</p>;
     }
 
+    const {
+      next,
+      posts,
+      offset,
+      postsPerPage,
+    } = this.state;
+
+    const nextCond = next || (posts.length > offset + postsPerPage);
+    const nextButton = nextCond ? (
+      <button className="next" onClick={() => this.nextPage()}>
+        Next
+      </button>
+    ) : false;
+    const previousButton = offset > 0 ? (
+      <button className="prev" onClick={() => this.previousPage()}>
+        Previous
+      </button>
+    ) : false;
+
+    const button = [nextButton, previousButton];
+    const renderCond = (i) => i < offset || i > postsPerPage + offset;
+
     return (
       <div className="post-list">
         <header>
           <h2>React: Latest posts</h2>
         </header>
         <ul>
-          {this.state.posts.map((post) => (
+          {posts.map((post, i) => renderCond(i) ? false : (
             <li key={post.id}>
               <a href={post.link}>{post.title.rendered}</a>
             </li>
           ))}
         </ul>
         <footer>
-          <p>Total posts: {this.state.maxPosts}</p>
-          <p>Total pages: {this.state.maxPages}</p>
+          <p>Showing posts {offset === 0 ? 1 : offset} - {offset + postsPerPage}.</p>
+          {button}
         </footer>
       </div>
     );

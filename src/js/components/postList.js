@@ -1,47 +1,54 @@
 import { el, setChildren } from 'redom';
 import wpQuery from '../wpQuery';
 
-const setListContents = (list, posts) => {
-  setChildren(list, posts.map((post) => el('li',
-    el('a',
-      { href: post.link },
-      post.title.rendered
-    )
-  )));
-};
 
-let pageCount = 0;
+const postsPerPage = 10;
+let allPosts = [];
+let offset = 0;
+
 function populatePostList(response, ...elements) {
-  const { headers, posts, next } = response;
-  const [list, nextBtn, totalPosts, totalPages, currPage] = elements;
+  // wpQuery response may contain a function to get the next set if it exists
+  const { posts, next } = response;
+  const [list, showingPosts, nextBtn] = elements;
 
-  console.log(response);
+  allPosts = [
+    ...allPosts,
+    ...posts,
+  ];
 
   if (list) {
-    setListContents(list, posts);
+    const renderCond = (i) => i < offset || i > postsPerPage + offset;
+    const arr = posts.map((post, i) => renderCond(i) ? false : (
+      el('li',
+        el('a',
+          { href: post.link },
+          post.title.rendered
+        )
+      )
+    )).filter(Boolean);
+
+    setChildren(list, arr);
 
     if (!next) {
       nextBtn.parentNode.removeChild(nextBtn);
     } else {
       nextBtn.addEventListener('click', function _next() {
+        offset += 10;
         next(populatePostList, ...elements);
         nextBtn.removeEventListener('click', _next);
       });
     }
 
-    totalPosts.textContent = `Total posts: ${headers['x-wp-total']}`;
-    totalPages.textContent = `Total pages: ${headers['x-wp-totalpages']}`;
-    currPage.textContent = `Current page: ${pageCount += 1}`;
+    showingPosts.textContent = `Showing posts ${offset === 0 ? 1 : offset} - ${offset + postsPerPage}.`;
   }
 }
 
 export default function () {
   const list = el('ul');
-  const totalPosts = el('p', 'Total posts: ');
-  const totalPages = el('p', 'Total pages: ');
-  const currPage = el('p', 'Current page: ');
+  const showingPosts = el('p', 'Showing posts ');
   const nextBtn = el('button.next', 'Next');
-  const footer = el('footer', nextBtn, totalPosts, totalPages, currPage);
+  // No prev button for vanilla because dealing with it is painful
+  const footer = el('footer', showingPosts, nextBtn);
   const postList = () => el('div.post-list',
     el('header',
       el('h2', 'Vanilla: Latest posts')
@@ -50,8 +57,16 @@ export default function () {
     footer
   );
 
+  // async/await is a lot harder in Vanilla, as this function can't be async or it doesn't work
+  // try {
+    // const response = await wpQuery();
+    // populatePostList(response, list, nextBtn, totalPosts, totalPages, currPage);
+  // } catch (e) {
+    // console.error(e);
+  // }
+
   wpQuery().then((response) => {
-    populatePostList(response, list, nextBtn, totalPosts, totalPages, currPage);
+    populatePostList(response, list, showingPosts, nextBtn);
   }).catch((err) => {
     console.error(err);
   });
