@@ -135,7 +135,7 @@ class MobileNavigation {
         [stateKey]: status,
       };
     }, (state) => {
-      if (state[stateKey]) {
+      if (state.menuOpen || state.searchOpen) {
         scrollBlock.activate();
       } else {
         scrollBlock.deactivate();

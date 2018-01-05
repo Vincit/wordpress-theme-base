@@ -31,18 +31,24 @@ class ScrollBlock {
   }
 
   activate() {
-    window.addEventListener('resize', this);
-    this.scrollY = window.scrollY;
-    this.saveOldAttrs();
-    this.setAttrs();
+    if (!this.active) {
+      window.addEventListener('resize', this);
+      this.scrollY = window.scrollY;
+      this.saveOldAttrs();
+      this.setAttrs();
+      this.active = true;
+    }
 
     return this;
   }
 
   deactivate() {
-    window.removeEventListener('resize', this);
-    this.resetAttrs();
-    window.scrollTo(0, this.scrollY);
+    if (this.active) {
+      window.removeEventListener('resize', this);
+      this.resetAttrs();
+      window.scrollTo(0, this.scrollY);
+      this.active = false;
+    }
 
     return this;
   }
