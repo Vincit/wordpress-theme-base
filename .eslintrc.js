@@ -18,6 +18,7 @@ module.exports = {
     'no-confusing-arrow': [1, { "allowParens": true } ],
     'class-methods-use-this': [0],
     'max-len': [1, { 'code': 110, 'ignoreComments': true }],
+    'no-confusing-arrow': 0, // It isn't confusing. Hopefully.
     'react/jsx-filename-extension': 0,
     'react/no-did-mount-set-state': 0, // STFU, you're wrong about this. It's pretty much necessary when using async/await
   },
