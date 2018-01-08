@@ -31,11 +31,16 @@ namespace Vincit\Polylang {
     ];
   }
 
-  if (function_exists("pll_register_string")) {
+  if (function_exists("pll_register_string") && is_admin()) {
     $strings = strings();
 
     foreach ($strings as $key => $value) {
       pll_register_string($key, $value, "theme", strlen($value) > 60);
+    }
+
+    $strings = get_field("translations", "options");
+    foreach ($strings as $string) {
+      pll_register_string($string["key"], $string["string"], $string["multiline"]);
     }
   }
 

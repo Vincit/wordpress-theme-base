@@ -7,7 +7,10 @@ if (function_exists("acf_add_options_page")) {
     "menu_slug" => "acf-opts",
   ]);
 
+
   if (function_exists("pll_languages_list")) {
+    acf_add_options_page("Translatable strings");
+
     $names = pll_languages_list([
       "fields" => "name",
     ]);

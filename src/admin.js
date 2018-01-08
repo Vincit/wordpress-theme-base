@@ -3,9 +3,11 @@ import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 
 import transformURLsWebpackDevServer from './js/lib/transform-urls-wds';
 import enhanceColorField from './js/admin/enhanceColorField';
+import translationLinks from './js/admin/translationLinks';
 import './admin.styl';
 
 enhanceColorField();
+translationLinks();
 OfflinePluginRuntime.install();
 
 if (module.hot) {
