@@ -9,6 +9,7 @@ Bleeding edge starter theme.
 - [x] Cleaner menus that are accessible
 - [x] Automatic editor stylesheet
 - [x] (Multilingual) options page support
+- [x] Polylang support with fully controllable string translations from the admin
 - [x] Automatic asset manifest handles asset cachebusting and delivers latest assets
 
 ### Developer features

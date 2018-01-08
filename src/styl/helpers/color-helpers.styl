@@ -1,18 +1,31 @@
 generateBackgroundClasses(addColor = 'true') {
+  colorMixin(key, value, addColor) {
+    if (addColor == 'true') {
+      if (key == 'tangerine') { // Just an example override
+        color: colors.white
+      } else if (dark(value)) {
+        color: colors.white
+      } else {
+        color: colors.black
+      }
+    }
+  }
+
   .bg {
     for key, value in colors {
       &--{key} {
         background: value
+        colorMixin(key, value, addColor)
+      }
+    }
+  }
 
-        if (addColor == 'true') {
-          if (key == 'tangerine') { // Just an example override
-            color: colors.white
-          } else if (dark(value)) {
-            color: colors.white
-          } else {
-            color: colors.black
-          }
-        }
+  .hover-bg:hover {
+    color: pink
+    for key, value in colors {
+      &--{key} {
+        background: value
+        colorMixin(key, value, addColor)
       }
     }
   }
