@@ -41,14 +41,9 @@ add_action("admin_init", function () {
     $existing_w = intval(get_option($size["name"] . "_size_w"));
     $existing_h = intval(get_option($size["name"] . "_size_h"));
 
-    var_dump($existing_w);
-    var_dump($size);
-
     if ($existing_w !== $size["w"]) {
       update_option($size["name"] . "_size_h", $size["h"]);
       update_option($size["name"] . "_size_w", $size["w"]);
-    } else {
-      break;
     }
   }
 
