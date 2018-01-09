@@ -31,7 +31,7 @@ function SomeButtons($data = []) {
         $media["share_link"]
       )?>
 
-      <a href="<?=$link?>" class="<?=$lcName?>" title="<?=$title?>">
+      <a href="<?=$link?>" class="<?=$lcName?>" title="<?=$title?>" target="_blank" rel="noreferrer noopener">
         <?=Media\svg("$lcName.svg")?>
         <span class="screen-reader-text">
           <?=$name?>
