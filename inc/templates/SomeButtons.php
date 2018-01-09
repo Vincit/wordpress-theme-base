@@ -4,6 +4,11 @@ namespace Vincit\Template;
 use \Vincit\Options;
 use \Vincit\Media;
 
+/**
+ * Prints share buttons if they're configured on the options pages.
+ *
+ * @param array $data
+ */
 function SomeButtons($data = []) {
   $data = params([
     "medias" => Options\get("social_media_channels"),

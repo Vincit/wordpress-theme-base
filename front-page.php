@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The static front page template.
+ */
+namespace Vincit;
+
+get_header(); ?>
 
 <div class="container frontpage">
   <?php

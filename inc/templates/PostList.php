@@ -1,6 +1,11 @@
 <?php
 namespace Vincit\Template;
 
+/**
+ * Component that lists posts from the current query context, or uses the provided query.
+ *
+ * @param array $data
+ */
 function PostList($data = []) {
   $data = params([
     "query" => null, // Pass in a new WP_Query() to see magic

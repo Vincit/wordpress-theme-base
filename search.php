@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The search page. Will list search results.
+ */
+namespace Vincit;
+
+get_header(); ?>
 
 <div class="container">
   <form class="search-form" action="/">

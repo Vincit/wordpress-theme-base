@@ -4,7 +4,7 @@ namespace Vincit\Template;
 /**
  * Is actually a link, but looks like a button.
  *
- * @param mixed $data
+ * @param array $data
  */
 function Button($data = []) {
   $data = params([

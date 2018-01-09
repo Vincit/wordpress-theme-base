@@ -1,4 +1,7 @@
 <?php
+/**
+ * The header template. Included by get_header().
+ */
 namespace Vincit;
 
 use \Vincit\Options; ?>
