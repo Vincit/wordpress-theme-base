@@ -24,9 +24,14 @@ function SomeButtons($data = []) {
     foreach ($data["medias"] as $media) {
       $name = $media["media"];
       $lcName = strtolower($name);
-      $title = sprintf(gs("Some: Share on %s"), $name); ?>
+      $title = sprintf(gs("Some: Share on %s"), $name);
+      $link = str_replace(
+        ["%url%", "%title%"],
+        [get_permalink(), get_the_title()],
+        $media["share_link"]
+      )?>
 
-      <a href="<?=$media["share_link"]?>" class="<?=$lcName?>" title="<?=$title?>">
+      <a href="<?=$link?>" class="<?=$lcName?>" title="<?=$title?>">
         <?=Media\svg("$lcName.svg")?>
         <span class="screen-reader-text">
           <?=$name?>
