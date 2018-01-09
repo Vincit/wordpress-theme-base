@@ -2,9 +2,9 @@
 namespace Vincit\Template;
 
 /**
- * Is actually a link, but looks like a button.
+ * Renders the sample widgets.
  *
- * @param mixed $data
+ * @param array $data
  */
 function SampleWidgets($data = []) {
   $data = params([

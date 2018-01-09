@@ -1,6 +1,11 @@
 <?php
 namespace Vincit\Template;
 
+/**
+ * Lists comments under the current post context.
+ *
+ * @param array $data
+ */
 function CommentList($data = []) {
   $data = params([
     "post_id" => null,

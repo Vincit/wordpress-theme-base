@@ -1,6 +1,11 @@
 <?php
 namespace Vincit\template;
 
+/**
+ * Sample form that's only useful for showcasing some form controls.
+ *
+ * @param array $data
+ */
 function SampleForm($data = []) { ?>
   <form>
     <div class="fc-row left">

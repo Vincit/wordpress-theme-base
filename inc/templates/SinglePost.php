@@ -3,6 +3,11 @@ namespace Vincit\Template;
 
 use \Vincit\Media;
 
+/**
+ * Singular post template. Not to be confused with singular.php!
+ *
+ * @param mixed $data
+ */
 function SinglePost($data = []) {
   global $numpages;
 

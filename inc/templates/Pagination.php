@@ -1,6 +1,11 @@
 <?php
 namespace Vincit\Template;
 
+/**
+ * Generic pagination.
+ *
+ * @param array $data
+ */
 function Pagination($data = []) {
   $data = params([
     "paginate_links_args" => [

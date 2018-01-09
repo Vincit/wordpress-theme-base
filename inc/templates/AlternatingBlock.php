@@ -3,6 +3,11 @@ namespace Vincit\Template;
 
 use \Vincit\Media;
 
+/**
+ * Primarily meant for pagebuilder usage, but works just as fine when called manually.
+ *
+ * @param array $data
+ */
 function AlternatingBlock($data = []) {
   $data = params([
     "background" => [

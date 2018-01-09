@@ -3,6 +3,11 @@ namespace Vincit\Template;
 
 use \Vincit\Media;
 
+/**
+ * PostListItem is meant to be used in conjuction with PostList, but it work as stand alone also.
+ *
+ * @param array $data
+ */
 function PostListItem($data = []) {
   $data = params([
     "title" => null,

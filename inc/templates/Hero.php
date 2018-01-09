@@ -4,7 +4,7 @@ namespace Vincit\Template;
 /**
  * Generic hero block with an optional CTA button
  *
- * @param mixed $data
+ * @param array $data
  */
 function Hero($data = []) {
   $data = params([
