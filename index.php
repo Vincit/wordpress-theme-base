@@ -1,4 +1,11 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The index page. The last file WordPress will try to load when resolving template.
+ * See http://wphierarchy.com for help.
+ */
+namespace Vincit;
+
+get_header(); ?>
 
 <div class="container">
   <?php

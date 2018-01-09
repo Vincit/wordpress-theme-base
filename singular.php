@@ -1,4 +1,11 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Singular content. Used by posts, pages and custom post types by default.
+ * See https://wphierarchy.com for help.
+ */
+namespace Vincit;
+
+get_header(); ?>
 
 <div class="singular">
   <?php
