@@ -37,7 +37,9 @@ function SinglePost($data = []) {
 
     <footer class="spost__footer container">
       <?php
-      SomeButtons();
+      if (is_singular() && get_post_type() === "post") {
+        SomeButtons();
+      }
 
       if ($data["pagination"]) { ?>
         <div class="pagination spost__pagination">
