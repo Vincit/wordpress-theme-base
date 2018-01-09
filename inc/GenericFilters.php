@@ -1,4 +1,8 @@
 <?php
+/**
+ * Generic filters when there's no better place to put them
+ * and you're too lazy to create a new one..
+ */
 namespace Vincit\GenericFilters;
 
 function title_prefix($title) {
@@ -52,20 +56,6 @@ function strip_empty_paragraphs($content) {
 
 add_filter("the_content", "\\Vincit\\GenericFilters\\strip_empty_paragraphs");
 
-
-// Gravity Forms makes some absolutely mental decisions.
-// Loading scripts in head? Not on my watch.
-add_filter("gform_tabindex", "\\__return_false");
-add_filter("gform_init_scripts_footer", "\\__return_true");
-
-add_filter("gform_cdata_open", function () {
-  return "document.addEventListener('DOMContentLoaded', function() { ";
-});
-
-add_filter("gform_cdata_close", function () {
-  return "}, false);";
-});
-
 // Disable "traffic lights"
 add_filter("the_seo_framework_show_seo_column", "__return_false");
 
@@ -77,18 +67,3 @@ add_filter("bcn_template_tags", function ($replacements, $type, $id) {
   return $replacements;
 }, 3, 10);
 
-/*
- * Add stages to menus so if it's required for something it's there.
- */
-$menu_lookup = [];
-add_filter("nav_menu_css_class", function ($classes, $item) use (&$menu_lookup) {
-  $menu_lookup[$item->ID] = [
-    "parent" => $item->menu_item_parent,
-    "level" => $item->menu_item_parent !== '0' // Why is it a string?
-      ? $menu_lookup[(int) $item->menu_item_parent]["level"] + 1
-      : 0
-  ];
-
-  $classes[] = "level-{$menu_lookup[$item->ID]["level"]}";
-  return $classes;
-}, 999999, 2); // We want that the class is the last one.

@@ -1,6 +1,8 @@
 <?php
 /**
  * Handy functions under the template namespace for easy use.
+ * Contains aliases from other namespaces. Anything defined here is automatically
+ * in the scope of the template namespace when creating templates.
  */
 
 namespace Vincit\Template;

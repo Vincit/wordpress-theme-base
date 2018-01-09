@@ -1,4 +1,7 @@
 <?php
+/**
+ * Helpers related to taxonomies.
+ */
 namespace Vincit\Taxonomy;
 
 /**

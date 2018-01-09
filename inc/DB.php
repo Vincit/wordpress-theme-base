@@ -3,7 +3,8 @@ namespace Vincit;
 
 /**
  * Class: DB
- * Because $wpdb is terrible.
+ * Because $wpdb is terrible. Do note that using this will spawn *another*
+ * database connection, which has a tiny overhead. WP uses mysqli, so the connection cannot be reused.
  *
  * @see \PDO
  */

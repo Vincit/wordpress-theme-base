@@ -1,4 +1,9 @@
 <?php
+/**
+ * ACF related filters and functions live here.
+ * If it's a template tag, it doesn't belong here.
+ */
+
 namespace Vincit\ACF;
 
 $colorsJSON = json_decode(

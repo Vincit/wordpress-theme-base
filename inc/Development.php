@@ -1,4 +1,8 @@
 <?php
+/**
+ * Settings and functions related to development. May be dangerous
+ * in production, never run WP_DEBUG on a production site with live visitors.
+ */
 namespace Vincit\Development {
 
   /* Running WP_DEBUG in production will get you into trouble. */
