@@ -1,0 +1,46 @@
+.some-buttons {
+  position: fixed
+  left: 0
+  top: 50%
+  transform: translateY(-50%)
+
+  h3 {
+    screenReaderText()
+  }
+
+  a {
+    width: r(50px)
+    height: @width
+    line-height: @height
+    display: block
+    background: colors.black
+    color: colors.white
+    text-align: center
+
+    .inline-svg {
+      max-width: 70%
+      vertical-align: middle
+      margin-top: r(-4px) // I love CSS.
+    }
+
+    &.facebook {
+      background: #3b5998
+    }
+
+    &.twitter {
+      background: #1da1f2
+    }
+
+    &.linkedin {
+      background: #0077b5
+    }
+
+    &.youtube {
+      background: #ff0000
+    }
+
+    &.instagram {
+      background: #405de6
+    }
+  }
+}
