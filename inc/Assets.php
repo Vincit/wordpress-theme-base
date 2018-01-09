@@ -1,4 +1,7 @@
 <?php
+/**
+ * This file handles everything related to assets. Fonts, CSS & JavaScript.
+ */
 namespace Vincit\Assets;
 
 define("THEMEROOT", get_stylesheet_directory());
@@ -55,7 +58,6 @@ function enqueue_parts($path = null, $deps = []) {
 
 /**
  * Better enqueue function. Less verbose to use.
- * Based on \rnb\core\enqueue (https://github.com/redandbluefi/wordpress-tools/blob/master/modules/core.php#L118)
  *
  * @param string $path
  * @param array $deps
@@ -133,3 +135,16 @@ function editor_assets() {
 if (is_admin()) {
   editor_assets();
 }
+
+// Gravity Forms makes some absolutely mental decisions.
+// Loading scripts in head? Not on my watch.
+add_filter("gform_tabindex", "\\__return_false");
+add_filter("gform_init_scripts_footer", "\\__return_true");
+
+add_filter("gform_cdata_open", function () {
+  return "document.addEventListener('DOMContentLoaded', function() { ";
+});
+
+add_filter("gform_cdata_close", function () {
+  return "}, false);";
+});

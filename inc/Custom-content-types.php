@@ -1,4 +1,7 @@
 <?php
+/**
+ * Register custom post types and taxonomies here.
+ */
 namespace Vincit\CCT;
 
 /* add_action('init', function () {

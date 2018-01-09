@@ -1,4 +1,9 @@
 <?php
+/**
+ * If you need to work with the DOM using PHP, here are some helpers.
+ * In reality you probably want to avoid the DOM and PHP, as nothing ever works.
+ */
+
 namespace Vincit\DOM;
 
 /**

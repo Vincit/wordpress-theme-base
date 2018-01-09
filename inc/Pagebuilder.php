@@ -1,13 +1,21 @@
 <?php
 namespace Vincit;
 
+/**
+ * Pagebuilder class is used to build layouts from flexible content fields,
+ * but it's also used to save templates into variables.
+ */
 class Pagebuilder {
   public $data;
   public $templates;
   public static $instance;
 
-  public function __construct($field_name = null) {
+  public function __construct($field_name = null, $doingItWrong = true) {
     $this->templates = $this->loadTemplates();
+
+    if ($doingItWrong) {
+      throw new \Exception("You shouldn't create a new instance of the pagebuilder. Use \Vincit\Pagebuilder::instance().");
+    }
 
     $this->hasACF = function_exists("get_field");
     if ($this->hasACF && $field_name) {
@@ -17,7 +25,7 @@ class Pagebuilder {
 
   public static function instance($field_name = "pagebuilder") {
     if (is_null(self::$instance)) {
-      self::$instance = new Pagebuilder($field_name);
+      self::$instance = new Pagebuilder($field_name, false);
     }
 
     return self::$instance;
@@ -41,6 +49,15 @@ class Pagebuilder {
     return $templates;
   }
 
+  /**
+   * Method used to render a template into string.
+   * There's nothing wrong with calling \Vincit\Template\SinglePost($data)
+   * directly, but this class protects you from namespace changes and
+   * can deal with errors if necessary.
+   *
+   * @param string $layout
+   * @param array $data
+   */
   public function block($layout = null, $data = []) {
     if (is_null($layout)) {
       throw new \Exception("Selected block layout can't be null.");

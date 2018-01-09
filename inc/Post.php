@@ -1,4 +1,8 @@
 <?php
+/**
+ * Helpers and template tags, related to posts.
+ */
+
 namespace Vincit\Post;
 
 /**

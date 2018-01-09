@@ -1,7 +1,8 @@
 <?php
+/**
+ * The Vincit namespace. Useful for generic functions with generic names.
+ */
 namespace Vincit;
-
-/* Helpers for WP. Based on redandblue/wordpress-tools. */
 
 /**
  * Returns current env, defaulting to production if none is set.

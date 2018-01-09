@@ -1,4 +1,7 @@
 <?php
+/**
+ * Theme related configuration.
+ */
 namespace Vincit\Theme;
 
 add_action("after_setup_theme", function () {
@@ -22,15 +25,6 @@ add_action("after_setup_theme", function () {
   add_theme_support("soil-nav-walker");
   add_theme_support("soil-nice-search");
   add_theme_support("soil-disable-asset-versioning");
-
-
-  add_filter("wp_calculate_image_sizes", function ($sizes) {
-    if (strpos($sizes, $GLOBALS["content_width"]) > -1) {
-      return ""; // disable if large
-    }
-
-    return $sizes;
-  });
 });
 
 function configure_relevanssi($force = false) {

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Helpers that you don't want to "pollute" the root namespace with.
+ */
 namespace Vincit\Helpers;
 
 /**

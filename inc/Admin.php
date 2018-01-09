@@ -1,4 +1,7 @@
 <?php
+/**
+ * Tweaks to admin live here.
+ */
 namespace Vincit\Admin;
 
 if (is_admin()) {

@@ -1,5 +1,6 @@
 <?php
 /*
+ * Polylang strings and functions.
  * Heavily "inspired" by aucor/aucor-starter localization
  */
 
@@ -51,6 +52,12 @@ namespace Vincit\Polylang {
 
 namespace {
 
+  /**
+   * Use this instead of pll__ or pll__e.
+   *
+   * @param mixed $key
+   * @param mixed $lang
+   */
   function gs($key, $lang = null) {
     $strings = \Vincit\Polylang\strings();
 
@@ -76,7 +83,7 @@ namespace {
       }
 
       // compose error message
-      $error_msg = $e->getMessage() . $trace_line . ' ==> add it to /inc/localization.php';
+      $error_msg = $e->getMessage() . $trace_line . ' ==> add it to /inc/Polylang.php or through the admin area.';
 
       // trigger_error($error_msg , E_USER_WARNING);
       error_log($error_msg);

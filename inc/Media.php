@@ -1,4 +1,7 @@
 <?php
+/**
+ * Functions related to media, useful in templates, but not necessary template tags.
+ */
 namespace Vincit\Media;
 
 function svg($path, $args = []) {
