@@ -81,17 +81,17 @@ export default class PostList extends Component {
 
     const nextCond = next || (posts.length > offset + postsPerPage);
     const nextButton = nextCond ? (
-      <button className="next" onClick={() => this.nextPage()}>
+      <button className="next" key="next" onClick={() => this.nextPage()}>
         Next
       </button>
     ) : false;
     const previousButton = offset > 0 ? (
-      <button className="prev" onClick={() => this.previousPage()}>
+      <button className="prev" key="prev" onClick={() => this.previousPage()}>
         Previous
       </button>
     ) : false;
 
-    const button = [nextButton, previousButton];
+    const buttons = [nextButton, previousButton];
     const renderCond = (i) => i < offset || i > postsPerPage + offset;
 
     return (
@@ -102,13 +102,13 @@ export default class PostList extends Component {
         <ul>
           {posts.map((post, i) => renderCond(i) ? false : (
             <li key={post.id}>
-              <a href={post.link}>{post.title.rendered}</a>
+              <a href={post.link}>{post.title.rendered}{post.id}</a>
             </li>
           ))}
         </ul>
         <footer>
           <p>Showing posts {offset === 0 ? 1 : offset} - {offset + postsPerPage}.</p>
-          {button}
+          {buttons}
         </footer>
       </div>
     );

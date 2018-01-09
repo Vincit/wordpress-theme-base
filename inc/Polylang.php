@@ -28,6 +28,9 @@ namespace Vincit\Polylang {
       "Sidebar: Tags" => "Tags",
 
       "Widget: Related posts" => "Related posts",
+
+      "Some: Share" => "Share article",
+      "Some: Share on %s" => "Share on %s",
     ];
   }
 

@@ -32,6 +32,8 @@ function SinglePost($data = []) {
 
     <footer class="spost__footer container">
       <?php
+      SomeButtons();
+
       if ($data["pagination"]) { ?>
         <div class="pagination spost__pagination">
           <?php wp_link_pages(); ?>
