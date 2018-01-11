@@ -18,7 +18,7 @@ function populatePostList(response, ...elements) {
 
   if (list) {
     const renderCond = (i) => i < offset || i > postsPerPage + offset;
-    const arr = posts.map((post, i) => renderCond(i) ? false : (
+    const arr = posts.map((post, i) => renderCond(i + offset) ? false : (
       el('li',
         el('a',
           { href: post.link },
