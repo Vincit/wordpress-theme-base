@@ -102,7 +102,7 @@ export default class PostList extends Component {
         <ul>
           {posts.map((post, i) => renderCond(i) ? false : (
             <li key={post.id}>
-              <a href={post.link}>{post.title.rendered}{post.id}</a>
+              <a href={post.link}>{post.title.rendered}</a>
             </li>
           ))}
         </ul>
