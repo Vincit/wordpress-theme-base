@@ -9,13 +9,13 @@ import 'regenerator-runtime/runtime';
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 import 'normalize.css';
 
-import polyfiller from './js/lib/polyfiller';
-import enhanceWPElements from './js/lib/enhance-wp-elements';
-import skipLinkFocusFix from './js/lib/skip-link-focus-fix';
-import transformURLsWebpackDevServer from './js/lib/transform-urls-wds';
+import polyfiller from 'lib/polyfiller';
+import enhanceWPElements from 'lib/enhance-wp-elements';
+import skipLinkFocusFix from 'lib/skip-link-focus-fix';
+import transformURLsWebpackDevServer from 'lib/transform-urls-wds';
 
-import mobileNavigation from './js/components/MobileNavigation';
-import renderSampleWidgetsTo from './js/components/SampleWidgets/';
+import mobileNavigation from 'components/MobileNavigation';
+import renderSampleWidgetsTo from 'components/SampleWidgets/';
 
 // import colors from './colors.json';
 // import mediaQueries from './media-queries.json';

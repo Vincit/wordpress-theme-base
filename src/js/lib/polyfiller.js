@@ -1,5 +1,6 @@
 function loadScript(src, done) {
   const js = document.createElement('script');
+  console.log(src);
 
   js.src = src;
   js.onload = () => {

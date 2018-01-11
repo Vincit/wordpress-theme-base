@@ -6,9 +6,9 @@
 import 'regenerator-runtime/runtime';
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 
-import polyfiller from './js/lib/polyfiller';
-import enhanceColorField from './js/admin/enhanceColorField';
-import translationLinks from './js/admin/translationLinks';
+import polyfiller from 'lib/polyfiller';
+import enhanceColorField from 'admin/enhanceColorField';
+import translationLinks from 'admin/translationLinks';
 import './admin.styl';
 
 polyfiller({

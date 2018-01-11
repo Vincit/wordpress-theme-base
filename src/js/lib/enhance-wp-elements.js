@@ -1,7 +1,12 @@
 import { el, mount } from 'redom';
-import { mockbox, mockradio } from '../lib/form';
+import { mockbox, mockradio } from 'lib/form';
 
-class EnhanceWPElements {
+/**
+ * This ugly class does things to elements outputted by PHP.
+ * It takes an array of selectors as argument on which elements to apply
+ * the tweaks.
+ */
+class WPElementEnhancer {
   constructor(selectors = ['article']) {
     this.enhanced = selectors.reduce((acc, selector) => {
       const parent = document.querySelector(selector);
@@ -20,6 +25,9 @@ class EnhanceWPElements {
     }, {});
   }
 
+  /*
+   * Does what the name says. Wraps tables and CSS makes them scrollable.
+   */
   makeTablesResponsive(parent) {
     const tables = Array.from(parent.querySelectorAll('table')).map((table) => {
       const wrap = el('.responsive-table');
@@ -34,9 +42,13 @@ class EnhanceWPElements {
     };
   }
 
+  /**
+   *  Because I was bored.
+   *  It's also a pretty good reminder to do something about the 404 page.
+   */
   armTremors(parent) {
     const shakeshake = (e) => {
-      alert('Oh no. \n\n\nRun.\n\n(flickering warning)'); // eslint-disable-line
+      alert('If flickering image may cause you harm, I suggest that you look away for a bit.'); // eslint-disable-line
 
       let iteration = 0;
       const translate = (n) => {
@@ -88,6 +100,8 @@ class EnhanceWPElements {
 
   /*
    * Removes paragraph tags from images, removes inline styles.
+   * "Wider than container" image layout is hard to pull of without.
+   * (Negative margins and calc work though.)
    */
   cleanMedia(parent) {
     const media = [
@@ -114,12 +128,20 @@ class EnhanceWPElements {
     };
   }
 
+  /**
+   * Turn all checkboxes into custom checkboxes.
+   * Uses the underlying checkbox.
+   */
   mockCheckboxes(parent) {
     const checkboxes = Array.from(parent.querySelectorAll('input[type="checkbox"]')).map(mockbox);
 
     return { checkboxes };
   }
 
+  /**
+   * Turns all radio buttons into custom radio buttons.
+   * Also uses the underlaying checkbox.
+   */
   mockRadios(parent) {
     const radios = Array.from(parent.querySelectorAll('input[type="radio"]')).map(mockradio);
 
@@ -128,5 +150,5 @@ class EnhanceWPElements {
 }
 
 export default function enhanceWPElements(selectors) {
-  return new EnhanceWPElements(selectors);
+  return new WPElementEnhancer(selectors);
 }
