@@ -1,7 +1,7 @@
 export default function transformURLsWebpackDevServer() {
   // Running from webpack-dev-server. Transform all links so they keep working.
   Array.from(document.querySelectorAll('a, form')).forEach((element) => {
-    const siteurl = window.theme.siteurl;
+    const { siteurl } = window.theme;
     const url = window.location.origin;
 
     switch (element.tagName.toLowerCase()) {

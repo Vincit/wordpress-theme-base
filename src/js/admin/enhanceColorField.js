@@ -15,7 +15,7 @@ const enhanceColorField = () => {
   });
 
   window.addEventListener('change', (e) => {
-    const target = e.target;
+    const target = { e };
     const selectContainer = target.closest('[data-name="color"]');
 
     if (selectContainer) {

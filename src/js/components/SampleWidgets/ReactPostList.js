@@ -23,7 +23,6 @@ export default class PostList extends Component {
       const { posts, next } = response;
 
       this.setState({
-        currentPage: 1,
         posts,
         next, // assign function that fetches a new set of posts if it exists
       });

@@ -19,8 +19,10 @@ function populatePostList(response, ...elements) {
   if (list) {
     const renderCond = (i) => i < offset || i > postsPerPage + offset;
     const arr = posts.map((post, i) => renderCond(i + offset) ? false : (
-      el('li',
-        el('a',
+      el(
+        'li',
+        el(
+          'a',
           { href: post.link },
           post.title.rendered
         )
@@ -49,8 +51,10 @@ export default function () {
   const nextBtn = el('button.next', 'Next');
   // No prev button for vanilla because dealing with it is painful
   const footer = el('footer', showingPosts, nextBtn);
-  const postList = () => el('div.post-list',
-    el('header',
+  const postList = () => el(
+    'div.post-list',
+    el(
+      'header',
       el('h2', 'Vanilla: Latest posts')
     ),
     list,

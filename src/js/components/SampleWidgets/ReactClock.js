@@ -26,6 +26,6 @@ export default class Clock extends Component {
   }
 
   render() {
-    return <time className="clock">{ymdhis()}</time>;
+    return <time className="clock">{this.state.time}</time>;
   }
 }

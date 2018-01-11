@@ -10,7 +10,7 @@ const skipLinkFocusFix = () => {
 
   if (isIe && document.getElementById && window.addEventListener) {
     window.addEventListener('hashchange', () => {
-      const id = location.hash.substring(1);
+      const id = window.location.hash.substring(1);
 
       if (!(/^[A-z0-9_-]+$/.test(id))) {
         return;

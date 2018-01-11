@@ -9,8 +9,8 @@ async function wpQuery(queryArgs = {}) {
   };
 
   const response = await req(`/wp-json/wp_query/args/?${qs.stringify(args)}`);
-  const headers = Array.from(response.headers.entries()).reduce((acc, a) => {
-    acc[a[0]] = a[1];
+  const headers = Array.from(response.headers.entries()).reduce((acc, [key, value]) => {
+    acc[key] = value;
     return acc;
   }, {});
 

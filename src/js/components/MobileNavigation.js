@@ -76,7 +76,8 @@ class MobileNavigation {
       .forEach((item) => {
         const wrapper = el('.item-wrapper');
         const handle = item.classList.contains('menu-item-has-children')
-          ? el('button.menu-handle',
+          ? el(
+            'button.menu-handle',
             inlineSVG(
               `${window.theme.path}/dist/img/svg/menu-with-open.svg`,
               '.open-icon'
