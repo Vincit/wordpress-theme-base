@@ -10,6 +10,7 @@ const OfflinePlugin = require('offline-plugin');
 const offlineOpts = require('./offlineOpts');
 
 const generalConfig = merge(
+  parts.configureResolver(),
   parts.genericConfig(),
   parts.genericPlugins(),
 
