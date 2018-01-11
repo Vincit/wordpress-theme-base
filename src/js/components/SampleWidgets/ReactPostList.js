@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import wpQuery from '../wpQuery';
+import wpQuery from '../../lib/wp-query';
 
 export default class PostList extends Component {
   constructor(props) {

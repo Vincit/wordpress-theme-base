@@ -1,5 +1,5 @@
 import qs from 'qs';
-import req from './lib/req';
+import req from './req';
 
 async function wpQuery(queryArgs = {}) {
   const args = {

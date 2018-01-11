@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ymdhis } from './clock';
+import { ymdhis } from './Clock';
 
 // This could be written as a dumb component, but then you'd have to update the
 // component in the parent container, which is impractical for this.
