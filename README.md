@@ -326,3 +326,7 @@ It's possible that your browser has stopped trusting the certificate (happens su
 
 Scripts and styles are loaded from https://wordpress.local, even though the development server runs on https://localhost:8080. If your system doesn't trust self-signed certificates automatically, you might have to navigate to https://wordpress.local, and add an exception or confirm that you want to use the site, regardless of the "dangerous" cert.
 
+## I don't care for React, how do I get rid of it?
+If you don't use React, you might want to remove it. This isn't necessary, as your build doesn't include React if it isn't used. Simply commenting out the line that imports sample widgets in client.js should remove React from the bundle.
+
+If you still want to remove React entirely, remove this from build/webpack.parts.js transpileJavaScript method: `require('react-hot-loader/babel')`. Then remove `'react-hot-loader/patch'` from the entries object in webpack.client.js, and delete any React packages from package.json.
