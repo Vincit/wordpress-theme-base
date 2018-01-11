@@ -17,6 +17,7 @@ const entries = {
 };
 
 const generalConfig = merge(
+  parts.configureResolver(),
   parts.genericConfig(),
   parts.genericPlugins(),
 

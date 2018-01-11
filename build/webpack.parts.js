@@ -293,3 +293,15 @@ exports.loadFonts = ({ include, exclude, options } = {}) => ({
     ],
   },
 });
+
+exports.configureResolver = () => ({
+  resolve: {
+    modules: [
+      path.resolve(paths.src, 'js/'),
+      path.resolve(path.join(paths.src, '../node_modules')),
+    ],
+    // alias: {
+      // lib: path.resolve(paths.src, 'js/lib'),
+    // },
+  },
+});

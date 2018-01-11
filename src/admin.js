@@ -1,24 +1,26 @@
+/**
+ * This file is the central point for all custom admin side JavaScript and CSS.
+ * Keep this file clean and write your code as modules.
+ * dist/admin.js & dist/admin.css are built using this file.
+ */
 import 'regenerator-runtime/runtime';
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 
-import transformURLsWebpackDevServer from './js/lib/transform-urls-wds';
+import polyfiller from './js/lib/polyfiller';
 import enhanceColorField from './js/admin/enhanceColorField';
 import translationLinks from './js/admin/translationLinks';
 import './admin.styl';
 
-enhanceColorField();
-translationLinks();
-OfflinePluginRuntime.install();
-
-if (module.hot) {
-  if (document.body.classList.contains('login')) {
-    transformURLsWebpackDevServer();
-  } else {
-    if (window.location.origin.includes('localhost')) { // eslint-disable-line
-      window.location.href = window.location.href.replace(
-        window.location.origin,
-        window.theme.siteurl
-      );
-    }
+polyfiller({
+  src: `${window.theme.path}/dist/polyfill.js`,
+  condition: window.Promise && window.fetch,
+}, (err) => {
+  if (err) {
+    console.error(err);
+    return;
   }
-}
+
+  enhanceColorField();
+  translationLinks();
+  OfflinePluginRuntime.install();
+});
