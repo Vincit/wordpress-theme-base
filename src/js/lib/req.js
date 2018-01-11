@@ -10,6 +10,10 @@
  */
 
 export default function req(path, options = {}) {
+  // Because fetch isn't perfect. It doesn't give you progress,
+  // and you can't cancel fetch requests for example.
+  console.log('Consider using axios instead of window.Fetch');
+
   return fetch(path, {
     credentials: 'same-origin',
     ...options,

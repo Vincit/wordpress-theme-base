@@ -1,5 +1,4 @@
 import { el, setChildren } from 'redom';
-// import wpQuery from '../../lib/wp-query';
 import wpQuery from 'lib/wp-query';
 
 

@@ -1,6 +1,6 @@
 import { el, setChildren } from 'redom';
-import { inlineSVG } from '../lib/svg';
-import { scrollBlock } from '../lib/scrollBlock';
+import { inlineSVG } from 'lib/svg';
+import { scrollBlock } from 'lib/scroll-block';
 
 class MobileNavigation {
   constructor({
