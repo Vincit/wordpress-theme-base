@@ -7,7 +7,6 @@
  */
 import 'regenerator-runtime/runtime';
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
-import 'normalize.css';
 
 import polyfiller from 'lib/polyfiller';
 import enhanceWPElements from 'lib/enhance-wp-elements';
@@ -19,6 +18,7 @@ import renderSampleWidgetsTo from 'components/SampleWidgets/';
 
 // import colors from './colors.json';
 // import mediaQueries from './media-queries.json';
+import 'normalize.css';
 import './client.styl';
 
 polyfiller({
@@ -42,5 +42,6 @@ polyfiller({
   if (module.hot) {
     transformURLsWebpackDevServer();
   }
+
   OfflinePluginRuntime.install();
 });
