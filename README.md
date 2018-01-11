@@ -20,7 +20,7 @@ Bleeding edge starter theme.
   - [x] Built with Webpack 3
   - [x] **CSS Hot Module Replacement** (HMR)
   - [x] **JS Hot Module Replacement** (HMR)
-  - [x] ES6+ (stage-2)
+  - [x] ES2017+ (stage-2)
   - [x] ESLint
   - [x] Sourcemaps
   - [x] Enforces case sensitive paths so build works on all platforms
