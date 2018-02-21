@@ -56,8 +56,6 @@ class ScrollBlock {
 
 const scrollBlock = new ScrollBlock();
 
-export {
-  scrollBlock,
-};
+export { scrollBlock };
 
 export default scrollBlock;
