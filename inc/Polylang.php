@@ -43,8 +43,10 @@ namespace Vincit\Polylang {
     }
 
     $strings = get_field("translations", "options");
-    foreach ($strings as $string) {
-      pll_register_string($string["key"], $string["string"], $string["multiline"]);
+    if (is_array($strings)) {
+      foreach ($strings as $string) {
+        pll_register_string($string["key"], $string["string"], $string["multiline"]);
+      }
     }
   }
 
