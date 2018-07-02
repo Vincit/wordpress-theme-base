@@ -21,7 +21,7 @@ const generalConfig = merge(
 
   parts.manifestPlugin({
     fileName: 'client-manifest.json',
-  }),
+  })
 );
 
 const devConfig = merge(
@@ -41,7 +41,7 @@ const devConfig = merge(
   }),
 
   parts.loadCSS(),
-  parts.sourceMaps({ type: 'cheap-module-source-map' }),
+  parts.sourceMaps({ type: 'cheap-module-source-map' })
 );
 
 
@@ -65,7 +65,7 @@ const prodConfig = merge(
 
   parts.extractCSS({
     filename: '[name].[contenthash].css',
-  }),
+  })
 
   // no sourcemaps in prod, reason should be obvious.
   // parts.sourceMaps({ type: 'cheap-module-source-map' }),

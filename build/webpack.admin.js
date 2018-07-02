@@ -32,7 +32,7 @@ const generalConfig = merge(
 
   parts.manifestPlugin({
     fileName: 'admin-manifest.json',
-  }),
+  })
 );
 
 const prodConfig = merge(
@@ -49,7 +49,7 @@ const prodConfig = merge(
     options: {
       name: '[name].[chunkhash].[ext]',
     },
-  }),
+  })
 );
 
 const devConfig = merge(
@@ -59,7 +59,7 @@ const devConfig = merge(
     },
   }),
 
-  parts.sourceMaps({ type: 'cheap-module-source-map' }),
+  parts.sourceMaps({ type: 'cheap-module-source-map' })
 );
 
 module.exports = (env) => {
