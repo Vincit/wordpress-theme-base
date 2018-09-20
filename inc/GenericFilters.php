@@ -67,3 +67,14 @@ add_filter("bcn_template_tags", function ($replacements, $type, $id) {
   return $replacements;
 }, 3, 10);
 
+/**
+ * OG tag image urls must be absolute
+ *
+*/
+add_filter('the_seo_framework_ogimage_output', function ($image) {
+  return esc_url(home_url($image));
+}, 10, 2);
+
+add_filter('the_seo_framework_twitterimage_output', function ($image) {
+  return esc_url(home_url($image));
+}, 10, 2);
