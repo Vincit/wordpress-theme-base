@@ -7,11 +7,10 @@ namespace Vincit\GenericFilters;
 
 function title_prefix($title) {
   $dev = "D";
-  $production = "P";
   $staging = "S";
 
   if (\Vincit\is_prod() && is_user_logged_in()) {
-    return "[$production] $title";
+    return $title;
   } else if (\Vincit\is_dev()) {
     return "[$dev] $title";
   } elseif (!empty($_COOKIE["seravo_shadow"]) || \Vincit\is_staging()) {
