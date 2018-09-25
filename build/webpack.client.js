@@ -9,10 +9,10 @@ const pjson = require(path.join(__dirname, '..', 'package.json'));
 const OfflinePlugin = require('offline-plugin');
 const offlineOpts = require('./offlineOpts');
 
-const generalConfig = merge(
-  parts.configureResolver(),
-  parts.genericConfig(),
-  parts.genericPlugins(),
+const generalConfig = (env) => merge(
+  parts.configureResolver(env),
+  parts.genericConfig(env),
+  parts.genericPlugins(env),
 
   parts.lintJavaScript({ include: paths.src }),
   parts.transpileJavaScript(),
@@ -80,6 +80,6 @@ const entries = {
 
 module.exports = (env) => {
   return env === 'production'
-    ? merge(entries, generalConfig, prodConfig)
-    : merge(entries, generalConfig, devConfig);
+    ? merge(entries, generalConfig(env), prodConfig)
+    : merge(entries, generalConfig(env), devConfig);
 };

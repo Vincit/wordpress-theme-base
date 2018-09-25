@@ -33,7 +33,7 @@ exports.genericConfig = () => ({
   },
 });
 
-exports.genericPlugins = () => ({
+exports.genericPlugins = (env) => ({
   plugins: [
     new webpack.NamedModulesPlugin(),
     new CaseSensitivePathsPlugin(), // for filesystems that aren't case sensitive (looking at you macOS and Windows...)
@@ -61,7 +61,9 @@ exports.genericPlugins = () => ({
         to: 'img/',
       },
     ]),
-    new Imagemin(),
+    new Imagemin({
+      disable: env !== 'production',
+    }),
   ],
 });
 
@@ -98,7 +100,7 @@ exports.devServer = ({ host, port } = {}) => {
         warnings: false,
       },
 
-      open: true,
+      open: process.env.BROWSER === 'false' ? false : true,
 
       hotOnly: true, // Stop throwing our state to the garbage bin if hot load fails
       clientLogLevel: 'none', // Those [WDS] console.logs are useless and annoying
