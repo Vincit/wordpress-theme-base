@@ -22,7 +22,7 @@ import 'normalize.css';
 import './client.styl';
 
 polyfiller({
-  src: `${window.theme.path}/dist/polyfill.js`,
+  src: window.theme.assets.polyfill,
   condition: window.Promise && window.fetch,
 }, (err) => {
   if (err) {

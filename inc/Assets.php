@@ -19,6 +19,8 @@ function asset_path($asset, $ignore_existence = false) {
     return false;
   }
 
+  error_log(print_r(CLIENT_MANIFEST, true));
+
   if (!$notInClient) {
     return $path . CLIENT_MANIFEST[$asset];
   }
@@ -92,18 +94,16 @@ function theme_assets() {
   // Webfonts:
   enqueue("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Serif+Pro:700", [], true);
 
-  // Own polyfills supplied instead
+  // Webpack generates a polyfill. If you'd rather use something like polyfill.io, uncomment the next line.
   // enqueue("https://cdn.polyfill.io/v2/polyfill.min.js?features=default,es6,fetch", [], true);
 
-  // Used to determine what to cache for offline use and so on.
-  // In reality Webpack Offline Plugin handles it, but these serve as samples,
-  // and may help you build things.
   $siteurl = get_site_url();
   \wp_localize_script("client-js", "theme", [
     "path" => str_replace($siteurl, "", get_stylesheet_directory_uri()),
-    "cache" => [
+    "assets" => [
       "stylesheet" => IS_WDS ? false : enqueue(asset_path("client.css")),
       "javascript" => enqueue(asset_path("client.js"), ["wplf-form-js"]),
+      "polyfill" => asset_path("polyfill.js"), // loaded by client.js if necessary
     ],
     "siteurl" => $siteurl,
     "lang" => pll_current_language(),
@@ -114,9 +114,10 @@ function admin_assets() {
   $siteurl = get_site_url();
   \wp_localize_script("admin-js", "theme", [
     "path" => str_replace($siteurl, "", get_stylesheet_directory_uri()),
-    "cache" => [
+    "assets" => [
       "stylesheet" => enqueue(asset_path("admin.css")),
       "javascript" => enqueue(asset_path("admin.js")),
+      "polyfill" => asset_path("polyfill.js"), // loaded by admin.js if necessary
     ],
     "siteurl" => $siteurl,
     "lang" => pll_current_language(),
