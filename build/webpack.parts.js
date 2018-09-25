@@ -101,6 +101,7 @@ exports.devServer = ({ host, port } = {}) => {
       open: true,
 
       hotOnly: true, // Stop throwing our state to the garbage bin if hot load fails
+      clientLogLevel: 'none', // Those [WDS] console.logs are useless and annoying
 
       proxy: {
         '/': {
