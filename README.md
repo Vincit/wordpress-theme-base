@@ -282,8 +282,8 @@ Change the value in package.json.
 
 ### I did the above but HMR still doesn't work?
 Git gud. HMR requires you to write your code accordingly, example:
-- [Module](https://github.com/Vincit/wordpress-theme-base/blob/master/src/js/components/clock.js)
-- [sample.js](https://github.com/Vincit/wordpress-theme-base/blob/master/src/js/sample.js)
+- [Module](https://github.com/Vincit/wordpress-theme-base/blob/master/src/js/components/SampleWidgets/Clock.js)
+- [index.js](https://github.com/Vincit/wordpress-theme-base/blob/master/src/js/components/SampleWidgets/index.js)
 
 If using React, you should be set.
 
