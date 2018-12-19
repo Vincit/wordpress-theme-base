@@ -69,11 +69,19 @@ add_filter("bcn_template_tags", function ($replacements, $type, $id) {
 /**
  * OG tag image urls must be absolute
  *
+ * @param string $image The social image URL.
+ * @param int    $id    The page or term ID.
 */
-add_filter('the_seo_framework_ogimage_output', function ($image) {
-  return esc_url(home_url($image));
-}, 10, 2);
+function set_absolute_image_url($image, $id) {
+  if(strpos($image, "http") === 0) {
+    return esc_url($image);
+  } else {
+    return esc_url(home_url($image));
+  }
+}
 
-add_filter('the_seo_framework_twitterimage_output', function ($image) {
-  return esc_url(home_url($image));
-}, 10, 2);
+// OG image
+add_filter("the_seo_framework_ogimage_output", "\\Vincit\\GenericFilters\\set_absolute_image_url", 10, 2);
+
+// Twitter card image
+add_filter("the_seo_framework_twitterimage_output", "\\Vincit\\GenericFilters\\set_absolute_image_url", 10, 2);
