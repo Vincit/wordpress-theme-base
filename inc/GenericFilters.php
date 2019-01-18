@@ -85,3 +85,22 @@ add_filter("the_seo_framework_ogimage_output", "\\Vincit\\GenericFilters\\set_ab
 
 // Twitter card image
 add_filter("the_seo_framework_twitterimage_output", "\\Vincit\\GenericFilters\\set_absolute_image_url", 10, 2);
+
+
+/**
+ * Wrap embedded media as suggested by Readability
+ *
+ * @link https://gist.github.com/965956
+ * @link http://www.readability.com/publishers/guidelines#publisher
+ */
+function embed_wrap($cache) {
+  return '<div class="entry-content-asset">' . $cache . '</div>';
+}
+
+add_filter('embed_oembed_html', '\\Vincit\\GenericFilters\\embed_wrap');
+
+add_action('after_setup_theme', function () {
+  remove_filter('embed_oembed_html', 'Roots\\Soil\\CleanUp\\embed_wrap');
+}, 101);
+
+
