@@ -73,7 +73,7 @@ add_filter("bcn_template_tags", function ($replacements, $type, $id) {
  * @param int    $id    The page or term ID.
 */
 function set_absolute_image_url($image, $id) {
-  if(strpos($image, "http") === 0) {
+  if (strpos($image, "http") === 0) {
     return esc_url($image);
   } else {
     return esc_url(home_url($image));
