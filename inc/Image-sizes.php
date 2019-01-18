@@ -8,15 +8,6 @@ add_action("after_setup_theme", function () {
  // add_image_size
 });
 
-// The srcset provided by WP is... weird.
-add_filter("wp_calculate_image_sizes", function ($sizes) {
-  if (strpos($sizes, $GLOBALS["content_width"]) > -1) {
-    return ""; // disable if large
-  }
-
-  return $sizes;
-});
-
 add_action("admin_init", function () {
   // Default media settings are insane in 2018.
   $image_sizes = [
