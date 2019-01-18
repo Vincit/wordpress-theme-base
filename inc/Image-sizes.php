@@ -18,8 +18,13 @@ add_action("admin_init", function () {
     ],
     [
       "name" => "medium",
-      "w" => 1600,
-      "h" => 900,
+      "w" => 1366,
+      "h" => 768,
+    ],
+    [
+      "name" => "medium_large",
+      "w" => 1980,
+      "h" => 1080,
     ],
     [
       "name" => "large",
