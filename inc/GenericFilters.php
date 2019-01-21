@@ -103,4 +103,7 @@ add_action('after_setup_theme', function () {
   remove_filter('embed_oembed_html', 'Roots\\Soil\\CleanUp\\embed_wrap');
 }, 101);
 
-
+// Increase srcset max image width from default value of 1600
+add_filter('max_srcset_image_width', function () {
+  return 2560;
+});
