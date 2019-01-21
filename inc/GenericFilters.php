@@ -94,7 +94,7 @@ add_filter("the_seo_framework_twitterimage_output", "\\Vincit\\GenericFilters\\s
  * @link http://www.readability.com/publishers/guidelines#publisher
  */
 function embed_wrap($cache) {
-  return '<div class="entry-content-asset">' . $cache . '</div>';
+  return '<div class="responsive-embed">' . $cache . '</div>';
 }
 
 add_filter('embed_oembed_html', '\\Vincit\\GenericFilters\\embed_wrap');
