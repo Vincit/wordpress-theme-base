@@ -47,12 +47,18 @@ function svg($path, $args = []) {
  * Usage: <?=\Vincit\Media\image($image, 'your-size')?>
  *
  * @param mixed $image
- * @param string $size
- * @param string $class
- * @param string $sizes
+ * @param array $args
+ * @return string
  */
-function image($image, $size = 'medium', $class = null, $sizes = null) {
-  $data = get_image_data($image, $size);
+function image($image, $args = []) {
+  $args = \Vincit\Template\params([
+    'size' => 'medium',
+    'responsive' => true,
+    'class' => null,
+    'sizes' => null,
+  ], $args);
+
+  $data = get_image_data($image, $args['size']);
 
   if (!$data) {
     return false;
@@ -60,11 +66,13 @@ function image($image, $size = 'medium', $class = null, $sizes = null) {
 
   // If the title contains the filename, don't use a title.
   $has_title = strpos($data['src'], $data['title']) > -1 ? false : true;
-
+  $class = $args['responsive'] ? 'vincit-image vincit-image--responsive' : 'vincit-image';
+  $class = $args['class'] ?: $class;
+  
   return  \Vincit\tag([
     "<img src='$data[src]'",
-    "srcset='$data[srcset]'",
-    $sizes ? "sizes='$sizes'" : "",
+    $args['responsive'] ? "srcset='$data[srcset]'" : "",
+    $args['sizes'] ? "sizes='$args[sizes]'" : "",
     $has_title ? "title='$data[title]'" : "",
     $class ? "class='$class'" : "",
     "alt='$data[alt]'>"
