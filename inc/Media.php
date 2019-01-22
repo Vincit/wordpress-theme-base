@@ -47,18 +47,18 @@ function svg($path, $args = []) {
  * Usage: <?=\Vincit\Media\image($image, 'your-size')?>
  *
  * @param mixed $image
+ * @param string $size
  * @param array $args
  * @return string
  */
-function image($image, $args = []) {
+function image($image, $size = 'medium', $args = []) {
   $args = \Vincit\Template\params([
-    'size' => 'medium',
     'responsive' => true,
     'class' => null,
     'sizes' => null,
   ], $args);
 
-  $data = get_image_data($image, $args['size']);
+  $data = get_image_data($image, $size);
 
   if (!$data) {
     return false;
