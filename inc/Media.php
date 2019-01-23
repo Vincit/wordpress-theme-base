@@ -48,9 +48,16 @@ function svg($path, $args = []) {
  *
  * @param mixed $image
  * @param string $size
- * @param boolean $responsive
+ * @param array $args
+ * @return string
  */
-function image($image, $size = 'medium', $responsive = true) {
+function image($image, $size = 'medium', $args = []) {
+  $args = \Vincit\Template\params([
+    'responsive' => true,
+    'class' => null,
+    'sizes' => null,
+  ], $args);
+
   $data = get_image_data($image, $size);
 
   if (!$data) {
@@ -59,13 +66,15 @@ function image($image, $size = 'medium', $responsive = true) {
 
   // If the title contains the filename, don't use a title.
   $has_title = strpos($data['src'], $data['title']) > -1 ? false : true;
-  $class = $responsive ? 'vincit-image vincit-image--responsive' : 'vincit-image';
-
+  $class = $args['responsive'] ? 'vincit-image vincit-image--responsive' : 'vincit-image';
+  $class = $args['class'] ?: $class;
+  
   return  \Vincit\tag([
     "<img src='$data[src]'",
-    $responsive ? "srcset='$data[srcset]'" : "",
+    $args['responsive'] ? "srcset='$data[srcset]'" : "",
+    $args['sizes'] ? "sizes='$args[sizes]'" : "",
     $has_title ? "title='$data[title]'" : "",
-    "class='$class'",
+    $class ? "class='$class'" : "",
     "alt='$data[alt]'>"
   ]);
 }

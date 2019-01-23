@@ -19,7 +19,7 @@ add_action("after_setup_theme", function () {
     // "comment-form" // until someone makes the hard coded novalidate attr filterable this stays off.
   ]);
 
-  $GLOBALS["content_width"] = 800; // Width of the actual content in single page.
+  $GLOBALS["content_width"] = 2560;
   add_theme_support("soil-clean-up");
   add_theme_support("soil-disable-trackbacks");
   add_theme_support("soil-nav-walker");

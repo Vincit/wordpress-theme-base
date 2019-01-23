@@ -73,7 +73,7 @@ add_filter("bcn_template_tags", function ($replacements, $type, $id) {
  * @param int    $id    The page or term ID.
 */
 function set_absolute_image_url($image, $id) {
-  if(strpos($image, "http") === 0) {
+  if (strpos($image, "http") === 0) {
     return esc_url($image);
   } else {
     return esc_url(home_url($image));
@@ -85,3 +85,25 @@ add_filter("the_seo_framework_ogimage_output", "\\Vincit\\GenericFilters\\set_ab
 
 // Twitter card image
 add_filter("the_seo_framework_twitterimage_output", "\\Vincit\\GenericFilters\\set_absolute_image_url", 10, 2);
+
+
+/**
+ * Wrap embedded media as suggested by Readability
+ *
+ * @link https://gist.github.com/965956
+ * @link http://www.readability.com/publishers/guidelines#publisher
+ */
+function embed_wrap($cache) {
+  return '<div class="responsive-embed">' . $cache . '</div>';
+}
+
+add_filter('embed_oembed_html', '\\Vincit\\GenericFilters\\embed_wrap');
+
+add_action('after_setup_theme', function () {
+  remove_filter('embed_oembed_html', 'Roots\\Soil\\CleanUp\\embed_wrap');
+}, 101);
+
+// Increase srcset max image width from default value of 1600
+add_filter('max_srcset_image_width', function () {
+  return 2560;
+});
