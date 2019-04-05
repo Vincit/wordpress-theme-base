@@ -92,4 +92,4 @@ Score: %score%
 
     \update_option("vincit_relevanssi_configured", time());
   }
-} configure_relevanssi(true);
+} configure_relevanssi();
