@@ -19,8 +19,6 @@ function asset_path($asset, $ignore_existence = false) {
     return false;
   }
 
-  error_log(print_r(CLIENT_MANIFEST, true));
-
   if (!$notInClient) {
     return $path . CLIENT_MANIFEST[$asset];
   }
